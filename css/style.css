@@ -1,0 +1,2090 @@
+@font-face {
+    font-family: 'Arsenal SC';
+    src: url('../Arsenal_SC/ArsenalSC-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arsenal SC';
+    src: url('../Arsenal_SC/ArsenalSC-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arsenal SC';
+    src: url('../Arsenal_SC/ArsenalSC-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Arsenal SC';
+    src: url('../Arsenal_SC/ArsenalSC-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+:root {
+    /* Цвета */
+    --volzhsky-blue: #2376D9;
+    --sky: #A3DDFF;
+    --deep-blue: #153A61;
+    --terracotta: #D31A1A;
+    --amber: #F59C1C;
+
+    /* Расстояния */
+    --gap-h2-to-h3: 3.5rem;      /* 56px */
+    --gap-h3-to-text: 1.5rem;    /* 24px */
+    --gap-block: 10rem;          /* 160px */
+    --gap-to-footer: 11.5rem;    /* 184px */
+
+    /* Сетка */
+    --side-padding: 7.1875rem;   /* 115px */
+    --col-gap: 1.25rem;          /* 20px */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;      /* отступ под фиксированную мобильную шапку */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;          /* 20px */
+    color: var(--deep-blue);
+    background-color: #fff;
+    max-width: 120rem;           /* 1920px */
+    margin: 0 auto;
+}
+
+/* Типографика */
+.h0 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 10rem;            /* 160px */
+    line-height: 1;
+}
+
+.h1 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 8rem;             /* 128px */
+    line-height: 1;
+}
+
+.h2 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 4rem;             /* 64px */
+    line-height: 3.6875rem;      /* 59px */
+}
+
+.h3 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 2.5rem;           /* 40px */
+    line-height: 3.125rem;       /* 50px */
+}
+
+.text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;          /* 20px */
+    line-height: 1.5;
+}
+
+.highlight-1 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;           /* 24px */
+}
+
+.highlight-2 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+}
+
+.highlight-3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+}
+
+/* ===== LAYOUT ===== */
+
+.layout {
+    display: grid;
+    grid-template-columns: 15.625rem 1fr;  /* 250px = 2 колонки по 115px + 1 gap */
+    column-gap: 1.25rem;                   /* 20px — один gap сетки */
+    min-height: 100vh;
+    align-items: start;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;        /* 32px 24px */
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 2px solid var(--volzhsky-blue);
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* БРЕНДБУК + 2026 */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;       /* 24px */
+}
+
+.sidebar-header span {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;           /* 24px */
+    color: var(--volzhsky-blue);
+}
+
+/* Логотип */
+.sidebar-logo {
+    margin-bottom: 1.25rem;      /* 20px */
+}
+
+.sidebar-logo img {
+    width: 100%;
+    max-width: 12.5rem;          /* 200px */
+    height: auto;
+}
+
+/* Разделитель — тянется до краёв сайдбара */
+.divider {
+    border: none;
+    border-top: 2px solid var(--volzhsky-blue);
+    margin: 0 -1.5rem 1.25rem -1.5rem;  /* 0 -24px 20px -24px */
+}
+
+/* Поиск */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;               /* 10px */
+    margin-bottom: 1.25rem;      /* 20px */
+}
+
+.search-box img {
+    width: 1.375rem;             /* 22px */
+    height: 1.375rem;
+    flex-shrink: 0;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+    color: var(--deep-blue);
+    outline: none;
+    width: 100%;
+}
+
+.search-box input::placeholder {
+    color: var(--deep-blue);
+    opacity: 1;
+}
+
+/* Навигация */
+.sidebar-nav {
+    flex: 1;
+}
+
+.nav-category {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+    color: var(--volzhsky-blue);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.75rem;      /* 12px */
+}
+
+.nav-category:hover {
+    color: var(--amber);
+}
+
+.nav-category:active {
+    color: var(--deep-blue);
+}
+
+.nav-section {
+    margin-bottom: 0;
+}
+
+/* Подпункты в сайдбаре */
+.nav-section ul li.sub-item a {
+    font-size: 1.125rem;         /* 18px */
+    padding-left: 0.875rem;      /* 14px */
+}
+
+/* Разделитель между секциями навигации */
+.nav-divider {
+    border: none;
+    border-top: 2px solid var(--volzhsky-blue);
+    margin: 0.75rem -1.5rem 0.75rem -1.5rem;  /* 12px -24px */
+}
+
+.nav-section-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;           /* 24px */
+    color: var(--deep-blue);
+    margin-bottom: 0.625rem;     /* 10px */
+}
+
+.nav-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;               /* 6px */
+    margin-bottom: 0.75rem;      /* 12px */
+}
+
+.nav-section ul li a {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+    color: var(--volzhsky-blue);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+}
+
+.nav-section ul li a:hover {
+    color: var(--amber);
+}
+
+.nav-section ul li a:active {
+    color: var(--deep-blue);
+}
+
+/* Кнопка сайт города */
+.sidebar-footer {
+    margin-top: 1.5rem;          /* 24px */
+}
+
+.btn-city {
+    display: block;
+    background-color: var(--volzhsky-blue);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+    padding: 0.875rem 1.25rem;   /* 14px 20px */
+}
+
+.btn-city:hover {
+    background-color: var(--amber);
+}
+
+.btn-city:active {
+    background-color: var(--deep-blue);
+}
+
+/* ===== MAIN CONTENT ===== */
+
+.content {
+    padding: 5rem 1.25rem 0 0;   /* сверху 80px, справа 20px = 1 gap */
+    overflow-x: hidden;           /* не даём ленте ошибок расширить страницу */
+}
+
+/* ===== ГЕРОЙ / ТИТУЛ ===== */
+
+.hero-section {
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    column-gap: var(--col-gap);
+    align-items: center;
+    padding-bottom: 5rem;
+    margin-bottom: var(--gap-block);
+}
+
+/* Левая часть — вложенная 8-колоночная сетка */
+.hero-left {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: var(--col-gap);
+    row-gap: 0;
+    align-items: start;
+    align-content: start;
+}
+
+.hero-subtitle {
+    grid-column: 1 / -1;
+    color: var(--deep-blue);
+    margin-bottom: 0.25rem;
+}
+
+.hero-city {
+    grid-column: 1 / -1;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 10rem;
+    line-height: 0.9;
+    color: var(--volzhsky-blue);
+    margin-bottom: 0.5rem;   /* 8px */
+}
+
+.hero-quote {
+    grid-column: 1 / 5;      /* 4 колонки */
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--deep-blue);
+    font-style: normal;
+    margin-bottom: 0.75rem;
+}
+
+.hero-author {
+    grid-column: 1 / 5;
+    font-style: italic;
+    color: var(--deep-blue);
+    margin-bottom: 3.75rem;  /* 60px */
+}
+
+.hero-stats {
+    grid-column: 1 / 7;      /* 6 колонок = 3 блока × 2 колонки */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--col-gap);
+    margin-bottom: 3.75rem;  /* 60px */
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.hero-stat-num {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.hero-stat-num--blue    { color: var(--deep-blue); }
+.hero-stat-num--amber   { color: var(--amber); }
+.hero-stat-num--red     { color: var(--terracotta); }
+
+.hero-stat-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    color: var(--deep-blue);
+}
+
+.btn-hero {
+    grid-column: 1 / 3;      /* 2 колонки */
+    display: block;
+    background-color: var(--volzhsky-blue);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0.875rem 1.25rem;
+}
+
+.btn-hero:hover  { background-color: var(--amber); }
+.btn-hero:active { background-color: var(--deep-blue); }
+
+/* Правая колонка — конверт */
+.hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-envelope {
+    width: 100%;
+}
+
+.envelope-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    animation: envelope-float 4s ease-in-out infinite;
+}
+
+@keyframes envelope-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-1.5rem); }
+}
+
+/* ===== БЛОК СТРУКТУРА ===== */
+
+.structure-heading {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 4rem;             /* 64px */
+    line-height: 3.6875rem;      /* 59px */
+    color: var(--deep-blue);
+    margin-bottom: var(--gap-h2-to-h3);
+}
+
+.structure-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--col-gap);
+}
+
+.structure-card {
+    background-image: url('../img/структура подложка.png');
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;               /* 32px */
+}
+
+.structure-card-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 2.5rem;           /* 40px */
+    line-height: 3.125rem;       /* 50px */
+    color: var(--deep-blue);
+    margin-bottom: 2rem;         /* 32px */
+}
+
+.structure-card ul {
+    list-style: none;
+}
+
+.structure-card ul li {
+    border-top: 2px solid var(--volzhsky-blue);
+    padding: 0.75rem 0;          /* 12px */
+}
+
+.structure-card ul li:first-child {
+    border-top: none;
+}
+
+.structure-card ul li a {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;          /* 20px */
+    color: var(--deep-blue);
+    text-decoration: none;
+    display: block;
+}
+
+.structure-card ul li a:hover {
+    color: var(--amber);
+}
+
+.structure-card ul li a:active {
+    color: var(--volzhsky-blue);
+}
+
+/* ===== БЛОК 1 КОНЦЕПЦИЯ ===== */
+
+.koncepciya-section {
+    margin-top: var(--gap-block);    /* 10rem = 160px */
+}
+
+.koncepciya-main-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 8rem;                 /* 128px */
+    line-height: 1;
+    color: var(--volzhsky-blue);
+    margin-bottom: 2rem;             /* 32px */
+}
+
+.vvedenie-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 4rem;                 /* 64px */
+    line-height: 3.6875rem;          /* 59px */
+    color: var(--deep-blue);
+    margin-bottom: var(--gap-h2-to-h3);
+}
+
+.vvedenie-grid {
+    display: grid;
+    grid-template-columns: 6fr 1fr 5fr;
+    gap: var(--col-gap);
+}
+
+/* Общий стиль заголовка h3 в блоках */
+.block-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 2.5rem;               /* 40px */
+    line-height: 3.125rem;           /* 50px */
+    color: var(--deep-blue);
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+/* О городе */
+.o-gorode-content p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;              /* 20px */
+    line-height: 1.5;
+    color: var(--deep-blue);
+    margin-bottom: 1rem;
+}
+
+.o-gorode-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Выделение в тексте */
+.hl {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;               /* 24px */
+    color: var(--volzhsky-blue);
+}
+
+/* Цели брендбука */
+.celi-numbers {
+    display: flex;
+    gap: 4rem;                       /* 64px */
+    margin-bottom: 1.5rem;
+}
+
+.cel-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 8rem;                 /* 128px */
+    line-height: 1;
+    color: var(--deep-blue);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.cel-btn:hover {
+    color: var(--amber);
+}
+
+.cel-btn:active {
+    color: var(--volzhsky-blue);
+}
+
+.cel-btn.active {
+    color: var(--volzhsky-blue);
+}
+
+.cel-text {
+    display: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;              /* 20px */
+    line-height: 1.5;
+    color: var(--deep-blue);
+}
+
+.cel-text.active {
+    display: block;
+}
+
+/* ===== БЛОК МИССИЯ. КЛЮЧЕВЫЕ СООБЩЕНИЯ ===== */
+
+.missiya-section {
+    margin-top: var(--gap-block);
+}
+
+.missiya-main-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 4rem;                 /* 64px */
+    line-height: 3.6875rem;
+    color: var(--deep-blue);
+    margin-bottom: var(--gap-h2-to-h3);
+}
+
+/* Сообщение — заголовок 48px */
+.soobshenie-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 3rem;                 /* 48px */
+    line-height: 1.15;
+    color: var(--volzhsky-blue);
+    margin-bottom: 1.5rem;
+    height: calc(3rem * 1.15 * 2);  /* ровно 2 строки */
+    overflow: hidden;
+}
+
+.soobshenie-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--deep-blue);
+    min-height: calc(1.25rem * 1.5 * 4);  /* 4 строки десктоп */
+}
+
+.soobshenie {
+    display: none;
+}
+
+.soobshenie.active {
+    display: block;
+}
+
+/* ===== БЛОК ЗАДАЧИ РЕКЛАМНОЙ ДЕЯТЕЛЬНОСТИ ===== */
+
+.zadachi-section {
+    margin-top: var(--gap-block);
+}
+
+/* Каналы коммуникации */
+.channels {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.channels span {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;               /* 24px — выделение в тексте 1 */
+    color: var(--deep-blue);
+    padding: 0 1rem;
+    border-right: 2px solid var(--volzhsky-blue);
+}
+
+.channels span:first-child {
+    padding-left: 0;
+}
+
+.channels span:last-child {
+    border-right: none;
+}
+
+/* Задачи — кнопки и тексты */
+.zadacha-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--deep-blue);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.zadacha-btn:hover {
+    color: var(--amber);
+}
+
+.zadacha-btn:active,
+.zadacha-btn.active {
+    color: var(--volzhsky-blue);
+}
+
+.zadacha-text {
+    display: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--deep-blue);
+}
+
+.zadacha-text.active {
+    display: block;
+    min-height: calc(1.25rem * 1.5 * 2);  /* 2 строки текста */
+}
+
+/* ===== БЛОК ПОЗИЦИОНИРОВАНИЕ. Ц/А ===== */
+
+.pozicionirovanie-section {
+    margin-top: var(--gap-block);
+}
+
+.preim {
+    display: none;
+}
+
+.preim.active {
+    display: block;
+}
+
+/* В преимуществах заголовок в 1 строку */
+.preim .soobshenie-title {
+    height: calc(3rem * 1.15 * 1);
+}
+
+/* ===== БЛОК ЦЕЛЕВАЯ АУДИТОРИЯ ===== */
+
+.ca-section {
+    margin-top: 5rem;            /* 80px */
+}
+
+/* Радиокнопки */
+.ca-tabs {
+    display: flex;
+    margin-bottom: 1rem;         /* 16px до контента */
+}
+
+.ca-tab {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;           /* 24px — выделение в тексте 1 */
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--volzhsky-blue);
+    background: #fff;
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+}
+
+.ca-tab + .ca-tab {
+    border-left: none;
+}
+
+.ca-tab:hover {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+
+.ca-tab.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.ca-tab.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Контент аудитории */
+.ca-content {
+    display: none;
+    margin-top: 1rem;                /* 16px от радиокнопок до контента */
+}
+
+.ca-content.active {
+    display: block;
+}
+
+/* Сетка первичной: фото1(4) + фото2(3) + текст(5) */
+.ca-grid {
+    display: grid;
+    grid-template-columns: 4fr 3fr 5fr;
+    gap: var(--col-gap);
+    align-items: end;
+}
+
+.ca-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Текст характеристик */
+.ca-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;                 /* 8px */
+}
+
+.ca-text p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--deep-blue);
+}
+
+.ca-label {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;           /* 24px — выделение в тексте 1 */
+    color: var(--volzhsky-blue);
+}
+
+/* Сетка вторичной: фото1(2) + фото2(2) + фото3(3) + текст(5) */
+.ca-grid-secondary {
+    display: grid;
+    grid-template-columns: 2fr 2fr 3fr 5fr;
+    gap: var(--col-gap);
+    align-items: end;
+}
+
+/* Подпункты (Сувенирная продукция и т.д.) */
+.structure-card ul li.sub-item {
+    border-top: none;
+    padding: 0.25rem 0;          /* 4px */
+}
+
+.structure-card ul li.sub-item a {
+    font-size: 1.125rem;         /* 18px */
+    padding-left: 1rem;          /* 16px */
+    color: var(--deep-blue);
+}
+
+/* ============================================
+   МОБИЛЬНАЯ ШАПКА — скрыта на десктопе
+   ============================================ */
+
+.mobile-header {
+    display: none;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(21, 58, 97, 0.5);
+    z-index: 1040;
+}
+
+.nav-overlay.active {
+    display: block;
+}
+
+/* ============================================
+   НАЗВАНИЕ. СЛОГАН. КРЕАТИВНАЯ КОНЦЕПЦИЯ
+   ============================================ */
+
+#nazvanie {
+    margin-top: var(--gap-block);    /* 10rem = 160px десктоп */
+}
+
+/* Двухколоночная сетка: 7 колонок название | 5 колонок текст */
+.nazvanie-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--col-gap);
+    margin-top: var(--gap-h2-to-h3);
+    align-items: center;             /* вертикальное центрирование по правому блоку */
+}
+
+/* Левая часть — название слева, слоган и кнопка лесенкой вправо */
+.nazvanie-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 7rem;
+}
+
+/* Скрытие неактивного языка */
+.nazvanie-lang {
+    display: none;
+}
+
+.nazvanie-lang.active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Название города — заголовок 1 */
+.city-name {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 8rem;                 /* h1 = 128px */
+    line-height: 1;
+    color: var(--deep-blue);
+}
+
+/* Слоган — заголовок 3, чуть правее и ниже названия */
+.city-slogan {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 2.5rem;               /* h3 = 40px */
+    line-height: 3.125rem;
+    color: var(--deep-blue);
+    margin-top: 0.5rem;
+    margin-left: 13rem;
+}
+
+/* Кнопки RUS / ENG — ещё правее слогана */
+.lang-btns {
+    display: flex;
+    gap: 0;
+    margin-top: 3rem;
+    margin-left: 36rem;
+}
+
+/* Шрифт кнопок — Выделение в тексте 1 (Arsenal SC Bold 1.5rem) */
+.lang-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;               /* hl = 24px */
+    letter-spacing: 0.05em;
+    color: var(--volzhsky-blue);
+    background: transparent;
+    border: 2px solid var(--volzhsky-blue);
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.lang-btn:first-child {
+    border-right: none;
+}
+
+.lang-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.lang-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+    border-color: var(--amber);
+}
+
+.lang-btn.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Блок Креативная концепция */
+.kreativ-block {
+    margin-top: var(--gap-h2-to-h3);
+}
+
+.kreativ-grid {
+    display: grid;
+    grid-template-columns: 6fr 1fr 5fr;  /* cols 3–8 | gap | cols 10–14 */
+    gap: var(--col-gap);
+    margin-top: var(--gap-h3-to-text);
+}
+
+.kreativ-left {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.kreativ-right {
+    grid-column: 3;
+}
+
+/* Правая часть: история названия */
+.nazvanie-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-h3-to-text);
+}
+
+.nazvanie-right .text + .text {
+    margin-top: 1rem;                /* 16px между абзацами */
+}
+
+/* ============================================
+   2 ВИЗУАЛЬНАЯ СИСТЕМА
+   ============================================ */
+
+.vizualnaya-section {
+    margin-top: var(--gap-block);
+}
+
+/* Большой заголовок — как "1 Концепция" */
+.vizualnaya-main-title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 8rem;                 /* 128px — как koncepciya-main-title */
+    line-height: 1;
+    color: var(--volzhsky-blue);
+    margin-bottom: 2rem;             /* 32px */
+}
+
+/* h2 Логотип */
+.vizualnaya-h2 {
+    color: var(--deep-blue);
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+
+/* Навигация по блокам логотипа */
+.logo-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.logo-tab {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--volzhsky-blue);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.logo-tab:hover {
+    color: var(--amber);
+}
+
+/* Блоки логотипа — идут друг за другом */
+.logo-block + .logo-block {
+    margin-top: 5rem;               /* 80px между блоками */
+}
+
+/* Сетка: лого слева (6 колонок) | текст справа (6 колонок, cols 9–14) */
+.logo-grid {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: 0;
+    align-items: center;
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Левая часть: логотип по центру */
+.logo-img-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* Контейнер с aspect-ratio SVG — 338×438 */
+.logo-interactive {
+    position: relative;
+    width: 17rem;
+    aspect-ratio: 338 / 438;
+    flex-shrink: 0;
+}
+
+/* Inline SVG масштабируется по контейнеру */
+.logo-interactive svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Элементы логотипа — плавное затухание */
+.logo-el {
+    transition: opacity 0.35s ease;
+}
+
+/* Когда активна точка — все элементы на 20% */
+.logo-interactive[data-active] .logo-el {
+    opacity: 0.2;
+}
+
+/* Активный элемент — полная насыщенность */
+.logo-interactive[data-active="1"] #el-1,
+.logo-interactive[data-active="2"] #el-2,
+.logo-interactive[data-active="3"] #el-3,
+.logo-interactive[data-active="4"] #el-4,
+.logo-interactive[data-active="5"] #el-5 {
+    opacity: 1;
+}
+
+/* Кружки-хотспоты */
+.hotspot {
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0.4375rem solid var(--deep-blue);  /* 7px */
+    border-radius: 50%;
+    background: transparent;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: opacity 0.3s, background 0.2s, border-color 0.2s;
+    padding: 0;
+    z-index: 3;
+}
+
+.hotspot:hover {
+    background: var(--amber);
+    border-color: var(--amber);
+}
+
+/* Активная точка — заполняется тёмно-синим */
+.hotspot.active {
+    background: var(--deep-blue);
+    border-color: var(--deep-blue);
+}
+
+.hotspot.dimmed {
+    opacity: 0.25;
+}
+
+/* Фото-попапы (дети logo-interactive, не кнопок) */
+.hotspot-popup {
+    position: absolute;
+    display: none;
+    width: 15rem;
+    z-index: 10;
+    overflow: hidden;
+    background: #fff;
+}
+
+.hotspot-popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hotspot-popup.active {
+    display: block;
+}
+
+/* Направление попапа — влево от точки */
+.popup-to-left {
+    transform: translate(calc(-100% - 1.5rem), -50%);
+}
+
+/* Направление попапа — вправо от точки */
+.popup-to-right {
+    transform: translate(1.5rem, -50%);
+}
+
+/* Построение знака — картинка */
+.postroenie-img {
+    display: none;
+    width: 100%;
+    max-width: 26rem;
+}
+
+.postroenie-img.active {
+    display: block;
+}
+
+.postroenie-img--sm {
+    max-width: 20rem;
+}
+
+/* Построение знака — кнопки-переключатели */
+.postroenie-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.postroenie-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--volzhsky-blue);
+    background: #fff;
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.postroenie-btn + .postroenie-btn {
+    border-left: none;
+}
+
+.postroenie-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.postroenie-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+
+.postroenie-btn.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Построение логотипа — фильтры */
+.logotip-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.logotip-filter-group {
+    display: flex;
+}
+
+.logotip-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--volzhsky-blue);
+    background: #fff;
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.logotip-btn + .logotip-btn {
+    border-left: none;
+}
+
+.logotip-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.logotip-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+
+.logotip-btn.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Слайдер сравнения чб */
+.vsversii-compare {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: col-resize;
+    user-select: none;
+    width: 100%;
+    max-width: 26rem;
+}
+
+.vsversii-compare.vsversii-img--wide {
+    max-width: 44rem;
+}
+
+.compare-light {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
+.compare-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: inset(0 50% 0 0);
+    pointer-events: none;
+}
+
+.compare-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 0.125rem;
+    background: #fff;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.compare-handle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--deep-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--deep-blue);
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.compare-handle svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Построение логотипа — картинки */
+.logotip-img {
+    width: 100%;
+    max-width: 26rem;
+}
+
+.logotip-img--wide {
+    max-width: 44rem;
+}
+
+/* Все версии — картинки */
+.vsversii-img {
+    width: 100%;
+    max-width: 18rem;
+}
+
+.vsversii-img--wide {
+    max-width: 32rem;
+}
+
+/* Охранное поле — картинка */
+.ohrannoe-img {
+    width: 100%;
+    max-width: 26rem;
+}
+
+.ohrannoe-img--wide {
+    max-width: 44rem;
+}
+
+/* Минимальные размеры — картинка */
+.minrazmery-img {
+    width: 100%;
+    max-width: 26rem;
+}
+
+.minrazmery-img--wide {
+    max-width: 44rem;
+}
+
+/* Минимальные размеры — кнопки */
+.minrazmery-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--volzhsky-blue);
+    background: #fff;
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.minrazmery-btn + .minrazmery-btn {
+    border-left: none;
+}
+
+.minrazmery-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.minrazmery-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+
+.minrazmery-btn.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Охранное поле — кнопки */
+.ohrannoe-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--volzhsky-blue);
+    background: #fff;
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.ohrannoe-btn + .ohrannoe-btn {
+    border-left: none;
+}
+
+.ohrannoe-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.ohrannoe-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+
+.ohrannoe-btn.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Все версии — кнопки (тот же стиль что logotip-btn) */
+.vsversii-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--volzhsky-blue);
+    background: #fff;
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.vsversii-btn + .vsversii-btn {
+    border-left: none;
+}
+
+.vsversii-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.vsversii-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+
+.vsversii-btn.active:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+/* Правая часть: вертикальная линия слева + текст */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-h3-to-text);
+    border-left: 2px solid var(--volzhsky-blue);
+    padding: 2rem 0 2rem 2rem;       /* padding делает линию чуть выше текста */
+}
+
+/* Ошибки при использовании — заголовок в правой колонке (как logo-text) */
+.oshibki-h3 {
+    margin-left: 50%;
+    padding: 0;
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+/* Ошибки при использовании — бесконечный автоскролл + drag */
+.oshibki-viewport {
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+}
+
+.oshibki-viewport:active {
+    cursor: grabbing;
+}
+
+.oshibki-track {
+    display: flex;
+    gap: var(--col-gap);
+    width: max-content;
+    will-change: transform;
+}
+
+.oshibki-card {
+    flex: 0 0 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.oshibki-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.oshibki-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;       /* не мешает drag */
+}
+
+.oshibki-caption {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--deep-blue);
+    line-height: 1.2;
+}
+
+/* ============================================
+   МЕДИАЗАПРОС — мобильная версия до 900px
+   ============================================ */
+
+@media (max-width: 900px) {
+
+    /* Запрет горизонтального скролла */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    /* Скрываем десктопный сайдбар */
+    .sidebar {
+        display: none;
+    }
+
+    /* Контент на всю ширину */
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    /*
+       Мобильная сетка: 4 колонки по 74px + gap 16px
+       При 375px: padding = (375 - 4×74 - 3×16) / 2 ≈ 16px с каждой стороны
+       При более широком экране колонки растягиваются через fr
+    */
+    .content {
+        padding: 1.5rem 1rem 0 1rem;  /* 16px по бокам = gap сетки */
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    /* --- Герой на мобилке --- */
+    .hero-section {
+        grid-template-columns: 1fr;
+        padding-bottom: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    /* hero-left: сброс вложенной сетки → обычный стек */
+    .hero-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-city {
+        font-size: 5rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-quote,
+    .hero-author {
+        max-width: 100%;
+    }
+
+    .hero-author {
+        margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+        grid-column: unset;
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .hero-stat-num {
+        font-size: 3.5rem;
+    }
+
+    .btn-hero {
+        grid-column: unset;
+        width: 100%;
+    }
+
+    .hero-right {
+        order: -1;            /* конверт над текстом на мобилке */
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-envelope {
+        max-width: 18rem;
+        margin: 0 auto;
+    }
+
+    /* --- Мобильная шапка (фиксированная, ПОВЕРХ шторки) --- */
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        padding: 0.75rem 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1060;               /* выше mobile-nav (1050) */
+    }
+
+    .mobile-logo {
+        height: 3.5rem;
+        width: auto;
+        transition: opacity 0.2s ease;
+    }
+
+    .mobile-header:has(.burger.active) .mobile-logo {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Отступ сверху чтобы контент не прятался за шапку */
+    .layout {
+        padding-top: 5.5rem;
+    }
+
+    /* --- Бургер (точная копия с сайта) --- */
+    .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3125rem;              /* 5px */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1100;
+        width: 2.3125rem;            /* 37px */
+        height: 1rem;                /* 16px */
+        justify-content: center;
+    }
+
+    .burger span {
+        display: block;
+        width: 100%;
+        height: 0.125rem;            /* 2px */
+        background-color: var(--deep-blue);
+        transition: all 0.3s ease;
+    }
+
+    .burger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(0.3125rem, 0.3125rem);
+    }
+
+    .burger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(0.3125rem, -0.3125rem);
+    }
+
+    /* --- Мобильная навигация (полный экран) --- */
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        padding: 2rem 1.5rem;
+        overflow-y: auto;
+        scrollbar-width: none;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1050;
+    }
+
+    .mobile-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mobile-nav.active {
+        transform: translateX(0);
+    }
+
+    /* Логотип в мобильном меню крупнее */
+    .mobile-nav .sidebar-logo img {
+        max-width: 100%;
+        width: 14rem;
+    }
+
+    /* Divider — по ширине контента (4 колонки), без выхода за края */
+    .mobile-nav .divider {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .mobile-nav .nav-divider {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Отступ сверху в меню под фиксированную шапку */
+    .mobile-nav {
+        padding-top: 5.5rem;
+    }
+
+    /* --- Мобильная типографика по UI-киту --- */
+    .h0, .koncepciya-main-title {
+        font-size: 3rem;             /* 48px */
+        line-height: 3rem;
+    }
+
+    .h1 {
+        font-size: 3rem;             /* 48px */
+        line-height: 3rem;
+    }
+
+    .h2, .vvedenie-title, .missiya-main-title, .structure-heading {
+        font-size: 2.25rem;          /* 36px */
+        line-height: 2.5rem;         /* 40px */
+    }
+
+    .h3, .block-title {
+        font-size: 1.5rem;           /* 24px */
+        line-height: 1.5rem;
+    }
+
+    .text, .o-gorode-content p, .cel-text, .zadacha-text,
+    .soobshenie-text, .ca-text p {
+        font-size: 1rem;             /* 16px */
+    }
+
+    .soobshenie-text {
+        min-height: calc(1rem * 1.5 * 4);  /* 4 строки мобилка */
+    }
+
+    .hl, .ca-label {
+        font-size: 1.125rem;         /* 18px — выделение 1 мобилка */
+    }
+
+    /* --- Мобильные отступы по UI-киту --- */
+    :root {
+        --gap-h2-to-h3: 1.5rem;     /* 24px */
+        --gap-h3-to-text: 1.5rem;   /* 24px */
+        --gap-block: 5rem;           /* 80px */
+        --gap-to-footer: 6rem;       /* 96px */
+        --col-gap: 1rem;             /* 16px */
+    }
+
+    /* --- Фиксируем всё чтобы не вылезало --- */
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Все секции — максимум 4 колонки (полная ширина), в столбик */
+    .koncepciya-section,
+    .missiya-section,
+    .zadachi-section,
+    .pozicionirovanie-section,
+    .ca-section,
+    #structure {
+        max-width: 100%;
+    }
+
+    .soobshenie-title {
+        font-size: 2rem;
+        height: calc(2rem * 1.15 * 2);
+        word-break: break-word;
+    }
+
+    .preim .soobshenie-title {
+        height: calc(2rem * 1.15 * 1);
+    }
+
+    /* Секции — убираем горизонтальное переполнение */
+    section, div {
+        max-width: 100%;
+    }
+
+    /* --- Мобильные сетки ---
+       Базовая единица: 1fr = 1 колонка (74px на 375px, растёт пропорционально)
+    */
+
+    /* Двухколоночные секции → в стопку */
+    .vvedenie-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Пустая колонка-разделитель убираем */
+    .vvedenie-grid > div:empty {
+        display: none;
+    }
+
+    /* Структура → каждый блок на всю ширину, в столбик */
+    .structure-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .structure-card {
+        padding: 1rem;
+    }
+
+    /* Фото аудитории — 2 колонки */
+    .ca-grid {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+    }
+
+    /* Текст под фото на всю ширину */
+    .ca-grid .ca-text {
+        grid-column: 1 / -1;
+    }
+
+    /* Вторичная: первые 2 фото по 2fr, третье — полная строка */
+    .ca-grid-secondary {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+    }
+
+    .ca-grid-secondary img:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+
+    .ca-grid-secondary .ca-text {
+        grid-column: 1 / -1;
+    }
+
+    /* Каналы коммуникации — перенос */
+    .channels {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .channels span {
+        border-right: none;
+        padding: 0;
+    }
+
+    /* --- Цифры целей и задач на мобилке --- */
+    .cel-btn, .zadacha-btn {
+        font-size: 3rem;
+    }
+
+    .celi-numbers {
+        gap: 2rem;
+    }
+
+    /* --- Сообщения на мобилке --- */
+    .soobshenie-title {
+        font-size: 2rem;
+        height: calc(2rem * 1.15 * 2);
+    }
+
+    .preim .soobshenie-title {
+        height: calc(2rem * 1.15 * 1);
+    }
+
+    /* --- Визуальная система. Мобилка --- */
+    .vizualnaya-main-title {
+        font-size: 3rem;
+        line-height: 3rem;
+    }
+
+    .logo-tabs {
+        gap: 0.75rem;
+    }
+
+    .logo-tab {
+        font-size: 1.125rem;
+    }
+
+    .logo-block + .logo-block {
+        margin-top: 3rem;           /* 48px на мобилке */
+    }
+
+    .logo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .logo-img-wrap {
+        justify-content: center;
+        padding-bottom: 1.5rem;
+    }
+
+    .logo-text {
+        border-left: none;
+        border-top: 2px solid var(--volzhsky-blue);
+        padding: 1.5rem 0 0 0;
+    }
+
+    /* О логотипе — логотип меньше на мобилке */
+    .logo-interactive {
+        width: 11rem;
+    }
+
+    .hotspot {
+        border-width: 0.25rem;   /* 4px вместо 7px */
+    }
+
+    /* Попапы — не выходят за экран */
+    .hotspot-popup {
+        width: 8rem;
+    }
+
+    .popup-to-right {
+        transform: translate(1rem, -50%);
+    }
+
+    .popup-to-left {
+        transform: translate(calc(-100% - 1rem), -50%);
+    }
+
+    /* Построение знака — картинки меньше */
+    .postroenie-img {
+        max-width: 17rem;
+    }
+
+    /* Все табы логотипа — сначала линия+текст, потом картинка */
+    #tab-o-logotipe .logo-text,
+    #tab-postroenie-znaka .logo-text,
+    #tab-postroenie-logotipa .logo-text,
+    #tab-vse-versii .logo-text,
+    #tab-ohrannoe-pole .logo-text,
+    #tab-min-razmery .logo-text {
+        order: 1;
+    }
+
+    #tab-o-logotipe .logo-img-wrap,
+    #tab-postroenie-znaka .logo-img-wrap,
+    #tab-postroenie-logotipa .logo-img-wrap,
+    #tab-vse-versii .logo-img-wrap,
+    #tab-ohrannoe-pole .logo-img-wrap,
+    #tab-min-razmery .logo-img-wrap {
+        order: 2;
+        padding-bottom: 0;
+        padding-top: 1.5rem;
+    }
+
+    .logotip-img {
+        max-width: 100%;
+    }
+
+    /* --- Ошибки при использовании. Мобилка --- */
+    .oshibki-h3 {
+        margin-left: 0;
+        border-left: none;
+        border-top: 2px solid var(--volzhsky-blue);
+        padding: 1.5rem 0 0 0;
+        margin-bottom: var(--gap-h3-to-text);
+    }
+
+    .oshibki-caption {
+        font-size: 1.125rem;
+    }
+
+    /* --- Креативная концепция. Мобилка --- */
+    .kreativ-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .kreativ-left,
+    .kreativ-right {
+        grid-column: 1;
+    }
+
+    /* --- Название. Слоган. Мобилка --- */
+    .nazvanie-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .nazvanie-left {
+        padding-left: 0;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .nazvanie-lang.active {
+        width: 100%;                 /* растягиваем чтобы align-self дочерних работал */
+    }
+
+    .city-name {
+        font-size: 3.5rem;           /* 56px на мобилке */
+        align-self: center;          /* по центру */
+    }
+
+    .city-slogan {
+        font-size: 1.5rem;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        align-self: flex-end;        /* по правому краю */
+    }
+
+    .lang-btns {
+        margin-left: 0;
+        margin-top: 1rem;
+        align-self: flex-end;        /* по правому краю */
+    }
+
+    /* Построение знака — кнопки тянутся на всю ширину, текст переносится */
+    .postroenie-btns {
+        width: 100%;
+    }
+
+    .postroenie-btn {
+        flex: 1;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    /* Все радиокнопки — единый стиль как у Построения знака */
+    .lang-btn,
+    .ca-tab,
+    .postroenie-btn,
+    .logotip-btn,
+    .vsversii-btn,
+    .ohrannoe-btn,
+    .minrazmery-btn {
+        font-family: 'Arsenal SC', serif;
+        font-weight: 700;
+        font-size: 1.25rem;   /* 20px = 15pt */
+        padding: 0.5rem;
+        /* Кнопки растягиваются равномерно и сжимаются при переносе */
+        flex: 1;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.2;
+        min-width: 0;
+    }
+
+    /* Группа кнопок-фильтров — на всю ширину, чтобы flex: 1 работало */
+    .logotip-filter-group {
+        width: 100%;
+    }
+
+    /* Все фото — не выходят за ширину сетки */
+    .vsversii-img,
+    .vsversii-img--wide,
+    .vsversii-compare,
+    .ohrannoe-img,
+    .ohrannoe-img--wide,
+    .minrazmery-img,
+    .minrazmery-img--wide,
+    .postroenie-img,
+    .logotip-img--wide {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* Ошибки при использовании — карточка = 2 колонки мобильной сетки */
+    .oshibki-card {
+        flex: 0 0 calc((100% - var(--col-gap)) / 2);
+    }
+}
+

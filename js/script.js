@@ -404,15 +404,34 @@ document.querySelectorAll('.typo-weight-btn').forEach(btn => {
     });
 });
 
-// Типографика — слайдер размера в блоке Пример
-document.querySelectorAll('.typo-dot').forEach(dot => {
-    dot.addEventListener('click', () => {
-        document.querySelectorAll('.typo-dot').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        const heading = document.querySelector('.typo-preview-heading');
-        if (heading) heading.style.fontSize = dot.dataset.size;
+// Типографика — слайдер размера с катящимся индикатором
+(function () {
+    const dots      = document.querySelectorAll('.typo-dot');
+    const indicator = document.querySelector('.typo-dot-indicator');
+
+    function moveIndicator(dot) {
+        if (!indicator) return;
+        // Центр точки относительно родителя (.typo-slider-dots)
+        const center = dot.offsetLeft + dot.offsetWidth / 2;
+        indicator.style.left = (center - indicator.offsetWidth / 2) + 'px';
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            dots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            moveIndicator(dot);
+            const heading = document.querySelector('.typo-preview-heading');
+            if (heading) heading.style.fontSize = dot.dataset.size;
+        });
     });
-});
+
+    // Ставим индикатор на активную точку после первого рендера
+    requestAnimationFrame(() => {
+        const activeDot = document.querySelector('.typo-dot.active');
+        if (activeDot) moveIndicator(activeDot);
+    });
+})();
 
 // Цветовая система — переключатель ВЕБ / ПЕЧАТЬ
 // Каждая кнопка управляет ближайшей .colors-grid внутри своего .color-block

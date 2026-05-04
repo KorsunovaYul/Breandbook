@@ -614,9 +614,10 @@ body {
     align-items: start;
 }
 
-/* Левая — единственная label-col имеет border-right */
+/* Левая — линия справа, тянется на всю высоту колонки с полосками */
 .sochet-left .sochet-label-col {
     border-right: 2px solid var(--volzhsky-blue);
+    align-self: stretch;
 }
 
 /* Правая группа: плоская сетка 2 колонки × 3 строки */
@@ -895,25 +896,38 @@ body {
     transform: translateY(-50%);
 }
 
+/* Скользящий тёмно-синий кружок-индикатор */
+.typo-dot-indicator {
+    position: absolute;
+    width: 2rem;        /* 32px */
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--deep-blue);
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;            /* стартовая позиция — ставится JS-ом */
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none; /* клики проходят сквозь к точкам */
+    z-index: 3;           /* поверх линии-трека и маленьких точек */
+}
+
+/* Маленькие точки-маркеры на треке */
 .typo-dot {
-    width: 1rem;           /* 16px — неактивная */
+    width: 1rem;        /* 16px */
     height: 1rem;
     border-radius: 50%;
-    background: var(--volzhsky-blue); /* залитая волжским синим */
+    background: var(--volzhsky-blue);
     border: none;
     cursor: pointer;
     position: relative;
-    z-index: 1;
+    z-index: 2;         /* ниже индикатора, но клики всё равно работают */
     padding: 0;
     flex-shrink: 0;
-    transition: background 0.2s, width 0.2s, height 0.2s;
+    transition: background 0.2s;
 }
 
-.typo-dot.active {
-    width: 2rem;           /* 32px — активная */
-    height: 2rem;
-    background: var(--deep-blue); /* залитая тёмно-синим */
-}
+/* Активная точка визуально не меняется — её закрывает индикатор */
+.typo-dot.active { /* трекинг-класс для JS */ }
 
 .typo-dot:hover:not(.active) {
     background: var(--sky);
@@ -2728,7 +2742,7 @@ body {
     }
 
     .typo-preview-heading {
-        font-size: 3rem !important; /* сбрасываем JS-размер на мобилке */
+        font-size: 3rem; /* базовый размер на мобилке, JS может менять */
     }
 
     /* Радиокнопка ВЕБ/ПЕЧАТЬ — уменьшается как и все остальные кнопки */

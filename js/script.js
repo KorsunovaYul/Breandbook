@@ -392,3 +392,84 @@ langBtns.forEach(btn => {
     document.addEventListener('touchend', () => { isDragging = false; });
 })();
 
+// Типографика — кнопки Light / Regular / Bold для Inter
+document.querySelectorAll('.typo-weight-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.typo-weight-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const weight = btn.dataset.weight;
+        document.querySelectorAll('.typo-alphabet--inter').forEach(el => {
+            el.style.fontWeight = weight;
+        });
+    });
+});
+
+// Типографика — слайдер размера в блоке Пример
+document.querySelectorAll('.typo-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+        document.querySelectorAll('.typo-dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        const heading = document.querySelector('.typo-preview-heading');
+        if (heading) heading.style.fontSize = dot.dataset.size;
+    });
+});
+
+// Цветовая система — переключатель ВЕБ / ПЕЧАТЬ
+// Каждая кнопка управляет ближайшей .colors-grid внутри своего .color-block
+document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const block = btn.closest('.color-block');
+        const grid  = block ? block.querySelector('.colors-grid') : null;
+        const wrap  = btn.closest('.colors-mode-wrap');
+
+        // Сбрасываем только кнопки в этой же группе
+        if (wrap) wrap.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (grid) {
+            if (btn.dataset.mode === 'print') {
+                grid.classList.add('print-mode');
+            } else {
+                grid.classList.remove('print-mode');
+            }
+        }
+    });
+});
+
+// Цветовая система — копирование кода по клику
+document.querySelectorAll('.color-codes span').forEach(span => {
+    span.addEventListener('click', () => {
+        // Берём часть после ": "  (например "2376D9" или "035 118 217")
+        const value = span.textContent.split(': ')[1]?.trim();
+        if (!value) return;
+
+        navigator.clipboard.writeText(value).then(() => {
+            const original = span.textContent;
+            span.textContent = 'Скопировано!';
+            span.classList.add('copied');
+            setTimeout(() => {
+                span.textContent = original;
+                span.classList.remove('copied');
+            }, 1500);
+        }).catch(() => {
+            // Фолбэк для старых браузеров
+            const el = document.createElement('textarea');
+            el.value = value;
+            el.style.position = 'fixed';
+            el.style.opacity = '0';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const original = span.textContent;
+            span.textContent = 'Скопировано!';
+            span.classList.add('copied');
+            setTimeout(() => {
+                span.textContent = original;
+                span.classList.remove('copied');
+            }, 1500);
+        });
+    });
+});
+

@@ -69,7 +69,7 @@
         <div class="nav-section-title">2 Визуальная система</div>
         <ul>
             <li><a href="#logo-section">Логотип</a></li>
-            <li><a href="#">Цветовая система</a></li>
+            <li><a href="#color-section">Цветовая система</a></li>
             <li><a href="#">Типографика</a></li>
             <li><a href="#">Графические элементы</a></li>
             <li><a href="#">Паттерн</a></li>
@@ -152,8 +152,8 @@
                 <div class="nav-section-title">2 Визуальная система</div>
                 <ul>
                     <li><a href="#logo-section">Логотип</a></li>
-                    <li><a href="#">Цветовая система</a></li>
-                    <li><a href="#">Типографика</a></li>
+                    <li><a href="#color-section">Цветовая система</a></li>
+                    <li><a href="#typography-section">Типографика</a></li>
                     <li><a href="#">Графические элементы</a></li>
                     <li><a href="#">Паттерн</a></li>
                     <li><a href="#">Иллюстрация</a></li>
@@ -199,15 +199,33 @@
                 <p class="text hero-author"><em>Иван Александрович Гончаров</em></p>
                 <div class="hero-stats">
                     <div class="hero-stat">
-                        <span class="hero-stat-num hero-stat-num--blue">5</span>
+                        <div class="stat-flip-wrap">
+                            <div class="stat-flip-inner">
+                                <span class="hero-stat-num hero-stat-num--blue" aria-hidden="true">5</span>
+                                <span class="hero-stat-num hero-stat-num--blue" aria-hidden="true">5</span>
+                                <span class="hero-stat-num hero-stat-num--blue">5</span>
+                            </div>
+                        </div>
                         <span class="hero-stat-label">уникальных идей</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-num hero-stat-num--amber">24</span>
+                        <div class="stat-flip-wrap">
+                            <div class="stat-flip-inner">
+                                <span class="hero-stat-num hero-stat-num--amber" aria-hidden="true">24</span>
+                                <span class="hero-stat-num hero-stat-num--amber" aria-hidden="true">24</span>
+                                <span class="hero-stat-num hero-stat-num--amber">24</span>
+                            </div>
+                        </div>
                         <span class="hero-stat-label">версии логотипа</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-num hero-stat-num--red">30</span>
+                        <div class="stat-flip-wrap">
+                            <div class="stat-flip-inner">
+                                <span class="hero-stat-num hero-stat-num--red" aria-hidden="true">30</span>
+                                <span class="hero-stat-num hero-stat-num--red" aria-hidden="true">30</span>
+                                <span class="hero-stat-num hero-stat-num--red">30</span>
+                            </div>
+                        </div>
                         <span class="hero-stat-label">фирменных носителей</span>
                     </div>
                 </div>
@@ -244,8 +262,8 @@
                     <div class="structure-card-title">Визуальная система</div>
                     <ul>
                         <li><a href="#logo-section">Логотип</a></li>
-                        <li><a href="#">Цветовая система</a></li>
-                        <li><a href="#">Типографика</a></li>
+                        <li><a href="#color-section">Цветовая система</a></li>
+                        <li><a href="#typography-section">Типографика</a></li>
                         <li><a href="#">Графические элементы</a></li>
                         <li><a href="#">Паттерн</a></li>
                         <li><a href="#">Иллюстрация</a></li>
@@ -902,6 +920,320 @@
 
                     </div><!-- /oshibki-track -->
                     </div><!-- /oshibki-viewport -->
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ===== Блок: Цветовая система ===== -->
+        <section id="color-section" class="color-section">
+
+            <h2 class="h2">Цветовая система</h2>
+
+            <nav class="color-tabs">
+                <a class="color-tab" href="#color-osnov">Основные цвета</a>
+                <a class="color-tab" href="#color-dop">Дополнительные цвета для иллюстраций</a>
+                <a class="color-tab" href="#color-sochet">Цветовые сочетания</a>
+            </nav>
+
+            <!-- Основные цвета -->
+            <div class="color-block" id="color-osnov">
+                <h3 class="h3">Основные цвета</h3>
+
+                <div class="colors-grid">
+
+                    <!-- Волжский синий: 5 колонок, строки 1-2 -->
+                    <div class="color-swatch cs-volzhsky">
+                        <span class="color-swatch-name">Волжский синий</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 035 118 217</span>
+                            <span class="highlight-2 code-web">HEX: 2376D9</span>
+                            <span class="highlight-2 code-print">CMYK: C84 M46 Y0 K15</span>
+                            <span class="highlight-2 code-print">Pantone: 2727 C</span>
+                        </div>
+                    </div>
+
+                    <!-- Небо: 3 колонки, строка 1 -->
+                    <div class="color-swatch cs-nebo">
+                        <span class="color-swatch-name">Небо</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 163 221 255</span>
+                            <span class="highlight-2 code-web">HEX: A3DDFF</span>
+                            <span class="highlight-2 code-print">CMYK: C36 M7 Y0 K0</span>
+                            <span class="highlight-2 code-print">Pantone: 290 C</span>
+                        </div>
+                    </div>
+
+                    <!-- Глубокий синий: 4 колонки, строка 1 -->
+                    <div class="color-swatch cs-deep">
+                        <span class="color-swatch-name">Глубокий синий</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 021 058 097</span>
+                            <span class="highlight-2 code-web">HEX: 153A61</span>
+                            <span class="highlight-2 code-print">CMYK: C100 M79 Y32 K53</span>
+                            <span class="highlight-2 code-print">Pantone: 2766 C</span>
+                        </div>
+                    </div>
+
+                    <!-- Терракотовый: 4 колонки, строка 2 -->
+                    <div class="color-swatch cs-terra">
+                        <span class="color-swatch-name">Терракотовый</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 211 026 026</span>
+                            <span class="highlight-2 code-web">HEX: D31A1A</span>
+                            <span class="highlight-2 code-print">CMYK: C0 M88 Y88 K17</span>
+                            <span class="highlight-2 code-print">Pantone: 485 C</span>
+                        </div>
+                    </div>
+
+                    <!-- Янтарь: 3 колонки, строка 2 -->
+                    <div class="color-swatch cs-amber">
+                        <span class="color-swatch-name">Янтарь</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 245 156 028</span>
+                            <span class="highlight-2 code-web">HEX: F59C1C</span>
+                            <span class="highlight-2 code-print">CMYK: C0 M38 Y88 K4</span>
+                            <span class="highlight-2 code-print">Pantone: 144 C</span>
+                        </div>
+                    </div>
+
+                    <!-- Белый: 5 колонок, строка 3 -->
+                    <div class="color-swatch cs-white">
+                        <span class="color-swatch-name">Белый</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 255 255 255</span>
+                            <span class="highlight-2 code-web">HEX: FFFFFF</span>
+                            <span class="highlight-2 code-print">CMYK: C0 M0 Y0 K0</span>
+                            <span class="highlight-2 code-print">Pantone: White</span>
+                        </div>
+                    </div>
+
+                    <!-- Чёрный: 7 колонок, строка 3 -->
+                    <div class="color-swatch cs-black">
+                        <span class="color-swatch-name">Чёрный</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 000 000 000</span>
+                            <span class="highlight-2 code-web">HEX: 000000</span>
+                            <span class="highlight-2 code-print">CMYK: C0 M0 Y0 K100</span>
+                            <span class="highlight-2 code-print">Pantone: Black C</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ВЕБ / ПЕЧАТЬ переключатель -->
+                <div class="colors-mode-wrap">
+                    <button class="mode-btn active" data-mode="web">ВЕБ</button>
+                    <button class="mode-btn" data-mode="print">ПЕЧАТЬ</button>
+                </div>
+
+            </div>
+
+            <!-- Дополнительные цвета -->
+            <div class="color-block" id="color-dop">
+                <h3 class="h3">Дополнительные цвета для иллюстраций</h3>
+
+                <div class="colors-grid colors-grid--dop">
+
+                    <!-- Зелёный -->
+                    <div class="color-swatch cs-zeleny">
+                        <span class="color-swatch-name">Зелёный</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 051 175 155</span>
+                            <span class="highlight-2 code-web">HEX: 33AF9B</span>
+                            <span class="highlight-2 code-print">CMYK: C71 M0 Y43 K14</span>
+                            <span class="highlight-2 code-print">Pantone: 3278 C</span>
+                        </div>
+                    </div>
+
+                    <!-- Бирюзовый -->
+                    <div class="color-swatch cs-biruz">
+                        <span class="color-swatch-name">Бирюзовый</span>
+                        <div class="color-codes">
+                            <span class="highlight-2 code-web">RGB: 094 197 224</span>
+                            <span class="highlight-2 code-web">HEX: 5EC5E0</span>
+                            <span class="highlight-2 code-print">CMYK: C56 M5 Y0 K12</span>
+                            <span class="highlight-2 code-print">Pantone: 298 C</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ВЕБ / ПЕЧАТЬ переключатель -->
+                <div class="colors-mode-wrap">
+                    <button class="mode-btn active" data-mode="web">ВЕБ</button>
+                    <button class="mode-btn" data-mode="print">ПЕЧАТЬ</button>
+                </div>
+
+            </div>
+
+            <!-- Цветовые сочетания -->
+            <div class="color-block" id="color-sochet">
+                <h3 class="h3">Цветовые сочетания</h3>
+
+                <div class="sochet-grid">
+
+                    <!-- Левая группа: 3 цвета — контентные колонки 1-5 -->
+                    <div class="sochet-left">
+                        <div class="sochet-label-col">
+                            <span class="sochet-label">3 цвета</span>
+                        </div>
+                        <div class="sochet-bars-col">
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--terracotta)"    data-rgb="211 026 026"></div>
+                                <div class="sb-seg" style="background:var(--amber)"         data-rgb="245 156 028"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg" style="background:var(--amber)"         data-rgb="245 156 028"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg" style="background:var(--sky)"           data-rgb="163 221 255" data-light></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--terracotta)"    data-rgb="211 026 026"></div>
+                                <div class="sb-seg" style="background:var(--sky)"           data-rgb="163 221 255" data-light></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--sky)"           data-rgb="163 221 255" data-light></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Правая группа: 4/5/6 цветов — контентные колонки 7-12 -->
+                    <!-- Плоская сетка: label-col | bars-col чередуются, ::before рисует 1 линию -->
+                    <div class="sochet-right">
+
+                        <!-- 4 цвета — строка 1 -->
+                        <div class="sochet-label-col">
+                            <span class="sochet-label">4 цвета</span>
+                        </div>
+                        <div class="sochet-bars-col">
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--terracotta)"    data-rgb="211 026 026"></div>
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg" style="background:var(--amber)"         data-rgb="245 156 028"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg" style="background:var(--sky)"           data-rgb="163 221 255" data-light></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                        </div>
+
+                        <!-- 5 цветов — строка 2 -->
+                        <div class="sochet-label-col">
+                            <span class="sochet-label">5 цветов</span>
+                        </div>
+                        <div class="sochet-bars-col">
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--terracotta)"    data-rgb="211 026 026"></div>
+                                <div class="sb-seg" style="background:var(--sky)"           data-rgb="163 221 255" data-light></div>
+                                <div class="sb-seg" style="background:var(--amber)"         data-rgb="245 156 028"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                        </div>
+
+                        <!-- 6 цветов — строка 3 -->
+                        <div class="sochet-label-col">
+                            <span class="sochet-label">6 цветов</span>
+                        </div>
+                        <div class="sochet-bars-col">
+                            <div class="sochet-bar">
+                                <div class="sb-seg" style="background:var(--volzhsky-blue)" data-rgb="035 118 217"></div>
+                                <div class="sb-seg" style="background:var(--deep-blue)"     data-rgb="021 058 097"></div>
+                                <div class="sb-seg" style="background:var(--terracotta)"    data-rgb="211 026 026"></div>
+                                <div class="sb-seg" style="background:var(--sky)"           data-rgb="163 221 255" data-light></div>
+                                <div class="sb-seg" style="background:var(--amber)"         data-rgb="245 156 028"></div>
+                                <div class="sb-seg sb-white"                                data-rgb="255 255 255" data-light></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== Типографика ===== -->
+        <section id="typography-section" class="section typo-section">
+
+            <h2 class="h2">Типографика</h2>
+
+            <div class="typo-grid">
+
+                <!-- ── Заголовок (колонки 1–3) ── -->
+                <div class="typo-col typo-col--1">
+                    <h3 class="h3">Заголовок</h3>
+                    <p class="text typo-desc">Используется для логотипа, заголовков, подзаголовков и акцентов в тексте. Используется только в жирном начертании (bold).</p>
+                    <div class="typo-font-name typo-font-name--arsenal">Arsenal SC</div>
+                    <div class="typo-weight-wrap">
+                        <span class="typo-weight-badge">Bold</span>
+                    </div>
+                    <p class="typo-alphabet typo-alphabet--arsenal">Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ ъ ы ь Ээ Юю Яя</p>
+                    <p class="typo-alphabet typo-alphabet--arsenal">Aa Bb Cc Dd Ee Ff Gg Hh Ii Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Vv Xx Yy Zz</p>
+                    <p class="typo-alphabet typo-alphabet--arsenal">123456789 !:?№*</p>
+                </div>
+
+                <!-- ── Основной шрифт (колонки 4–6) + вертикальная линия ── -->
+                <div class="typo-col typo-col--2">
+                    <h3 class="h3">Основной шрифт</h3>
+                    <p class="text typo-desc">Используется для основного текста и деловых документов. Используется в тонком (light), нормальном (regular) и жирном (bold) начертаниях.</p>
+                    <div class="typo-font-name typo-font-name--inter">Inter</div>
+                    <div class="typo-weight-wrap">
+                        <button class="typo-weight-btn active" data-weight="300">Light</button>
+                        <button class="typo-weight-btn" data-weight="400">Regular</button>
+                        <button class="typo-weight-btn" data-weight="700">Bold</button>
+                    </div>
+                    <div class="typo-inter-alphabets">
+                        <p class="typo-alphabet typo-alphabet--inter">Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ ъ ы ь Ээ Юю Яя</p>
+                        <p class="typo-alphabet typo-alphabet--inter">Aa Bb Cc Dd Ee Ff Gg Hh Ii Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Vv Xx Yy Zz</p>
+                        <p class="typo-alphabet typo-alphabet--inter">123456789 !:?№*</p>
+                    </div>
+                </div>
+
+                <!-- ── Пример (колонки 7–10) ── -->
+                <div class="typo-col typo-col--3">
+                    <h3 class="h3">Пример</h3>
+                    <span class="typo-size-label">Размер</span>
+                    <div class="typo-slider">
+                        <div class="typo-slider-dots">
+                            <button class="typo-dot" data-size="1.5rem"></button>
+                            <button class="typo-dot" data-size="3rem"></button>
+                            <button class="typo-dot" data-size="4rem"></button>
+                            <button class="typo-dot active" data-size="6rem"></button>
+                        </div>
+                        <div class="typo-slider-labels">
+                            <span>24рт</span>
+                            <span>48рт</span>
+                            <span>64рт</span>
+                            <span>96рт</span>
+                        </div>
+                    </div>
+                    <div class="typo-preview-heading">Заголовок</div>
+                    <p class="text">Типографика формирует характер коммуникации. Правильный выбор гарнитуры — это выбор интонации.</p>
                 </div>
 
             </div>

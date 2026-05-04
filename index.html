@@ -71,7 +71,7 @@
             <li><a href="#logo-section">Логотип</a></li>
             <li><a href="#color-section">Цветовая система</a></li>
             <li><a href="#">Типографика</a></li>
-            <li><a href="#">Графические элементы</a></li>
+            <li><a href="#grafika-section">Графические элементы</a></li>
             <li><a href="#">Паттерн</a></li>
             <li><a href="#">Иллюстрация</a></li>
             <li><a href="#">Анимация</a></li>
@@ -154,7 +154,7 @@
                     <li><a href="#logo-section">Логотип</a></li>
                     <li><a href="#color-section">Цветовая система</a></li>
                     <li><a href="#typography-section">Типографика</a></li>
-                    <li><a href="#">Графические элементы</a></li>
+                    <li><a href="#grafika-section">Графические элементы</a></li>
                     <li><a href="#">Паттерн</a></li>
                     <li><a href="#">Иллюстрация</a></li>
                     <li><a href="#">Анимация</a></li>
@@ -264,7 +264,7 @@
                         <li><a href="#logo-section">Логотип</a></li>
                         <li><a href="#color-section">Цветовая система</a></li>
                         <li><a href="#typography-section">Типографика</a></li>
-                        <li><a href="#">Графические элементы</a></li>
+                        <li><a href="#grafika-section">Графические элементы</a></li>
                         <li><a href="#">Паттерн</a></li>
                         <li><a href="#">Иллюстрация</a></li>
                         <li><a href="#">Анимация</a></li>
@@ -1237,6 +1237,56 @@
                     <p class="text">Типографика формирует характер коммуникации. Правильный выбор гарнитуры — это выбор интонации.</p>
                 </div>
 
+            </div>
+
+        </section>
+
+        <!-- ===== ГРАФИЧЕСКИЕ ЭЛЕМЕНТЫ ===== -->
+        <section id="grafika-section" class="section grafika-section">
+
+            <h2 class="h2">Графические элементы</h2>
+
+            <nav class="grafika-tabs">
+                <a class="grafika-tab" href="#grafika-postroenie">Построение</a>
+                <a class="grafika-tab" href="#grafika-versii">Все версии</a>
+            </nav>
+
+            <!-- Построение -->
+            <div class="grafika-block" id="grafika-postroenie">
+
+                <div class="grafika-grid">
+
+                    <!-- Картинка: контентные колонки 1-8 (14-сетка: 3-10) -->
+                    <div class="grafika-img-col">
+                        <img class="grafika-img grafika-img--geo active"
+                             src="img/визуальная система/граф элементы/геометическое построение.png"
+                             alt="Геометрическое построение">
+                        <img class="grafika-img grafika-img--ugly"
+                             src="img/визуальная система/граф элементы/углы.png"
+                             alt="Углы">
+                        <img class="grafika-img grafika-img--setka"
+                             src="img/визуальная система/граф элементы/сетка.png"
+                             alt="Сетка">
+                    </div>
+
+                    <!-- Правая колонка: контентные колонки 9-12 (14-сетка: 11-14) -->
+                    <div class="grafika-info-col">
+                        <h3 class="h3">Построение</h3>
+                        <p class="text grafika-desc">Геометрическое построение выполнено из простых фигур: квадрата и круга, так же использовалась фигура звезды.</p>
+                        <p class="text grafika-desc">За основу взята модульная сетка с базовым шагом 1. Основные пропорции определены отрезками. Эти значения задают положение ключевых узлов и границ композиции.</p>
+                        <p class="text grafika-desc">Направления ломаных линий заданы системой углов.</p>
+
+                        <div class="grafika-mode-wrap">
+                            <button class="grafika-btn active" data-grafika="geo">Геометрическое построение</button><button class="grafika-btn" data-grafika="ugly">Углы</button><button class="grafika-btn" data-grafika="setka">Сетка</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Все версии — заглушка -->
+            <div class="grafika-block" id="grafika-versii">
             </div>
 
         </section>

@@ -433,6 +433,24 @@ document.querySelectorAll('.typo-weight-btn').forEach(btn => {
     });
 })();
 
+// Графические элементы — переключатель картинок (геометрическое / углы / сетка)
+document.querySelectorAll('.grafika-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const wrap = btn.closest('.grafika-mode-wrap');
+        const imgCol = btn.closest('.grafika-grid')?.querySelector('.grafika-img-col');
+        if (!wrap || !imgCol) return;
+
+        // Снимаем active со всех кнопок в этой группе
+        wrap.querySelectorAll('.grafika-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Скрываем все картинки, показываем нужную
+        imgCol.querySelectorAll('.grafika-img').forEach(img => img.classList.remove('active'));
+        const target = imgCol.querySelector('.grafika-img--' + btn.dataset.grafika);
+        if (target) target.classList.add('active');
+    });
+});
+
 // Цветовая система — переключатель ВЕБ / ПЕЧАТЬ
 // Каждая кнопка управляет ближайшей .colors-grid внутри своего .color-block
 document.querySelectorAll('.mode-btn').forEach(btn => {

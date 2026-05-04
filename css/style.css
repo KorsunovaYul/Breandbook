@@ -2807,3 +2807,131 @@ body {
     }
 }
 
+/* ===== ГРАФИЧЕСКИЕ ЭЛЕМЕНТЫ ===== */
+
+.grafika-section {
+    margin-top: var(--gap-block);
+    margin-bottom: var(--gap-block);
+}
+
+/* Табы — тот же стиль что у цветовой системы */
+.grafika-tabs {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+.grafika-tab {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--volzhsky-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.grafika-tab:hover { color: var(--amber); }
+
+/* Блок построения */
+.grafika-block { margin-top: var(--gap-h2-to-h3); }
+
+/* 12-колоночная контентная сетка */
+.grafika-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--col-gap);
+    align-items: start;
+}
+
+/* Картинка: контентные колонки 1-8 */
+.grafika-img-col {
+    grid-column: 1 / 9;
+    position: relative;
+}
+
+.grafika-img {
+    width: 100%;
+    display: none;
+}
+
+.grafika-img.active {
+    display: block;
+}
+
+/* Правая инфо-колонка: контентные колонки 9-12 + линия слева */
+.grafika-info-col {
+    grid-column: 9 / 13;
+    border-left: 2px solid var(--volzhsky-blue);
+    padding-left: var(--col-gap);
+}
+
+.grafika-info-col .h3 {
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+.grafika-desc {
+    margin-bottom: 1rem;
+}
+
+/* Переключатель геометрическое построение / углы / сетка */
+.grafika-mode-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.grafika-btn {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: 2px solid var(--volzhsky-blue);
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.grafika-btn + .grafika-btn {
+    border-left: none;
+}
+
+.grafika-btn.active {
+    background: var(--volzhsky-blue);
+    color: #fff;
+}
+
+.grafika-btn:hover:not(.active) {
+    background: var(--amber);
+    color: var(--deep-blue);
+    border-color: var(--amber);
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+    .grafika-grid {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+
+    .grafika-img-col,
+    .grafika-info-col {
+        grid-column: 1 / -1;
+    }
+
+    .grafika-info-col {
+        border-left: none;
+        border-top: 2px solid var(--volzhsky-blue);
+        padding-left: 0;
+        padding-top: 2rem;
+    }
+
+    .grafika-btn {
+        font-size: 1rem;
+        padding: 0.4rem 0.75rem;
+    }
+}
+

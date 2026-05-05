@@ -449,9 +449,72 @@ document.querySelectorAll('.pattern-btn').forEach(btn => {
     });
 });
 
+// Анимация — переключение горизонтальная/вертикальная
+document.querySelectorAll('.animaciya-radio-wrap input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        document.querySelectorAll('.animaciya-video').forEach(v => {
+            v.classList.remove('active');
+            v.pause();
+        });
+        const target = document.querySelector('.animaciya-video--' + radio.value);
+        if (target) {
+            target.classList.add('active');
+            target.play();
+        }
+    });
+});
+
+// Вопросы — слайдер 10 мини-иллюстраций
+(function () {
+    const base = 'img/визуальная система/Игра/';
+    const slides = [
+        { src: base + 'Аленький цветочек.png',                          caption: 'Аленький цветочек' },
+        { src: base + 'буханка.png',                                     caption: 'Буханка' },
+        { src: base + 'герб ульяновска.png',                             caption: 'Герб Ульяновска' },
+        { src: base + 'И.А. Гончаров.png',                               caption: 'И.А. Гончаров' },
+        { src: base + 'Крепость.png',                                    caption: 'Крепость' },
+        { src: base + 'ленин.png',                                       caption: 'Ленин' },
+        { src: base + 'самолёт.png',                                     caption: 'Самолёт' },
+        { src: base + 'симбирцит.png',                                   caption: 'Симбирцит' },
+        { src: base + 'титанозавр.png',                                   caption: 'Volgatitan simbirskiensis — титанозавр' },
+        { src: base + 'Frame 2147238678.png',                            caption: 'Президентский мост' },
+    ];
+
+    const img     = document.querySelector('.voprosy-img');
+    const caption = document.querySelector('.voprosy-caption');
+    const counter = document.querySelector('.voprosy-counter');
+    const btnPrev = document.querySelector('.voprosy-prev');
+    const btnNext = document.querySelector('.voprosy-next');
+
+    if (!img || !btnPrev || !btnNext) return;
+
+    let current = 0;
+
+    function show(idx) {
+        current = (idx + slides.length) % slides.length;
+        img.src        = slides[current].src;
+        img.alt        = slides[current].caption;
+        caption.textContent = slides[current].caption;
+        counter.textContent = (current + 1) + ' / ' + slides.length;
+    }
+
+    btnPrev.addEventListener('click', () => show(current - 1));
+    btnNext.addEventListener('click', () => show(current + 1));
+
+    show(0);
+})();
+
 // Маршруты — переключатель иллюстраций через radio-инпуты
 document.querySelectorAll('.marshr-radio-wrap input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', () => {
+        // Игра: картинки в #igra-hero-imgs (отдельная структура)
+        const igraImgs = document.querySelector('#igra-hero-imgs');
+        if (igraImgs && igraImgs.querySelector('.marshr-img--' + radio.value)) {
+            igraImgs.querySelectorAll('.marshr-img').forEach(img => img.classList.remove('active'));
+            igraImgs.querySelector('.marshr-img--' + radio.value).classList.add('active');
+            return;
+        }
+        // Маршруты: картинки в .marshr-grid > .marshr-img-col
         const imgCol = radio.closest('.marshr-grid')?.querySelector('.marshr-img-col');
         if (!imgCol) return;
         imgCol.querySelectorAll('.marshr-img').forEach(img => img.classList.remove('active'));

@@ -3059,6 +3059,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin: 0 auto;
 }
 
+.marshr-img--desktop {
+    width: 100%;
+}
+
 .marshr-img.active {
     display: block;
 }
@@ -3107,6 +3111,176 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 }
 
+/* Блок Вопросы — слайдер */
+.voprosy-grid {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: var(--col-gap);
+    align-items: center;
+}
+
+.voprosy-img-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.voprosy-img-wrap {
+    width: 75%;
+}
+
+.voprosy-img {
+    width: 100%;
+    display: block;
+}
+
+.voprosy-caption {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--deep-blue);
+    text-align: center;
+}
+
+.voprosy-info-col {
+    border-left: 2px solid var(--volzhsky-blue);
+    padding-left: var(--col-gap);
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-h3-to-text);
+}
+
+/* Лейбл «Вопросы» — выделение в тексте 1, волжский синий */
+.voprosy-label {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--volzhsky-blue);
+}
+
+/* ── Внешний грид Игра+Вопросы ── */
+.igra-outer-grid {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: var(--col-gap);
+    align-items: start;
+}
+
+/* Левая колонка: картинки стопкой */
+.igra-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-h2-to-h3);
+}
+
+.igra-hero-wrap { position: relative; }
+
+.igra-voprosy-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Правая колонка: единая линия слева */
+.igra-right {
+    border-left: 2px solid var(--volzhsky-blue);
+    padding-left: var(--col-gap);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-h2-to-h3);
+}
+
+.igra-info,
+.igra-voprosy-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-h3-to-text);
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+    .igra-outer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .igra-right {
+        order: -1;
+        border-left: none;
+        padding-left: 0;
+        border-bottom: 1.5px solid var(--volzhsky-blue);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Навигация ← 1/10 → */
+.voprosy-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Кнопка-стрелка */
+.voprosy-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* SVG треугольник — по умолчанию волжский синий */
+.arr-tri {
+    fill: var(--volzhsky-blue);
+    transition: fill 0.2s;
+}
+
+/* Левая стрелка — зеркало */
+.voprosy-prev .arr-svg {
+    transform: scaleX(-1);
+}
+
+/* Ховер: треугольник янтарный, линия (stroke) остаётся глубокосиней */
+.voprosy-btn:hover .arr-tri {
+    fill: var(--amber);
+}
+
+/* Клик: треугольник глубокосиний */
+.voprosy-btn:active .arr-tri {
+    fill: var(--deep-blue);
+}
+
+.voprosy-counter {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--deep-blue);
+    min-width: 3.5rem;
+    text-align: center;
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+    .voprosy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .voprosy-info-col {
+        order: -1;
+        border-left: none;
+        padding-left: 0;
+        border-bottom: 1.5px solid var(--volzhsky-blue);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
 /* Два текстовых блока под картинкой */
 .illyust-text-grid {
     display: grid;
@@ -3130,5 +3304,102 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .illyust-text-col--1,
     .illyust-text-col--2 {
         grid-column: 1 / -1;
+    }
+}
+
+/* ── Портреты ── */
+.portrety-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: var(--col-gap);
+    margin-top: var(--gap-h3-to-text);
+    align-items: start;
+}
+
+.portret-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.portret-img {
+    width: 100%;
+    display: block;
+}
+
+.portret-name {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--deep-blue);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .portrety-grid {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 2rem;
+    }
+}
+
+/* ===== АНИМАЦИЯ ===== */
+
+.animaciya-section {
+    margin-top: var(--gap-block);
+    margin-bottom: var(--gap-block);
+}
+
+.animaciya-block {
+    margin-top: var(--gap-h2-to-h3);
+}
+
+/* Видео на все 12 контентных колонок */
+.animaciya-video-wrap {
+    margin-top: var(--gap-h3-to-text);
+    position: relative;
+}
+
+.animaciya-video {
+    width: 100%;
+    display: none;
+}
+
+.animaciya-video.active {
+    display: block;
+}
+
+/* Вертикальная — 3 колонки по центру */
+.animaciya-video--vertikalnaya.active {
+    width: calc((100% - 11 * var(--col-gap)) / 12 * 3 + 2 * var(--col-gap));
+    margin: 0 auto;
+}
+
+/* Радиокнопка — прижата вправо */
+.animaciya-radio-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.animaciya-radio-wrap {
+    display: flex;
+}
+
+.animaciya-radio-wrap input[type="radio"] {
+    display: none;
+}
+
+.animaciya-radio-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+.animaciya-desc {
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+    .animaciya-radio-row {
+        justify-content: flex-start;
     }
 }

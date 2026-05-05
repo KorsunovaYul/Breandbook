@@ -70,11 +70,11 @@
         <ul>
             <li><a href="#logo-section">Логотип</a></li>
             <li><a href="#color-section">Цветовая система</a></li>
-            <li><a href="#">Типографика</a></li>
+            <li><a href="#typography-section">Типографика</a></li>
             <li><a href="#grafika-section">Графические элементы</a></li>
             <li><a href="#pattern-section">Паттерн</a></li>
-            <li><a href="#">Иллюстрация</a></li>
-            <li><a href="#">Анимация</a></li>
+            <li><a href="#illyust-section">Иллюстрация</a></li>
+            <li><a href="#animaciya-section">Анимация</a></li>
             <li><a href="#">StyleGuide</a></li>
         </ul>
     </div>
@@ -156,8 +156,8 @@
                     <li><a href="#typography-section">Типографика</a></li>
                     <li><a href="#grafika-section">Графические элементы</a></li>
                     <li><a href="#pattern-section">Паттерн</a></li>
-                    <li><a href="#">Иллюстрация</a></li>
-                    <li><a href="#">Анимация</a></li>
+                    <li><a href="#illyust-section">Иллюстрация</a></li>
+                    <li><a href="#animaciya-section">Анимация</a></li>
                     <li><a href="#">StyleGuide</a></li>
                 </ul>
             </div>
@@ -266,8 +266,8 @@
                         <li><a href="#typography-section">Типографика</a></li>
                         <li><a href="#grafika-section">Графические элементы</a></li>
                         <li><a href="#pattern-section">Паттерн</a></li>
-                        <li><a href="#">Иллюстрация</a></li>
-                        <li><a href="#">Анимация</a></li>
+                        <li><a href="#illyust-section">Иллюстрация</a></li>
+                        <li><a href="#animaciya-section">Анимация</a></li>
                         <li><a href="#">StyleGuide</a></li>
                     </ul>
                 </div>
@@ -1335,7 +1335,7 @@
                     <!-- Картинка: 6 контентных колонок -->
                     <div class="pattern-img-col">
                         <img class="pattern-img pattern-img--geo"
-                             src=""
+                             src="img/визуальная система/паттерн/геометрическое построение.png"
                              alt="Геометрическое построение паттерна">
                         <img class="pattern-img pattern-img--setka active"
                              src="img/визуальная система/паттерн/сетка.png"
@@ -1512,14 +1512,159 @@
 
             </div>
 
-            <!-- Игра (заглушка) -->
+            <!-- Игра + Вопросы -->
             <div class="illyust-block" id="illyust-igra">
-                <h3 class="h3">Игра</h3>
+
+                <div class="igra-outer-grid">
+
+                    <!-- Левая колонка: стопка изображений -->
+                    <div class="igra-left">
+
+                        <!-- Главная иллюстрация -->
+                        <div class="igra-hero-wrap" id="igra-hero-imgs">
+                            <img class="marshr-img marshr-img--desktop active"
+                                 src="img/визуальная система/Игра/game-hero.png"
+                                 alt="Игра — Desktop">
+                            <img class="marshr-img marshr-img--mobile"
+                                 src="img/визуальная система/Игра/game-hero-mobile.png"
+                                 alt="Игра — Mobile">
+                        </div>
+
+                        <!-- Мини-иллюстрация вопроса -->
+                        <div class="igra-voprosy-left">
+                            <div class="voprosy-img-wrap">
+                                <img class="voprosy-img" src="img/визуальная система/Игра/Аленький цветочек.png" alt="Аленький цветочек">
+                            </div>
+                            <p class="voprosy-caption">Аленький цветочек</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Правая колонка: единая линия слева, весь текст -->
+                    <div class="igra-right">
+
+                        <!-- Игра -->
+                        <div class="igra-info">
+                            <h3 class="h3">Игра</h3>
+                            <p class="text">Иллюстрация собрана из мини-иллюстраций к вопросам игры: каждый элемент отсылает к одному из символов Ульяновска. На ней — крепость, буханка (УАЗик), Аленький цветочек, <span class="hl">Volgatitan simbirskiensis</span> — меловой титанозавр, найденный в Ульяновской области, самолёт над Волгой, симбирцит в воде, река и Президентский мост.</p>
+                            <p class="text">Горизонтальная версия предназначена для компьютеров, вертикальная — для мобильных устройств. Состав символов сохраняется, меняется компоновка.</p>
+                            <div class="marshr-radio-wrap">
+                                <input type="radio" name="igra-version" id="ig-desktop" value="desktop" checked>
+                                <label for="ig-desktop" class="pattern-radio-lbl">Горизонтальная</label><input type="radio" name="igra-version" id="ig-mobile" value="mobile">
+                                <label for="ig-mobile" class="pattern-radio-lbl">Вертикальная</label>
+                            </div>
+                        </div>
+
+                        <!-- Вопросы -->
+                        <div class="igra-voprosy-right">
+                            <p class="voprosy-label">Вопросы</p>
+                            <p class="text">Каждый вопрос игры сопровождается мини-иллюстрацией, выполненной в едином стиле с главной. Каждая карточка посвящена одному из символов Ульяновска — от крепости и буханки до симбирцита и самолёта.</p>
+                            <div class="voprosy-nav">
+                                <button class="voprosy-btn voprosy-prev" aria-label="Предыдущий">
+                                    <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
+                                        <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
+                                        <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                                <span class="voprosy-counter">1 / 10</span>
+                                <button class="voprosy-btn voprosy-next" aria-label="Следующий">
+                                    <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
+                                        <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
+                                        <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <!-- Портреты (заглушка) -->
+            <!-- Портреты -->
             <div class="illyust-block" id="illyust-portrety">
                 <h3 class="h3">Портреты</h3>
+
+                <div class="portrety-grid">
+
+                    <div class="portret-item">
+                        <img src="img/визуальная система/портреты/Ленин В.И..png" alt="Ленин" class="portret-img">
+                    </div>
+
+                    <div class="portret-item">
+                        <img src="img/визуальная система/портреты/Сергей Жуков.png" alt="Жуков" class="portret-img">
+                    </div>
+
+                    <div class="portret-item">
+                        <img src="img/визуальная система/портреты/И.А. Гончаров.png" alt="Гончаров" class="portret-img">
+                    </div>
+
+                    <div class="portret-item">
+                        <img src="img/визуальная система/портреты/Н.М. Карамзин.png" alt="Карамзин" class="portret-img">
+                    </div>
+
+                    <div class="portret-item">
+                        <img src="img/визуальная система/портреты/Н. С. Сафронов.png" alt="Сафронов" class="portret-img">
+                    </div>
+
+                    <div class="portret-item">
+                        <img src="img/визуальная система/портреты/А. А. Пластов.png" alt="Пластов" class="portret-img">
+                    </div>
+
+                </div>
+
+                <div class="illyust-text-grid">
+                    <div class="illyust-text-col illyust-text-col--1">
+                        <p class="text">Каждый портрет выполнен в одном из цветов бренда: Ленин — терракотовый, Жуков — волжский синий, Гончаров — янтарный, Карамзин — зелёный, Сафронов — глубокий синий, Пластов — волжский синий. Единство цветовой системы подчёркивает принадлежность каждого образа к общему визуальному языку бренда.</p>
+                    </div>
+                    <div class="illyust-text-col illyust-text-col--2">
+                        <p class="text">Портреты выполнены на белом фоне с белым градиентным зернистым шумом — сами фигуры окрашены в соответствующий цвет бренда. Всех шестерых объединяет принадлежность к Ульяновску — это выдающиеся люди, чьи имена неразрывно связаны с историей и культурой города. Подробная информация о каждом из них представлена на сайте.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ===== АНИМАЦИЯ ===== -->
+        <section id="animaciya-section" class="section animaciya-section">
+
+            <h2 class="h2">Анимация</h2>
+
+            <!-- Заставочная анимация -->
+            <div class="animaciya-block">
+                <h3 class="h3">Интро-анимация города</h3>
+
+                <div class="animaciya-video-wrap">
+                    <video class="animaciya-video animaciya-video--gorizontalnaya active"
+                           src="img/визуальная система/Анимация/animation-intro.mp4"
+                           controls autoplay muted loop playsinline>
+                    </video>
+                    <video class="animaciya-video animaciya-video--vertikalnaya"
+                           src="img/визуальная система/Анимация/animation-intro-mobile.mp4"
+                           controls autoplay muted loop playsinline>
+                    </video>
+                </div>
+
+                <div class="animaciya-radio-row">
+                    <div class="animaciya-radio-wrap">
+                        <input type="radio" name="animaciya-orient" id="an-gor" value="gorizontalnaya" checked>
+                        <label for="an-gor" class="pattern-radio-lbl">Горизонтальная</label><input type="radio" name="animaciya-orient" id="an-vert" value="vertikalnaya">
+                        <label for="an-vert" class="pattern-radio-lbl">Вертикальная</label>
+                    </div>
+                </div>
+
+                <div class="illyust-text-grid animaciya-desc">
+                    <div class="illyust-text-col illyust-text-col--1">
+                        <p class="text">На иллюстрации изображён центр Ульяновска с его главными достопримечательностями. Анимированы ключевые детали: самолёт летит над городом, кораблик плывёт по Волге, трамвай едет по улице, лампочка мигает, огни домов поочерёдно загораются, а на ночном небе переливаются звёзды.</p>
+                    </div>
+                    <div class="illyust-text-col illyust-text-col--2">
+                        <p class="text">Горизонтальная версия — 1600×600 px, панорамный формат (8:3) для десктопных экранов и презентаций. Вертикальная версия — 1080×1920 px (9:16), адаптирована под мобильные устройства и вертикальные носители.</p>
+                    </div>
+                </div>
             </div>
 
         </section>

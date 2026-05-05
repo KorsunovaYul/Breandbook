@@ -449,6 +449,17 @@ document.querySelectorAll('.pattern-btn').forEach(btn => {
     });
 });
 
+// Маршруты — переключатель иллюстраций через radio-инпуты
+document.querySelectorAll('.marshr-radio-wrap input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const imgCol = radio.closest('.marshr-grid')?.querySelector('.marshr-img-col');
+        if (!imgCol) return;
+        imgCol.querySelectorAll('.marshr-img').forEach(img => img.classList.remove('active'));
+        const target = imgCol.querySelector('.marshr-img--' + radio.value);
+        if (target) target.classList.add('active');
+    });
+});
+
 // Паттерн — все версии: переключатель через radio-инпуты
 document.querySelectorAll('.pattern-radio-wrap input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', () => {

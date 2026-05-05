@@ -3041,6 +3041,72 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     display: block;
 }
 
+/* Блок Маршруты — сетка как у паттерна */
+.marshr-grid {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: var(--col-gap);
+    align-items: center;
+}
+
+.marshr-img-col {
+    position: relative;
+}
+
+.marshr-img {
+    width: 67%;
+    display: none;
+    margin: 0 auto;
+}
+
+.marshr-img.active {
+    display: block;
+}
+
+.marshr-info-col {
+    border-left: 2px solid var(--volzhsky-blue);
+    padding-left: var(--col-gap);
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.marshr-radio-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.marshr-radio-wrap input[type="radio"] {
+    display: none;
+}
+
+.marshr-radio-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+    .marshr-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .marshr-info-col {
+        order: -1;
+        border-left: none;
+        padding-left: 0;
+        border-bottom: 1.5px solid var(--volzhsky-blue);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .marshr-img {
+        width: 100%;
+        margin: 0;
+    }
+}
+
 /* Два текстовых блока под картинкой */
 .illyust-text-grid {
     display: grid;

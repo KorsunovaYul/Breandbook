@@ -485,6 +485,101 @@ body {
     50%       { transform: translateY(-1.5rem); }
 }
 
+/* ================================================================
+   КОМПОНЕНТ: СЕГМЕНТИРОВАННАЯ РАДИОКНОПКА
+   Один источник правды для всех переключателей на сайте.
+   Добавь класс .seg-btn к новым кнопкам или используй существующие
+   алиасы: .postroenie-btn, .logotip-btn, .mode-btn,
+           .typo-weight-btn, .grafika-btn, .pattern-btn, .pattern-radio-lbl
+================================================================ */
+
+.postroenie-btn,
+.logotip-btn,
+.mode-btn,
+.typo-weight-btn,
+.grafika-btn,
+.pattern-btn,
+.pattern-radio-lbl {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background: none;
+    border: 2px solid var(--volzhsky-blue);
+    color: var(--volzhsky-blue);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    user-select: none;
+}
+
+/* Склейка: убрать двойную границу у соседних кнопок */
+.postroenie-btn + .postroenie-btn,
+.logotip-btn    + .logotip-btn,
+.mode-btn       + .mode-btn,
+.typo-weight-btn + .typo-weight-btn,
+.grafika-btn    + .grafika-btn,
+.pattern-btn    + .pattern-btn,
+input[type="radio"] + .pattern-radio-lbl { border-left: none; }
+
+/* Первый радио-лейбл восстанавливает левую границу */
+.pattern-radio-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+/* Активное состояние */
+.postroenie-btn.active,
+.logotip-btn.active,
+.mode-btn.active,
+.typo-weight-btn.active,
+.grafika-btn.active,
+.pattern-btn.active,
+input[type="radio"]:checked + .pattern-radio-lbl {
+    background: var(--volzhsky-blue);
+    color: #fff;
+    border-color: var(--volzhsky-blue);
+}
+
+/* Ховер неактивной кнопки */
+.postroenie-btn:hover:not(.active),
+.logotip-btn:hover:not(.active),
+.mode-btn:hover:not(.active),
+.typo-weight-btn:hover:not(.active),
+.grafika-btn:hover:not(.active),
+.pattern-btn:hover:not(.active),
+input[type="radio"]:not(:checked) + .pattern-radio-lbl:hover {
+    background: var(--amber);
+    color: var(--deep-blue);
+    border-color: var(--amber);
+}
+
+/* Активная кнопка при ховере — не меняется */
+.postroenie-btn.active:hover,
+.logotip-btn.active:hover,
+.mode-btn.active:hover,
+.typo-weight-btn.active:hover,
+.grafika-btn.active:hover,
+.pattern-btn.active:hover,
+input[type="radio"]:checked + .pattern-radio-lbl:hover {
+    background: var(--volzhsky-blue);
+    color: #fff;
+    border-color: var(--volzhsky-blue);
+}
+
+/* Мобилка — единый уменьшенный размер для всех переключателей */
+@media (max-width: 768px) {
+    .postroenie-btn,
+    .logotip-btn,
+    .mode-btn,
+    .typo-weight-btn,
+    .grafika-btn,
+    .pattern-btn,
+    .pattern-radio-lbl {
+        font-size: 0.9375rem; /* 15px */
+        padding: 0.5rem;      /* 8px all sides */
+    }
+}
+
 /* ===== ЦВЕТОВАЯ СИСТЕМА ===== */
 
 .color-section {
@@ -495,7 +590,7 @@ body {
 /* Табы — тот же стиль что у логотипа */
 .color-tabs {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1rem;                /* 16px от заголовка до тоглов */
     margin-bottom: var(--gap-h3-to-text);
@@ -506,6 +601,10 @@ body {
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--volzhsky-blue);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     text-decoration: none;
     transition: color 0.2s;
 }
@@ -809,38 +908,7 @@ body {
     display: inline-block;
 }
 
-/* Кнопки Light / Regular / Bold для Inter */
-.typo-weight-btn {
-    font-family: 'Arsenal SC', serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 0.5rem 1.5rem;
-    background: none;
-    border: 2px solid var(--volzhsky-blue);
-    color: var(--volzhsky-blue);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-}
-
-.typo-weight-btn + .typo-weight-btn {
-    border-left: none;
-}
-
-.typo-weight-btn.active {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
-
-.typo-weight-btn:hover:not(.active) {
-    background: var(--amber);
-    color: var(--deep-blue);
-    border-color: var(--amber);
-}
-
-.typo-weight-btn.active:hover {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
+/* Кнопки Light / Regular / Bold для Inter — стили из компонента */
 
 /* Алфавит */
 .typo-alphabet {
@@ -966,37 +1034,7 @@ body {
     margin-top: 1.5rem; /* 24px ниже сетки */
 }
 
-.mode-btn {
-    font-family: 'Arsenal SC', serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 0.5rem 1.5rem;
-    background: none;
-    border: 2px solid var(--volzhsky-blue);
-    color: var(--volzhsky-blue);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-}
-
-.mode-btn + .mode-btn {
-    border-left: none;
-}
-
-.mode-btn.active {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
-
-.mode-btn:hover:not(.active) {
-    background: var(--amber);
-    color: var(--deep-blue);
-    border-color: var(--amber);
-}
-
-.mode-btn.active:hover {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
+/* .mode-btn — стили из компонента */
 
 /* Коды — скрываем/показываем */
 .code-print { display: none; }
@@ -1786,36 +1824,7 @@ body {
     width: fit-content;
 }
 
-.postroenie-btn {
-    font-family: 'Arsenal SC', serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 0.5rem 1.5rem;
-    border: 2px solid var(--volzhsky-blue);
-    background: #fff;
-    color: var(--volzhsky-blue);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-}
-
-.postroenie-btn + .postroenie-btn {
-    border-left: none;
-}
-
-.postroenie-btn.active {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
-
-.postroenie-btn:hover:not(.active) {
-    background: var(--amber);
-    color: var(--deep-blue);
-}
-
-.postroenie-btn.active:hover {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
+/* .postroenie-btn — стили из компонента */
 
 /* Построение логотипа — фильтры */
 .logotip-filters {
@@ -1829,36 +1838,7 @@ body {
     display: flex;
 }
 
-.logotip-btn {
-    font-family: 'Arsenal SC', serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 0.5rem 1.5rem;
-    border: 2px solid var(--volzhsky-blue);
-    background: #fff;
-    color: var(--volzhsky-blue);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-}
-
-.logotip-btn + .logotip-btn {
-    border-left: none;
-}
-
-.logotip-btn.active {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
-
-.logotip-btn:hover:not(.active) {
-    background: var(--amber);
-    color: var(--deep-blue);
-}
-
-.logotip-btn.active:hover {
-    background: var(--volzhsky-blue);
-    color: #fff;
-}
+/* .logotip-btn — стили из компонента */
 
 /* Слайдер сравнения чб */
 .vsversii-compare {
@@ -2693,12 +2673,20 @@ body {
     }
 
     .color-tabs {
-        gap: 1rem;
+        gap: 0.75rem;
         margin-top: 1.5rem;
     }
 
     .color-tab {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+    }
+
+    .grafika-tabs {
+        gap: 0.75rem;
+    }
+
+    .grafika-tab {
+        font-size: 1.125rem;
     }
 
     /* Доп. цвета — на мобилке тоже 2 колонки, но меньше высота */
@@ -2735,7 +2723,6 @@ body {
         font-size: 2.5rem;
     }
 
-    .typo-weight-btn,
     .typo-weight-badge {
         font-size: 1.25rem;
         padding: 0.4rem 1rem;
@@ -2743,12 +2730,6 @@ body {
 
     .typo-preview-heading {
         font-size: 3rem; /* базовый размер на мобилке, JS может менять */
-    }
-
-    /* Радиокнопка ВЕБ/ПЕЧАТЬ — уменьшается как и все остальные кнопки */
-    .mode-btn {
-        font-size: 1.25rem;
-        padding: 0.4rem 1rem;
     }
 
     /* Отступы между блоками цветовой системы */
@@ -2798,8 +2779,27 @@ body {
         font-size: 1rem;
     }
 
+    .sochet-bars-col {
+        min-width: 0;
+        overflow: hidden;
+    }
+
     .sochet-bar {
         height: 2rem;
+        overflow: hidden;
+    }
+
+    /* Отключаем hover-расширение сегментов на мобилке */
+    .sochet-bar:hover .sb-seg {
+        flex-grow: 1;
+    }
+
+    .sochet-bar .sb-seg:hover {
+        flex-grow: 1;
+    }
+
+    .sochet-bar .sb-seg:hover::after {
+        opacity: 0;
     }
 
     .sb-seg::after {
@@ -2814,10 +2814,10 @@ body {
     margin-bottom: var(--gap-block);
 }
 
-/* Табы — тот же стиль что у цветовой системы */
+/* Табы — тот же стиль что у логотипа */
 .grafika-tabs {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1rem;
     margin-bottom: var(--gap-h3-to-text);
@@ -2828,6 +2828,10 @@ body {
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--volzhsky-blue);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     text-decoration: none;
     transition: color 0.2s;
 }
@@ -2882,33 +2886,84 @@ body {
     margin-top: 1.5rem;
 }
 
-.grafika-btn {
-    font-family: 'Arsenal SC', serif;
-    font-weight: 700;
-    font-size: 1.25rem;
-    padding: 0.5rem 1rem;
-    background: none;
-    border: 2px solid var(--volzhsky-blue);
-    color: var(--volzhsky-blue);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    white-space: nowrap;
+/* .grafika-btn — стили из компонента */
+
+/* ===== ПАТТЕРН ===== */
+
+.pattern-section {
+    margin-top: var(--gap-block);
+    margin-bottom: var(--gap-block);
 }
 
-.grafika-btn + .grafika-btn {
-    border-left: none;
+.pattern-block {
+    margin-top: var(--gap-h2-to-h3);
 }
 
-.grafika-btn.active {
-    background: var(--volzhsky-blue);
-    color: #fff;
+.pattern-block + .pattern-block {
+    margin-top: 5rem;
 }
 
-.grafika-btn:hover:not(.active) {
-    background: var(--amber);
-    color: var(--deep-blue);
-    border-color: var(--amber);
+/* Сетка 6+6 (как в блоках логотипа) */
+.pattern-grid {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: var(--col-gap);
+    align-items: center;
 }
+
+.pattern-img-col {
+    position: relative;
+}
+
+.pattern-img {
+    width: 50%;
+    display: none;
+    margin: 0 auto;
+}
+
+.pattern-img.active {
+    display: block;
+}
+
+/* Правая колонка: линия слева */
+.pattern-info-col {
+    border-left: 2px solid var(--volzhsky-blue);
+    padding-left: var(--col-gap);
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pattern-info-col .h3 {
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+.pattern-desc {
+    margin-bottom: 1rem;
+}
+
+/* Переключатель — тот же стиль что .grafika-btn */
+.pattern-mode-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+/* .pattern-btn — стили из компонента */
+
+/* Радиогруппа «Все версии» паттерна — единая склеенная полоса */
+.pattern-radio-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.pattern-radio-wrap input[type="radio"] {
+    display: none;
+}
+
+/* .pattern-radio-lbl, .pattern-btn — стили из компонента */
 
 /* Мобилка */
 @media (max-width: 768px) {
@@ -2922,6 +2977,11 @@ body {
         grid-column: 1 / -1;
     }
 
+    .grafika-info-col { order: -1; } /* текст и кнопки — выше картинки */
+
+    /* Картинки граф. элементов — полная ширина на мобилке */
+    .grafika-img { width: 100%; }
+
     .grafika-info-col {
         border-left: none;
         border-top: 2px solid var(--volzhsky-blue);
@@ -2929,9 +2989,34 @@ body {
         padding-top: 2rem;
     }
 
-    .grafika-btn {
-        font-size: 1rem;
-        padding: 0.4rem 0.75rem;
+
+    /* Паттерн — мобилка */
+    .pattern-grid {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
     }
+
+    .pattern-img-col,
+    .pattern-info-col {
+        grid-column: 1 / -1;
+    }
+
+    /* Картинки паттерна — полная ширина на мобилке */
+    .pattern-img {
+        width: 100%;
+        margin: 0;
+    }
+
+    .pattern-info-col { order: -1; } /* текст и кнопки — выше картинки */
+
+    .pattern-info-col {
+        border-left: none;
+        border-top: 2px solid var(--volzhsky-blue);
+        padding-left: 0;
+        padding-top: 2rem;
+        justify-content: flex-start;
+    }
+
 }
+
 

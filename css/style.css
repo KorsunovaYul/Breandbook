@@ -3020,3 +3020,49 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 
+/* ===== ИЛЛЮСТРАЦИИ ===== */
+
+.illyust-section {
+    margin-top: var(--gap-block);
+    margin-bottom: var(--gap-block);
+}
+
+.illyust-block {
+    margin-top: var(--gap-h2-to-h3);
+}
+
+/* Картинка на все 12 контентных колонок */
+.illyust-img-wrap {
+    margin-top: var(--gap-h3-to-text);
+}
+
+.illyust-img {
+    width: 100%;
+    display: block;
+}
+
+/* Два текстовых блока под картинкой */
+.illyust-text-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--col-gap);
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Первый блок: контентные колонки 1–6 (= grid cols 3–8) */
+.illyust-text-col--1 {
+    grid-column: 1 / 7;
+}
+
+/* Второй блок: контентные колонки 8–12 (= grid cols 10–14) */
+.illyust-text-col--2 {
+    grid-column: 8 / 13;
+}
+
+/* Мобилка: оба блока на всю ширину, стопкой */
+@media (max-width: 768px) {
+    .illyust-text-col--1,
+    .illyust-text-col--2 {
+        grid-column: 1 / -1;
+    }
+}

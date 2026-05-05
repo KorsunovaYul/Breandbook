@@ -72,7 +72,7 @@
             <li><a href="#color-section">Цветовая система</a></li>
             <li><a href="#">Типографика</a></li>
             <li><a href="#grafika-section">Графические элементы</a></li>
-            <li><a href="#">Паттерн</a></li>
+            <li><a href="#pattern-section">Паттерн</a></li>
             <li><a href="#">Иллюстрация</a></li>
             <li><a href="#">Анимация</a></li>
             <li><a href="#">StyleGuide</a></li>
@@ -155,7 +155,7 @@
                     <li><a href="#color-section">Цветовая система</a></li>
                     <li><a href="#typography-section">Типографика</a></li>
                     <li><a href="#grafika-section">Графические элементы</a></li>
-                    <li><a href="#">Паттерн</a></li>
+                    <li><a href="#pattern-section">Паттерн</a></li>
                     <li><a href="#">Иллюстрация</a></li>
                     <li><a href="#">Анимация</a></li>
                     <li><a href="#">StyleGuide</a></li>
@@ -265,7 +265,7 @@
                         <li><a href="#color-section">Цветовая система</a></li>
                         <li><a href="#typography-section">Типографика</a></li>
                         <li><a href="#grafika-section">Графические элементы</a></li>
-                        <li><a href="#">Паттерн</a></li>
+                        <li><a href="#pattern-section">Паттерн</a></li>
                         <li><a href="#">Иллюстрация</a></li>
                         <li><a href="#">Анимация</a></li>
                         <li><a href="#">StyleGuide</a></li>
@@ -1312,6 +1312,183 @@
 
                 </div>
 
+            </div>
+
+        </section>
+
+        <!-- ===== ПАТТЕРН ===== -->
+        <section id="pattern-section" class="section pattern-section">
+
+            <h2 class="h2">Паттерн</h2>
+
+            <nav class="grafika-tabs">
+                <a class="grafika-tab" href="#pattern-postroenie">Построение</a>
+                <a class="grafika-tab" href="#pattern-versii">Все версии</a>
+                <a class="grafika-tab" href="#pattern-ispolzovanie">Использование</a>
+            </nav>
+
+            <!-- Построение -->
+            <div class="pattern-block" id="pattern-postroenie">
+
+                <div class="pattern-grid">
+
+                    <!-- Картинка: 6 контентных колонок -->
+                    <div class="pattern-img-col">
+                        <img class="pattern-img pattern-img--geo"
+                             src=""
+                             alt="Геометрическое построение паттерна">
+                        <img class="pattern-img pattern-img--setka active"
+                             src="img/визуальная система/паттерн/сетка.png"
+                             alt="Сетка паттерна">
+                    </div>
+
+                    <!-- Правая колонка: 6 контентных колонок -->
+                    <div class="pattern-info-col">
+                        <h3 class="h3">Построение</h3>
+                        <p class="text pattern-desc">Паттерн построен на модульной сетке с базовым шагом 1. Каждый элемент вписан в квадратный модуль, что обеспечивает равномерность и масштабируемость узора.</p>
+                        <p class="text pattern-desc">Композиция допускает свободное кадрирование: паттерн одинаково читается в любом фрагменте и не имеет явно выраженного центра.</p>
+                        <p class="text pattern-desc">Эффект шума добавлен поверх геометрии и присутствует во всех вариантах, создавая фактуру живого города.</p>
+
+                        <div class="pattern-mode-wrap">
+                            <button class="pattern-btn" data-pattern="geo">Геометрическое построение</button><button class="pattern-btn active" data-pattern="setka">Сетка</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Все версии -->
+            <div class="pattern-block" id="pattern-versii">
+
+                <div class="pattern-grid">
+
+                    <!-- Картинка: 6 контентных колонок -->
+                    <div class="pattern-img-col">
+                        <img class="pattern-img pattern-img--osnovnoy active"
+                             src="img/визуальная система/паттерн/паттерн 1.png"
+                             alt="Паттерн Основной">
+                        <img class="pattern-img pattern-img--nochnoj"
+                             src="img/визуальная система/паттерн/паттерн 2.png"
+                             alt="Паттерн Ночной">
+                        <img class="pattern-img pattern-img--nebesnyj"
+                             src="img/визуальная система/паттерн/паттерн 3.png"
+                             alt="Паттерн Небесный">
+                        <img class="pattern-img pattern-img--tyoplyj"
+                             src="img/визуальная система/паттерн/паттерн 4.png"
+                             alt="Паттерн Тёплый">
+                        <img class="pattern-img pattern-img--yantarnyj"
+                             src="img/визуальная система/паттерн/паттерн 5.png"
+                             alt="Паттерн Янтарный">
+                        <img class="pattern-img pattern-img--delovoj"
+                             src="img/визуальная система/паттерн/паттерн 6.png"
+                             alt="Паттерн Деловой">
+                    </div>
+
+                    <!-- Правая колонка: 6 контентных колонок -->
+                    <div class="pattern-info-col">
+                        <h3 class="h3">Все версии</h3>
+                        <p class="text pattern-desc">Паттерн представляет собой собрание символов Ульяновска: Буква Ё, самолётостроение, музей И.А. Гончарова, Стелла, Ульяновский областной краеведческий музей, река Волга, уникальный камень симбирцит, яхтинг, УАЗик буханка, диван Обломова.</p>
+                        <p class="text pattern-desc">В паттерне присутствует эффект шума, который есть и на иллюстрациях.</p>
+
+                        <div class="pattern-radio-wrap">
+                            <input type="radio" name="pattern-versii" id="pr-osnovnoy"  value="osnovnoy"  checked>
+                            <label for="pr-osnovnoy"  class="pattern-radio-lbl">Основной</label>
+                            <input type="radio" name="pattern-versii" id="pr-nochnoj"   value="nochnoj">
+                            <label for="pr-nochnoj"   class="pattern-radio-lbl">Ночной</label>
+                            <input type="radio" name="pattern-versii" id="pr-nebesnyj"  value="nebesnyj">
+                            <label for="pr-nebesnyj"  class="pattern-radio-lbl">Небесный</label>
+                            <input type="radio" name="pattern-versii" id="pr-tyoplyj"   value="tyoplyj">
+                            <label for="pr-tyoplyj"   class="pattern-radio-lbl">Тёплый</label>
+                            <input type="radio" name="pattern-versii" id="pr-yantarnyj" value="yantarnyj">
+                            <label for="pr-yantarnyj" class="pattern-radio-lbl">Янтарный</label>
+                            <input type="radio" name="pattern-versii" id="pr-delovoj"   value="delovoj">
+                            <label for="pr-delovoj"   class="pattern-radio-lbl">Деловой</label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Использование паттерна -->
+            <div class="pattern-block" id="pattern-ispolzovanie">
+
+                <div class="pattern-grid">
+
+                    <!-- Картинка -->
+                    <div class="pattern-img-col">
+                        <img class="pattern-img pattern-img--yarkij active"
+                             src="img/визуальная система/паттерн/яркий.png"
+                             alt="Яркий паттерн">
+                        <img class="pattern-img pattern-img--delovoj-isp"
+                             src="img/визуальная система/паттерн/деловой.png"
+                             alt="Деловой паттерн">
+                    </div>
+
+                    <!-- Правая колонка -->
+                    <div class="pattern-info-col">
+                        <h3 class="h3">Использование паттерна</h3>
+                        <p class="text pattern-desc">Яркий паттерн предназначен для внешних носителей: он привлекает внимание широкой аудитории. Можно использовать паттерн целиком или брать отдельные блоки, выстраивая их в горизонтальную полосу. Блоки расположены по квадратной сетке — ряды выровнены ровно друг под другом.</p>
+                        <p class="text pattern-desc">Деловой паттерн используется в корпоративной документации. Его отличительная черта — кирпичная раскладка: каждый ряд блоков сдвинут на полшага вправо относительно предыдущего. Так же можно использовать паттерн целиком или выстраивать блоки в линию.</p>
+
+                        <div class="pattern-radio-wrap">
+                            <input type="radio" name="pattern-isp" id="pi-yarkij"  value="yarkij"     checked>
+                            <label for="pi-yarkij"  class="pattern-radio-lbl">Яркий</label><input type="radio" name="pattern-isp" id="pi-delovoj" value="delovoj-isp">
+                            <label for="pi-delovoj" class="pattern-radio-lbl">Деловой</label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ===== ИЛЛЮСТРАЦИИ ===== -->
+        <section id="illyust-section" class="section illyust-section">
+
+            <h2 class="h2">Иллюстрации</h2>
+
+            <nav class="grafika-tabs">
+                <a class="grafika-tab" href="#illyust-karta">Карта</a>
+                <a class="grafika-tab" href="#illyust-marshruty">Маршруты</a>
+                <a class="grafika-tab" href="#illyust-igra">Игра</a>
+                <a class="grafika-tab" href="#illyust-portrety">Портреты</a>
+            </nav>
+
+            <!-- Карта -->
+            <div class="illyust-block" id="illyust-karta">
+                <h3 class="h3">Карта</h3>
+                <div class="illyust-img-wrap">
+                    <img class="illyust-img"
+                         src="img/визуальная система/иллюстрации/карта.png"
+                         alt="Иллюстрация Карта">
+                </div>
+
+                <div class="illyust-text-grid">
+                    <div class="illyust-text-col illyust-text-col--1">
+                        <p class="text">Иллюстрированная карта охватывает исторический центр Ульяновска и включает 11 объектов: площадь 30 лет Великой Победы, Музей балалайки, Волжский яхт-клуб, Гостиницу «Венец», Ленинский мемориал, Музей И.А. Гончарова, Памятник букве «Ё», Симбирцитовую Залу, Спасско-Вознесенский собор, Художественный музей и Церковь Св. Марии. Карта интерактивна: при нажатии на объект появляется его краткое описание.</p>
+                    </div>
+                    <div class="illyust-text-col illyust-text-col--2">
+                        <p class="text">Графический стиль карты строится на шумовом эффекте и градиентах — именно они объединяют иллюстрацию с остальной визуальной системой бренда. Городская среда передана через зелёные оттенки: деревья, парки и кварталы прочитываются как живая ткань города. Силуэты зданий намеренно упрощены — узнаваемы, но без архитектурной детализации.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Маршруты (заглушка) -->
+            <div class="illyust-block" id="illyust-marshruty">
+                <h3 class="h3">Маршруты</h3>
+            </div>
+
+            <!-- Игра (заглушка) -->
+            <div class="illyust-block" id="illyust-igra">
+                <h3 class="h3">Игра</h3>
+            </div>
+
+            <!-- Портреты (заглушка) -->
+            <div class="illyust-block" id="illyust-portrety">
+                <h3 class="h3">Портреты</h3>
             </div>
 
         </section>

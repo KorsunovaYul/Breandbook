@@ -433,6 +433,33 @@ document.querySelectorAll('.typo-weight-btn').forEach(btn => {
     });
 })();
 
+// Паттерн — построение: переключатель кнопками (геометрическое / сетка)
+document.querySelectorAll('.pattern-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const wrap   = btn.closest('.pattern-mode-wrap');
+        const imgCol = btn.closest('.pattern-grid')?.querySelector('.pattern-img-col');
+        if (!wrap || !imgCol) return;
+
+        wrap.querySelectorAll('.pattern-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        imgCol.querySelectorAll('.pattern-img').forEach(img => img.classList.remove('active'));
+        const target = imgCol.querySelector('.pattern-img--' + btn.dataset.pattern);
+        if (target) target.classList.add('active');
+    });
+});
+
+// Паттерн — все версии: переключатель через radio-инпуты
+document.querySelectorAll('.pattern-radio-wrap input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const imgCol = radio.closest('.pattern-grid')?.querySelector('.pattern-img-col');
+        if (!imgCol) return;
+        imgCol.querySelectorAll('.pattern-img').forEach(img => img.classList.remove('active'));
+        const target = imgCol.querySelector('.pattern-img--' + radio.value);
+        if (target) target.classList.add('active');
+    });
+});
+
 // Графические элементы — переключатель картинок (геометрическое / углы / сетка)
 document.querySelectorAll('.grafika-btn').forEach(btn => {
     btn.addEventListener('click', () => {

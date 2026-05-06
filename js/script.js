@@ -629,10 +629,12 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     if (!viz || !colsEl) return;
 
     function applySpec(spec) {
+        const widthPct = (spec.total / 1920 * 100).toFixed(3) + '%';
         viz.style.setProperty('--sg-total',     spec.total);
         viz.style.setProperty('--sg-margin-px', spec.margin);
         viz.style.setProperty('--sg-gap-px',    spec.gap);
         viz.style.setProperty('--sg-num-cols',  spec.cols);
+        viz.style.setProperty('--sg-width-pct', widthPct);
         colsEl.style.gridTemplateColumns = `repeat(${spec.cols}, 1fr)`;
         if (lblMargin) lblMargin.textContent = `${spec.margin} px`;
         if (lblGap)    lblGap.textContent    = `${spec.gap} px`;

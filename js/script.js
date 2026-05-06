@@ -611,3 +611,39 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     });
 });
 
+// ── StyleGuide: переключатель устройств ──
+(function () {
+    const deviceSpecs = {
+        desktop: { total: 1920, margin: 115, gap: 20, cols: 12 },
+        lptop:   { total: 1440, margin: 80,  gap: 16, cols: 12 },
+        ipad:    { total: 1024, margin: 32,  gap: 16, cols: 8  },
+        mobile:  { total: 375,  margin: 16,  gap: 12, cols: 4  },
+    };
+
+    const viz       = document.querySelector('.sg-grid-viz');
+    const colsEl    = document.querySelector('.sg-grid-cols');
+    const lblMargin = document.querySelector('.sg-anno--margin .sg-anno-label');
+    const lblGap    = document.querySelector('.sg-anno--gap    .sg-anno-label');
+    const lblTotal  = document.querySelector('.sg-anno--total  .sg-anno-label');
+
+    if (!viz || !colsEl) return;
+
+    function applySpec(spec) {
+        viz.style.setProperty('--sg-total',     spec.total);
+        viz.style.setProperty('--sg-margin-px', spec.margin);
+        viz.style.setProperty('--sg-gap-px',    spec.gap);
+        viz.style.setProperty('--sg-num-cols',  spec.cols);
+        colsEl.style.gridTemplateColumns = `repeat(${spec.cols}, 1fr)`;
+        if (lblMargin) lblMargin.textContent = `${spec.margin} px`;
+        if (lblGap)    lblGap.textContent    = `${spec.gap} px`;
+        if (lblTotal)  lblTotal.textContent  = `${spec.total} px`;
+    }
+
+    document.querySelectorAll('.sg-device-wrap input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const spec = deviceSpecs[radio.value];
+            if (spec) applySpec(spec);
+        });
+    });
+})();
+

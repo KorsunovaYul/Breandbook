@@ -1669,6 +1669,85 @@
 
         </section>
 
+        <!-- ===== STYLEGUIDE ===== -->
+        <section id="styleguide-section" class="section styleguide-section">
+
+            <h2 class="h2">StyleGuide</h2>
+
+            <!-- Шапка: табы слева, Сайт/Брендбук справа -->
+            <div class="sg-nav-row">
+                <nav class="grafika-tabs sg-tabs">
+                    <a class="grafika-tab" href="#sg-setka">Сетка</a>
+                    <a class="grafika-tab" href="#sg-spec">Спецификация</a>
+                    <a class="grafika-tab" href="#sg-ikonki">Иконки</a>
+                    <a class="grafika-tab" href="#sg-typo">Типографическая иерархия</a>
+                    <a class="grafika-tab" href="#sg-knopki">Кнопки</a>
+                    <a class="grafika-tab" href="#sg-kartochki">Карточки</a>
+                </nav>
+                <div class="sg-mode-wrap">
+                    <input type="radio" name="sg-mode" id="sg-sayt" value="sayt" checked>
+                    <label for="sg-sayt" class="pattern-radio-lbl">Сайт</label><input type="radio" name="sg-mode" id="sg-brendbuk" value="brendbuk">
+                    <label for="sg-brendbuk" class="pattern-radio-lbl">Брендбук</label>
+                </div>
+            </div>
+
+            <!-- ── Сетка ── -->
+            <div class="sg-block" id="sg-setka">
+                <h3 class="h3">Сетка</h3>
+
+                <!-- Визуализация грида -->
+                <div class="sg-grid-viz">
+                    <div class="sg-grid-outer">
+                        <div class="sg-grid-margin"></div>
+                        <div class="sg-grid-cols">
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                            <div class="sg-col"></div>
+                        </div>
+                        <div class="sg-grid-margin"></div>
+                    </div>
+
+                    <!-- Стрелки-аннотации -->
+                    <div class="sg-anno-wrap">
+                        <div class="sg-anno sg-anno--margin">
+                            <div class="sg-anno-line"></div>
+                            <span class="sg-anno-label">115 px</span>
+                        </div>
+                        <div class="sg-anno sg-anno--gap">
+                            <div class="sg-anno-line"></div>
+                            <span class="sg-anno-label">20 px</span>
+                        </div>
+                        <div class="sg-anno sg-anno--total">
+                            <div class="sg-anno-line"></div>
+                            <span class="sg-anno-label">1920 px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Подпись и переключатель устройств -->
+                <div class="sg-grid-footer">
+                    <span class="sg-grid-caption text">Ширина колонок, отступов и боковых отступов</span>
+                    <div class="sg-device-wrap">
+                        <input type="radio" name="sg-device" id="sg-desktop" value="desktop" checked>
+                        <label for="sg-desktop" class="pattern-radio-lbl">Desktop</label><input type="radio" name="sg-device" id="sg-lptop" value="lptop">
+                        <label for="sg-lptop" class="pattern-radio-lbl">Lptop</label><input type="radio" name="sg-device" id="sg-ipad" value="ipad">
+                        <label for="sg-ipad" class="pattern-radio-lbl">iPad</label><input type="radio" name="sg-device" id="sg-mobile" value="mobile">
+                        <label for="sg-mobile" class="pattern-radio-lbl">Mobile</label>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
     </main>
 
 </div>

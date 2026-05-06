@@ -3403,3 +3403,193 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         justify-content: flex-start;
     }
 }
+
+/* ══════════════ STYLEGUIDE ══════════════ */
+
+/* Шапка: табы слева + Сайт/Брендбук справа */
+.sg-nav-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: var(--gap-h2-to-h3);
+    margin-bottom: 0;
+}
+
+/* Убираем нижний отступ grafika-tabs внутри nav-row */
+.sg-nav-row .grafika-tabs {
+    margin-bottom: 0;
+}
+
+/* Сайт / Брендбук */
+.sg-mode-wrap {
+    display: flex;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+.sg-mode-wrap input[type="radio"] { display: none; }
+.sg-mode-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+/* Подблок */
+.sg-block {
+    margin-top: var(--gap-h2-to-h3);
+}
+.sg-block > .h3 {
+    margin-bottom: var(--gap-h3-to-text);
+}
+
+/* ── Визуализация сетки ── */
+.sg-grid-viz {
+    /* CSS-переменные текущего устройства (Desktop по умолчанию) */
+    --sg-total:      1920;
+    --sg-margin-px:  115;
+    --sg-gap-px:     20;
+    --sg-num-cols:   12;
+
+    /* Производные проценты (от общей ширины) */
+    --sg-margin-pct: calc(var(--sg-margin-px) / var(--sg-total) * 100%);
+    --sg-gap-pct:    calc(var(--sg-gap-px)    / var(--sg-total) * 100%);
+
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Прямоугольник сетки */
+.sg-grid-outer {
+    display: flex;
+    width: 100%;
+    height: 3.5rem;
+    border: 1.5px solid var(--deep-blue);
+    box-sizing: border-box;
+}
+
+.sg-grid-margin {
+    flex: 0 0 var(--sg-margin-pct);
+}
+
+.sg-grid-cols {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--sg-gap-pct);
+    padding: 0.5rem 0;
+}
+
+.sg-col {
+    background: var(--sky);
+    border-radius: 0.125rem;
+}
+
+/* ── Аннотации ── */
+.sg-anno-wrap {
+    position: relative;
+    width: 100%;
+    height: 3.5rem;
+    margin-top: 0.5rem;
+}
+
+.sg-anno {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sg-anno-line {
+    width: 100%;
+    height: 0.0625rem;
+    background: var(--deep-blue);
+    position: relative;
+    min-width: 0.0625rem;
+}
+.sg-anno-line::before,
+.sg-anno-line::after {
+    content: '';
+    position: absolute;
+    top: -0.25rem;
+    width: 0.0625rem;
+    height: 0.5625rem;
+    background: var(--deep-blue);
+}
+.sg-anno-line::before { left: 0; }
+.sg-anno-line::after  { right: 0; }
+
+.sg-anno-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    color: var(--deep-blue);
+    margin-top: 0.25rem;
+    white-space: nowrap;
+}
+
+/* Позиции каждой аннотации */
+
+/* Общая ширина — нижний ряд, полная ширина */
+.sg-anno--total {
+    left: 0;
+    width: 100%;
+    top: 1.875rem;
+}
+
+/* Поле (margin) — верхний ряд, левый край */
+.sg-anno--margin {
+    left: 0;
+    width: var(--sg-margin-pct);
+    top: 0;
+}
+
+/* Зазор (gap) — верхний ряд, после первой колонки */
+.sg-anno--gap {
+    /*
+     * left = margin + одна колонка
+     * ширина одной колонки = (100% - 2*margin - 11*gap) / 12
+     */
+    left: calc(
+        var(--sg-margin-pct)
+        + (100% - 2 * var(--sg-margin-pct) - 11 * var(--sg-gap-pct)) / 12
+    );
+    width: var(--sg-gap-pct);
+    top: 0;
+}
+
+/* ── Подпись + переключатель устройств ── */
+.sg-grid-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.sg-grid-caption {
+    opacity: 0.6;
+}
+
+/* Device radio */
+.sg-device-wrap {
+    display: flex;
+    flex-shrink: 0;
+}
+.sg-device-wrap input[type="radio"] { display: none; }
+.sg-device-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+/* ── Мобилка ── */
+@media (max-width: 768px) {
+    .sg-nav-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .sg-grid-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    /* Зазор слишком мал, чтобы показывать на мобилке */
+    .sg-anno--gap {
+        display: none;
+    }
+}

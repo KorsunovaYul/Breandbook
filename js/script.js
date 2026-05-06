@@ -615,9 +615,9 @@ document.querySelectorAll('.color-codes span').forEach(span => {
 (function () {
     const deviceSpecs = {
         desktop: { total: 1920, margin: 115, gap: 20, cols: 12 },
-        lptop:   { total: 1440, margin: 80,  gap: 16, cols: 12 },
-        ipad:    { total: 1024, margin: 32,  gap: 16, cols: 8  },
-        mobile:  { total: 375,  margin: 16,  gap: 12, cols: 4  },
+        lptop:   { total: 1366, margin: 80,  gap: 20, cols: 12 },
+        ipad:    { total: 834,  margin: 108, gap: 16, cols: 6  },
+        mobile:  { total: 375,  margin: 74,  gap: 16, cols: 4  },
     };
 
     const viz       = document.querySelector('.sg-grid-viz');

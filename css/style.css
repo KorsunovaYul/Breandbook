@@ -3419,7 +3419,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     align-items: flex-start;
     justify-content: space-between;
     gap: 1.5rem;
-    margin-top: var(--gap-h2-to-h3);
+    margin-top: 1rem;    /* 16px от h2 до табов */
     margin-bottom: 0;
 }
 

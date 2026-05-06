@@ -3449,9 +3449,11 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     --sg-num-cols:   12;
     --sg-width-pct:  100%;   /* ужимается для iPad / Mobile */
 
-    /* Производные проценты (от ширины блока) */
-    --sg-margin-pct: calc(var(--sg-margin-px) / var(--sg-total) * 100%);
-    --sg-gap-pct:    calc(var(--sg-gap-px)    / var(--sg-total) * 100%);
+    /* Производные проценты (от полной ширины — для аннотаций) */
+    --sg-margin-pct:    calc(var(--sg-margin-px) / var(--sg-total) * 100%);
+    --sg-gap-pct:       calc(var(--sg-gap-px)    / var(--sg-total) * 100%);
+    /* Зазор как % от внутренней зоны колонок (для column-gap в grid) */
+    --sg-gap-pct-cols:  calc(var(--sg-gap-px) / (var(--sg-total) - 2 * var(--sg-margin-px)) * 100%);
 
     margin-top: var(--gap-h3-to-text);
 }
@@ -3473,7 +3475,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--sg-gap-pct);
+    column-gap: var(--sg-gap-pct-cols); /* % от ширины sg-grid-cols, а не от total */
     /* без padding — колонки касаются линии сверху и снизу */
 }
 

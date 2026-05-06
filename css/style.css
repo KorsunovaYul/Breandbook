@@ -3444,7 +3444,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .sg-grid-viz {
     /* CSS-переменные текущего устройства (Desktop по умолчанию) */
     --sg-total:      1920;
-    --sg-margin-px:  115;
+    --sg-margin-px:  160;   /* боковой отступ Desktop */
     --sg-gap-px:     20;
     --sg-num-cols:   12;
     --sg-width-pct:  100%;   /* ужимается для iPad / Mobile */

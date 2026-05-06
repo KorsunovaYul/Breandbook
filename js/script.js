@@ -613,11 +613,12 @@ document.querySelectorAll('.color-codes span').forEach(span => {
 
 // ── StyleGuide: переключатель устройств ──
 (function () {
+    // margin = (total − cols×col_width − (cols−1)×gap) / 2
     const deviceSpecs = {
-        desktop: { total: 1920, margin: 115, gap: 20, cols: 12 },
-        lptop:   { total: 1366, margin: 80,  gap: 20, cols: 12 },
-        ipad:    { total: 834,  margin: 108, gap: 16, cols: 6  },
-        mobile:  { total: 375,  margin: 74,  gap: 16, cols: 4  },
+        desktop: { total: 1920, margin: 160, gap: 20, cols: 12 }, // (1920−12×115−11×20)/2
+        lptop:   { total: 1366, margin: 93,  gap: 20, cols: 12 }, // (1366−12×80−11×20)/2
+        ipad:    { total: 834,  margin: 53,  gap: 16, cols: 6  }, // (834−6×108−5×16)/2
+        mobile:  { total: 375,  margin: 16,  gap: 16, cols: 4  }, // (375−4×74−3×16)/2 ≈16
     };
 
     const viz       = document.querySelector('.sg-grid-viz');

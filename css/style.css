@@ -3549,6 +3549,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     left: 0;
     width: var(--sg-margin-pct);
     top: 0;
+    align-items: flex-start; /* метка от левого края — не уходит за viewport */
 }
 
 /* Зазор (gap) — верхний ряд, после первой колонки.

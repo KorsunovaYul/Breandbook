@@ -3402,6 +3402,12 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .animaciya-radio-row {
         justify-content: flex-start;
     }
+
+    /* Вертикальная анимация — на мобилке во всю ширину (4 колонки) */
+    .animaciya-video--vertikalnaya.active {
+        width: 100%;
+        margin: 0;
+    }
 }
 
 /* ══════════════ STYLEGUIDE ══════════════ */
@@ -3590,5 +3596,11 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     /* Зазор слишком мал, чтобы показывать на мобилке */
     .sg-anno--gap {
         display: none;
+    }
+
+    /* Сетка — на мобилке всегда во всю ширину (4 колонки), не ужимается */
+    .sg-grid-outer,
+    .sg-anno-wrap {
+        width: 100% !important;
     }
 }

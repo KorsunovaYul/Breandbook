@@ -2836,7 +2836,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     transition: color 0.2s;
 }
 
-.grafika-tab:hover { color: var(--amber); }
+.grafika-tab:hover  { color: var(--amber); }
+.grafika-tab.active { color: var(--deep-blue); }
 
 /* Блок построения */
 .grafika-block { margin-top: var(--gap-h2-to-h3); }
@@ -3594,9 +3595,12 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         align-items: flex-start;
         gap: 0.75rem;
     }
-    /* Зазор слишком мал, чтобы показывать на мобилке */
+    /* Зазор — справа (сетка симметрична, последний зазор = то же расстояние от правого края) */
     .sg-anno--gap {
-        display: none;
+        display: flex;
+        left: auto;
+        right: var(--sg-gap-left-pct);  /* зеркало первого зазора */
+        align-items: flex-end;          /* метка от правого края — уходит влево, не клипается */
     }
 
     /* Сетка — на мобилке всегда во всю ширину (4 колонки), не ужимается */

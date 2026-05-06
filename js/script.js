@@ -611,6 +611,22 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     });
 });
 
+// ── StyleGuide: активный таб по клику ──
+(function () {
+    const tabs = document.querySelectorAll('.sg-tabs .grafika-tab');
+    if (!tabs.length) return;
+
+    // первый таб активен при загрузке
+    tabs[0].classList.add('active');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+        });
+    });
+})();
+
 // ── StyleGuide: переключатель устройств ──
 (function () {
     // margin = (total − cols×col_width − (cols−1)×gap) / 2

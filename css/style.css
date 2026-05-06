@@ -3456,6 +3456,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     --sg-gap-pct-cols:  calc(var(--sg-gap-px) / (var(--sg-total) - 2 * var(--sg-margin-px)) * 100%);
 
     margin-top: var(--gap-h3-to-text);
+    overflow: visible;
 }
 
 /* Прямоугольник сетки */
@@ -3489,6 +3490,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     width: var(--sg-width-pct);   /* совпадает с шириной сетки */
     height: 5rem;                 /* запас под крупные метки 20px */
     margin-top: 0.5rem;
+    overflow: visible;            /* метки не обрезаются за краем */
 }
 
 .sg-anno {
@@ -3496,6 +3498,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
 }
 
 .sg-anno-line {

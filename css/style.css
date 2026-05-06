@@ -3542,16 +3542,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     top: 0;
 }
 
-/* Зазор (gap) — верхний ряд, после первой колонки */
+/* Зазор (gap) — верхний ряд, после первой колонки.
+   Позиция и ширина задаются через JS (зависит от числа колонок) */
 .sg-anno--gap {
-    /*
-     * left = margin + одна колонка
-     * ширина одной колонки = (100% - 2*margin - 11*gap) / 12
-     */
-    left: calc(
-        var(--sg-margin-pct)
-        + (100% - 2 * var(--sg-margin-pct) - 11 * var(--sg-gap-pct)) / 12
-    );
+    left: var(--sg-gap-left-pct, 14.323%); /* Desktop default */
     width: var(--sg-gap-pct);
     top: 0;
 }

@@ -2089,26 +2089,32 @@
                 <p class="nos-chapter-num">3 Носители</p>
                 <h2 class="nos-subsection-title">Внутренние носители</h2>
                 <div class="nos-nav-row">
-                    <a href="#styleguide-section" class="nos-nav-arrow">
-                        <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><path d="M0 6h22M6 1L1 6l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        Назад
+                    <a href="#styleguide-section" class="voprosy-btn voprosy-prev nos-nav-btn" aria-label="Назад">
+                        <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
+                            <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
+                            <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
+                        </svg>
                     </a>
-                    <a href="#" class="nos-nav-arrow">
-                        Вперёд
-                        <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><path d="M24 6H2M18 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <a href="#" class="voprosy-btn nos-nav-btn" aria-label="Вперёд">
+                        <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
+                            <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
+                            <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
+                        </svg>
                     </a>
                 </div>
             </div>
 
             <div class="nos-cards-grid">
 
-                <!-- Папка 1 -->
+                <!-- Папка -->
                 <div class="nos-card" data-nos-id="papka"
-                     data-name="Папка 1"
+                     data-name="Папка"
                      data-mockup="img/носители/внутренние/папка.png"
                      data-layout="img/носители/внутренние/макет папка.png">
                     <div class="nos-card__img" style="background-image:url('img/носители/внутренние/папка.png')"></div>
-                    <span class="nos-card__name">Папка 1</span>
+                    <span class="nos-card__name">Папка</span>
                 </div>
 
                 <!-- Бейдж -->
@@ -2149,14 +2155,14 @@
 <!-- ══ Описания для попапа (template) ══ -->
 <template id="nos-desc-papka">
     <p>Лицевая сторона папки украшена логотипом с подписью и паттерном.</p>
-    <p>Размер в сложенном виде: 216×303 мм<br>Материал: мелованная бумага белого цвета, 240–300 г/м²</p>
+    <p><strong>Размер</strong> в сложенном виде: 216×303 мм<br><strong>Материал:</strong> мелованная бумага белого цвета, 240–300 г/м²</p>
 </template>
 
 <template id="nos-desc-bejdzh">
     <p>На бейдже на лицевой стороне указаны имя и должность сотрудника. На обратной стороне — знак из логотипа.</p>
     <p><strong>Имя сотрудника</strong><br>Шрифт: Arsenal SC Bold<br>Кегль: 16 п.<br>Интерлиньяж: 18 п.</p>
     <p><strong>Должность</strong><br>Шрифт: Inter Regular<br>Кегль: 10 п.<br>Интерлиньяж: 12 п.</p>
-    <p>Размер: 120×90 мм<br>Материал: белый пластик</p>
+    <p><strong>Размер:</strong> 120×90 мм<br><strong>Материал:</strong> белый пластик</p>
 </template>
 
 <template id="nos-desc-konvert">
@@ -2176,21 +2182,30 @@
         <button class="nos-modal__close" id="nosModalClose" aria-label="Закрыть">
             <span></span><span></span><span></span>
         </button>
-        <!-- Левая часть: изображение + переключатель вид -->
+        <!-- Левая часть: только изображение (клик → полный экран) -->
         <div class="nos-modal__img-side">
             <div class="nos-modal__img-wrap" id="nosModalImgWrap"></div>
+        </div>
+        <!-- Правая часть: название + описание + переключатель -->
+        <div class="nos-modal__info">
+            <h2 class="nos-modal__name" id="nosModalName"></h2>
+            <div class="nos-modal__desc" id="nosModalDesc"></div>
             <div class="nos-modal__view-toggle">
                 <input type="radio" name="nos-view" id="nos-view-mockup" value="mockup" checked>
                 <label for="nos-view-mockup" class="pattern-radio-lbl">Мокап</label><input type="radio" name="nos-view" id="nos-view-layout" value="layout">
                 <label for="nos-view-layout" class="pattern-radio-lbl">Макет</label>
             </div>
         </div>
-        <!-- Правая часть: название + описание -->
-        <div class="nos-modal__info">
-            <h2 class="nos-modal__name" id="nosModalName"></h2>
-            <div class="nos-modal__desc" id="nosModalDesc"></div>
-        </div>
     </div>
+</div>
+
+<!-- ══ Полноэкранный просмотр ══ -->
+<div class="nos-fullscreen" id="nosFullscreen" hidden>
+    <div class="nos-fullscreen__overlay" id="nosFullscreenOverlay"></div>
+    <img class="nos-fullscreen__img" id="nosFullscreenImg" src="" alt="">
+    <button class="nos-fullscreen__close" id="nosFullscreenClose" aria-label="Закрыть">
+        <span></span><span></span><span></span>
+    </button>
 </div>
 
 <script src="js/script.js"></script>

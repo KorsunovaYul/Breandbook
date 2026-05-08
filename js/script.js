@@ -1001,10 +1001,36 @@ document.querySelectorAll('.color-codes span').forEach(span => {
         card.addEventListener('click', () => openModal(card));
     });
 
+    /* ── Полноэкранный просмотр ── */
+    const fullscreen        = document.getElementById('nosFullscreen');
+    const fullscreenImg     = document.getElementById('nosFullscreenImg');
+    const fullscreenClose   = document.getElementById('nosFullscreenClose');
+    const fullscreenOverlay = document.getElementById('nosFullscreenOverlay');
+
+    function openFullscreen() {
+        const img = imgWrap.querySelector('img');
+        if (!img) return;
+        fullscreenImg.src = img.src;
+        fullscreenImg.alt = img.alt;
+        fullscreen.hidden = false;
+    }
+
+    function closeFullscreen() {
+        fullscreen.hidden = true;
+        fullscreenImg.src = '';
+    }
+
+    imgWrap.addEventListener('click', openFullscreen);
+    fullscreenOverlay.addEventListener('click', closeFullscreen);
+    fullscreenClose.addEventListener('click', closeFullscreen);
+
     /* ── Закрыть: оверлей / кнопка / Escape ── */
     overlay.addEventListener('click', closeModal);
     closeBtn.addEventListener('click', closeModal);
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && !modal.hidden) closeModal();
+        if (e.key === 'Escape') {
+            if (!fullscreen.hidden) { closeFullscreen(); return; }
+            if (!modal.hidden)      { closeModal(); }
+        }
     });
 })();

@@ -929,3 +929,82 @@ document.querySelectorAll('.color-codes span').forEach(span => {
         });
     });
 })();
+
+// ── 3 Носители: попап карточки носителя ──
+(function () {
+    const modal      = document.getElementById('nosModal');
+    if (!modal) return;
+
+    const overlay    = document.getElementById('nosModalOverlay');
+    const closeBtn   = document.getElementById('nosModalClose');
+    const imgWrap    = document.getElementById('nosModalImgWrap');
+    const nameEl     = document.getElementById('nosModalName');
+    const descEl     = document.getElementById('nosModalDesc');
+    const radios     = modal.querySelectorAll('input[name="nos-view"]');
+
+    let currentCard  = null;
+
+    /* ── Открыть попап ── */
+    function openModal(card) {
+        currentCard = card;
+
+        // Сбросить переключатель на «Мокап»
+        radios.forEach(r => { r.checked = r.value === 'mockup'; });
+
+        // Показать изображение (мокап)
+        showImage('mockup');
+
+        // Название
+        nameEl.textContent = card.dataset.name || '';
+
+        // Описание из <template>
+        const tplId = 'nos-desc-' + card.dataset.nosId;
+        const tpl   = document.getElementById(tplId);
+        descEl.innerHTML = tpl
+            ? [...tpl.content.children].map(n => n.outerHTML).join('')
+            : '';
+
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+    }
+
+    /* ── Показать изображение по типу ── */
+    function showImage(type) {
+        if (!currentCard) return;
+        const src = type === 'layout' ? currentCard.dataset.layout : currentCard.dataset.mockup;
+        imgWrap.innerHTML = '';
+        if (src) {
+            const img = document.createElement('img');
+            img.src   = src;
+            img.alt   = currentCard.dataset.name || '';
+            imgWrap.appendChild(img);
+            imgWrap.classList.remove('nos-modal__img-wrap--empty');
+        } else {
+            imgWrap.classList.add('nos-modal__img-wrap--empty');
+        }
+    }
+
+    /* ── Закрыть попап ── */
+    function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        currentCard  = null;
+    }
+
+    /* ── Переключатель Мокап / Макет ── */
+    radios.forEach(r => {
+        r.addEventListener('change', () => showImage(r.value));
+    });
+
+    /* ── Клик по карточке ── */
+    document.querySelectorAll('.nos-card').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+    });
+
+    /* ── Закрыть: оверлей / кнопка / Escape ── */
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+})();

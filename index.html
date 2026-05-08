@@ -167,7 +167,7 @@
             <div class="nav-section">
                 <div class="nav-section-title">3 Носители</div>
                 <ul>
-                    <li><a href="#">Внутренние носители</a></li>
+                    <li><a href="#vnutrennie-nositeli">Внутренние носители</a></li>
                     <li><a href="#">Внешние носители</a></li>
                     <li class="sub-item"><a href="#">Сувенирная продукция</a></li>
                     <li class="sub-item"><a href="#">Навигация</a></li>
@@ -2080,8 +2080,117 @@
 
         </section>
 
+        <!-- ══════════════════════════════════════════
+             3 НОСИТЕЛИ — Внутренние носители
+        ══════════════════════════════════════════ -->
+        <section id="vnutrennie-nositeli" class="nos-section">
+
+            <div class="nos-chapter-head">
+                <p class="nos-chapter-num">3 Носители</p>
+                <h2 class="nos-subsection-title">Внутренние носители</h2>
+                <div class="nos-nav-row">
+                    <a href="#styleguide-section" class="nos-nav-arrow">
+                        <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><path d="M0 6h22M6 1L1 6l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Назад
+                    </a>
+                    <a href="#" class="nos-nav-arrow">
+                        Вперёд
+                        <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><path d="M24 6H2M18 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nos-cards-grid">
+
+                <!-- Папка 1 -->
+                <div class="nos-card" data-nos-id="papka"
+                     data-name="Папка 1"
+                     data-mockup="img/носители/внутренние/папка.png"
+                     data-layout="img/носители/внутренние/макет папка.png">
+                    <div class="nos-card__img" style="background-image:url('img/носители/внутренние/папка.png')"></div>
+                    <span class="nos-card__name">Папка 1</span>
+                </div>
+
+                <!-- Бейдж -->
+                <div class="nos-card" data-nos-id="bejdzh"
+                     data-name="Бейдж"
+                     data-mockup="img/носители/внутренние/Бейджики 1.png"
+                     data-layout="img/носители/внутренние/макет бейдж.png">
+                    <div class="nos-card__img" style="background-image:url('img/носители/внутренние/Бейджики 1.png')"></div>
+                    <span class="nos-card__name">Бейдж</span>
+                </div>
+
+                <!-- Конверт -->
+                <div class="nos-card" data-nos-id="konvert"
+                     data-name="Конверт"
+                     data-mockup="img/носители/внутренние/конверт.png"
+                     data-layout="img/носители/внутренние/макет конверт.png">
+                    <div class="nos-card__img" style="background-image:url('img/носители/внутренние/конверт.png')"></div>
+                    <span class="nos-card__name">Конверт</span>
+                </div>
+
+                <!-- Презентация (мокап будет добавлен позже) -->
+                <div class="nos-card nos-card--placeholder" data-nos-id="prezentaciya"
+                     data-name="Презентация"
+                     data-mockup=""
+                     data-layout="">
+                    <div class="nos-card__img nos-card__img--empty"></div>
+                    <span class="nos-card__name">Презентация</span>
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
+</div>
+
+<!-- ══ Описания для попапа (template) ══ -->
+<template id="nos-desc-papka">
+    <p>Лицевая сторона папки украшена логотипом с подписью и паттерном.</p>
+    <p>Размер в сложенном виде: 216×303 мм<br>Материал: мелованная бумага белого цвета, 240–300 г/м²</p>
+</template>
+
+<template id="nos-desc-bejdzh">
+    <p>На бейдже на лицевой стороне указаны имя и должность сотрудника. На обратной стороне — знак из логотипа.</p>
+    <p><strong>Имя сотрудника</strong><br>Шрифт: Arsenal SC Bold<br>Кегль: 16 п.<br>Интерлиньяж: 18 п.</p>
+    <p><strong>Должность</strong><br>Шрифт: Inter Regular<br>Кегль: 10 п.<br>Интерлиньяж: 12 п.</p>
+    <p>Размер: 120×90 мм<br>Материал: белый пластик</p>
+</template>
+
+<template id="nos-desc-konvert">
+    <p>На фирменных конвертах с лицевой стороны печатается логотип с адресным блоком. Адрес получателя впечатывается на принтере или заполняется от руки.</p>
+    <p>На обратной стороне расположены паттерн и адресный блок.</p>
+    <p><strong>Адресный блок</strong><br>Шрифт: Inter Regular<br>Кегль: 10 п.<br>Интерлиньяж: 14 п.</p>
+</template>
+
+<template id="nos-desc-prezentaciya">
+    <p>Мокап будет добавлен позже.</p>
+</template>
+
+<!-- ══ Попап носителя ══ -->
+<div class="nos-modal" id="nosModal" hidden aria-modal="true" role="dialog">
+    <div class="nos-modal__overlay" id="nosModalOverlay"></div>
+    <div class="nos-modal__dialog">
+        <button class="nos-modal__close" id="nosModalClose" aria-label="Закрыть">
+            <span></span><span></span><span></span>
+        </button>
+        <!-- Левая часть: изображение + переключатель вид -->
+        <div class="nos-modal__img-side">
+            <div class="nos-modal__img-wrap" id="nosModalImgWrap"></div>
+            <div class="nos-modal__view-toggle">
+                <input type="radio" name="nos-view" id="nos-view-mockup" value="mockup" checked>
+                <label for="nos-view-mockup" class="pattern-radio-lbl">Мокап</label><input type="radio" name="nos-view" id="nos-view-layout" value="layout">
+                <label for="nos-view-layout" class="pattern-radio-lbl">Макет</label>
+            </div>
+        </div>
+        <!-- Правая часть: название + описание -->
+        <div class="nos-modal__info">
+            <h2 class="nos-modal__name" id="nosModalName"></h2>
+            <div class="nos-modal__desc" id="nosModalDesc"></div>
+        </div>
+    </div>
 </div>
 
 <script src="js/script.js"></script>

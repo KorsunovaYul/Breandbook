@@ -930,6 +930,82 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     });
 })();
 
+// ── 3 Носители: фабрика карусели ──
+function makeNosCarousel(gridEl, btnPrev, btnNext) {
+    if (!gridEl || !btnPrev || !btnNext) return null;
+
+    const cards = gridEl.querySelectorAll('.nos-card');
+    if (!cards.length) return null;
+    let offset = 0;
+
+    function visibleCount() {
+        const vw = gridEl.parentElement.offsetWidth;
+        if (vw < 540) return 1;
+        if (vw < 900) return 2;
+        return 4;
+    }
+    function maxOffset() {
+        return Math.max(0, cards.length - visibleCount());
+    }
+    function update() {
+        const cardW = cards[0].offsetWidth;
+        const gap   = parseFloat(getComputedStyle(gridEl).gap) || 0;
+        gridEl.style.transform = offset > 0
+            ? `translateX(-${offset * (cardW + gap)}px)`
+            : '';
+        btnPrev.style.opacity      = offset === 0            ? '0.35' : '1';
+        btnPrev.style.pointerEvents= offset === 0            ? 'none' : '';
+        btnNext.style.opacity      = offset >= maxOffset()   ? '0.35' : '1';
+        btnNext.style.pointerEvents= offset >= maxOffset()   ? 'none' : '';
+    }
+
+    const STEP = 3;
+
+    btnNext.addEventListener('click', e => {
+        e.preventDefault();
+        if (offset < maxOffset()) { offset = Math.min(offset + STEP, maxOffset()); update(); }
+    });
+    btnPrev.addEventListener('click', e => {
+        if (offset > 0) { e.preventDefault(); offset = Math.max(offset - STEP, 0); update(); }
+    });
+
+    update();
+    window.addEventListener('resize', update);
+    return { reset() { offset = 0; update(); } };
+}
+
+// Внутренние носители
+makeNosCarousel(
+    document.querySelector('#vnutrennie-nositeli .nos-cards-grid'),
+    document.getElementById('nosNavPrev'),
+    document.getElementById('nosNavNext')
+);
+
+// Внешние носители — Сувенирная продукция
+makeNosCarousel(
+    document.getElementById('vneshSuvenirGrid'),
+    document.getElementById('vneshSuvenirPrev'),
+    document.getElementById('vneshSuvenirNext')
+);
+// Внешние носители — Навигация / Интернет / Транспорт (пока пустые)
+makeNosCarousel(document.getElementById('vneshNavGrid'),    document.getElementById('vneshNavPrev'),    document.getElementById('vneshNavNext'));
+makeNosCarousel(document.getElementById('vneshInetGrid'),   document.getElementById('vneshInetPrev'),   document.getElementById('vneshInetNext'));
+makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementById('vneshTranspPrev'), document.getElementById('vneshTranspNext'));
+
+// ── Внешние носители: переключение вкладок ──
+(function () {
+    const tabs   = document.querySelectorAll('#vnesh-tabs .grafika-tab');
+    const panels = document.querySelectorAll('.vnesh-subsection');
+    if (!tabs.length) return;
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            panels.forEach(p => { p.hidden = (p.dataset.vnesh !== btn.dataset.vnesh); });
+        });
+    });
+})();
+
 // ── 3 Носители: попап карточки носителя ──
 (function () {
     const modal      = document.getElementById('nosModal');
@@ -940,39 +1016,94 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     const imgWrap    = document.getElementById('nosModalImgWrap');
     const nameEl     = document.getElementById('nosModalName');
     const descEl     = document.getElementById('nosModalDesc');
+    const variantsEl = document.getElementById('nosModalVariants');
     const radios     = modal.querySelectorAll('input[name="nos-view"]');
 
-    let currentCard  = null;
+    let currentCard     = null;
+    let currentVariants = null;   // массив [{label, mockup, layout}, ...]
+    let currentVariant  = 0;      // индекс активного варианта
 
     /* ── Открыть попап ── */
     function openModal(card) {
-        currentCard = card;
+        currentCard    = card;
+        currentVariant = 0;
 
-        // Сбросить переключатель на «Мокап»
+        // Разбираем варианты (data-variants = JSON)
+        try {
+            currentVariants = card.dataset.variants
+                ? JSON.parse(card.dataset.variants)
+                : null;
+        } catch (e) { currentVariants = null; }
+
+        // Заполняем вариант-тогл
+        variantsEl.innerHTML = '';
+        if (currentVariants && currentVariants.length > 1) {
+            currentVariants.forEach((v, i) => {
+                const inp = document.createElement('input');
+                inp.type = 'radio'; inp.name = 'nos-variant';
+                inp.id = `nos-var-${i}`; inp.value = String(i);
+                inp.checked = (i === 0);
+                const lbl = document.createElement('label');
+                lbl.htmlFor = `nos-var-${i}`;
+                lbl.className = 'pattern-radio-lbl';
+                lbl.textContent = v.label;
+                variantsEl.appendChild(inp);
+                variantsEl.appendChild(lbl);
+            });
+            variantsEl.hidden = false;
+        } else {
+            variantsEl.hidden = true;
+        }
+
+        // Сбросить переключатель Мокап / Макет
         radios.forEach(r => { r.checked = r.value === 'mockup'; });
 
-        // Показать изображение (мокап)
+        // Показать изображение (мокап первого варианта)
         showImage('mockup');
 
         // Название
         nameEl.textContent = card.dataset.name || '';
 
-        // Описание из <template>
-        const tplId = 'nos-desc-' + card.dataset.nosId;
-        const tpl   = document.getElementById(tplId);
-        descEl.innerHTML = tpl
-            ? [...tpl.content.children].map(n => n.outerHTML).join('')
-            : '';
+        // Описание (с учётом варианта)
+        loadDesc();
 
         modal.hidden = false;
         document.body.style.overflow = 'hidden';
     }
 
-    /* ── Показать изображение по типу ── */
+    /* ── Загрузить описание для текущего варианта ── */
+    function loadDesc() {
+        if (!currentCard) return;
+        // Если у текущего варианта есть свой tpl — берём его
+        let tplId;
+        if (currentVariants && currentVariants[currentVariant] && currentVariants[currentVariant].tpl) {
+            tplId = currentVariants[currentVariant].tpl;
+        } else {
+            tplId = 'nos-desc-' + currentCard.dataset.nosId;
+        }
+        const tpl = document.getElementById(tplId);
+        descEl.innerHTML = tpl
+            ? [...tpl.content.children].map(n => n.outerHTML).join('')
+            : '';
+    }
+
+    /* ── Показать изображение по типу (мокап / макет) ── */
     function showImage(type) {
         if (!currentCard) return;
-        const src = type === 'layout' ? currentCard.dataset.layout : currentCard.dataset.mockup;
+
+        let src;
+        if (currentVariants && currentVariants[currentVariant]) {
+            const v = currentVariants[currentVariant];
+            // если у варианта нет своего макета — берём макет самой карточки
+            src = type === 'layout'
+                ? (v.layout || currentCard.dataset.layout)
+                : (v.mockup || currentCard.dataset.mockup);
+        } else {
+            src = type === 'layout' ? currentCard.dataset.layout : currentCard.dataset.mockup;
+        }
+
         imgWrap.innerHTML = '';
+        imgWrap.classList.toggle('nos-modal__img-wrap--layout', type === 'layout');
         if (src) {
             const img = document.createElement('img');
             img.src   = src;
@@ -984,11 +1115,23 @@ document.querySelectorAll('.color-codes span').forEach(span => {
         }
     }
 
+    /* ── Переключение варианта (Светлый / Тёмный / …) ── */
+    variantsEl.addEventListener('change', e => {
+        if (e.target.name === 'nos-variant') {
+            currentVariant = parseInt(e.target.value, 10);
+            const activeView = modal.querySelector('input[name="nos-view"]:checked')?.value || 'mockup';
+            showImage(activeView);
+            loadDesc();   // описание тоже меняется вместе с вариантом
+        }
+    });
+
     /* ── Закрыть попап ── */
     function closeModal() {
         modal.hidden = true;
         document.body.style.overflow = '';
-        currentCard  = null;
+        currentCard     = null;
+        currentVariants = null;
+        currentVariant  = 0;
     }
 
     /* ── Переключатель Мокап / Макет ── */
@@ -1032,5 +1175,25 @@ document.querySelectorAll('.color-codes span').forEach(span => {
             if (!fullscreen.hidden) { closeFullscreen(); return; }
             if (!modal.hidden)      { closeModal(); }
         }
+    });
+})();
+
+// ── Слайд-шоу в карточках с data-slides ──
+(function () {
+    document.querySelectorAll('.nos-card[data-slides]').forEach(card => {
+        let slides;
+        try { slides = JSON.parse(card.dataset.slides); } catch (e) { return; }
+        if (!slides.length) return;
+        const img = card.querySelector('.nos-card__img');
+        if (!img) return;
+        let i = 0;
+        setInterval(() => {
+            img.style.opacity = '0';
+            setTimeout(() => {
+                i = (i + 1) % slides.length;
+                img.src = slides[i];
+                img.style.opacity = '1';
+            }, 300);
+        }, 2500);
     });
 })();

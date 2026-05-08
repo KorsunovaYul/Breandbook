@@ -4484,6 +4484,13 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     color: var(--deep-blue);
 }
 
+.sg-icon-divider {
+    border: none;
+    border-top: 1px solid var(--volzhsky-blue);
+    margin: 0.5rem 0;
+    opacity: 0.3;
+}
+
 /* ── Карточки по устройству (data-sg-device) ── */
 
 /* Laptop */
@@ -4590,23 +4597,53 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin: 0 0 1.5rem;
 }
 
-/* ── Навигация Назад / Вперёд (стиль voprosy-btn) ── */
+/* ── Навигация Назад / Вперёд ── */
 .nos-nav-row {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .nos-nav-btn {
-    text-decoration: none;
     display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
-/* ── Сетка карточек ── */
+.nos-nav-label {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;       /* 24px — Выделение в тексте 1 */
+    color: var(--deep-blue);
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.nos-nav-btn:hover .nos-nav-label { color: var(--volzhsky-blue); }
+.nos-nav-btn:hover .arr-tri        { fill: var(--amber); }
+
+/* ── Карусель карточек ── */
+.nos-cards-viewport {
+    overflow: hidden;
+}
+
 .nos-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
     gap: var(--col-gap);
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Каждая карточка — ровно 1/4 ширины viewport (4 видимых) */
+.nos-card {
+    flex: 0 0 calc(25% - var(--col-gap) * 3 / 4);
+    min-width: 0;
 }
 
 /* ── Карточка носителя ── */
@@ -4617,26 +4654,32 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     gap: 0.75rem;
 }
 
-.nos-card__img {
+/* Обёртка — квадрат с обрезкой */
+.nos-card__img-wrap {
     aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-position: center;
-    background-color: #d5d8dd;
     overflow: hidden;
-    transition: background-size 0.35s ease;
+    background: #d5d8dd;
 }
 
+/* Картинка — зум при ховере (как открытка в styleguide) */
+.nos-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease, opacity 0.3s ease;
+}
 .nos-card:hover .nos-card__img {
-    background-size: 110%;
+    transform: scale(1.08);
 }
 
-.nos-card__img--empty {
-    background-image: none;
+/* Плейсхолдер для Презентации */
+.nos-card__img-wrap--empty {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.nos-card__img--empty::after {
+.nos-card__img-wrap--empty::after {
     content: '';
     width: 4rem;
     height: 4rem;
@@ -4646,7 +4689,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .nos-card__name {
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    font-size: 1rem;
+    font-size: 1.25rem;   /* 20px — стиль «Текст» */
+    line-height: 1.5;
     color: var(--deep-blue);
 }
 
@@ -4722,12 +4766,33 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     height: 100%;
     cursor: zoom-in;
 }
+/* Мокап — обрезается, заполняет */
 .nos-modal__img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     transition: opacity 0.2s;
+}
+/* Макет — показывается целиком на белом фоне */
+.nos-modal__img-wrap--layout img {
+    object-fit: contain;
+}
+
+/* Приписка «все значения в мм» на макетах */
+.nos-modal__img-wrap--layout {
+    position: relative;
+}
+.nos-modal__img-wrap--layout::after {
+    content: 'все значения в мм';
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;     /* 20px — Выделение в тексте 2 */
+    color: var(--deep-blue);
+    pointer-events: none;
 }
 
 /* Правая часть */
@@ -4741,7 +4806,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 /* Переключалка Мокап/Макет — внизу правой панели */
 .nos-modal__view-toggle {
     display: flex;
-    margin-top: 1.5rem;   /* 24px */
+    margin-top: 0.5rem;   /* 8px — маленький отступ между двумя тоглами */
     flex-shrink: 0;
 }
 
@@ -4835,7 +4900,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
 /* ── Адаптив ── */
 @media (max-width: 900px) {
-    .nos-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    /* На планшете показываем 2 карточки */
+    .nos-card { flex: 0 0 calc(50% - var(--col-gap) / 2); }
     .nos-modal__dialog {
         grid-template-columns: 1fr;
         grid-template-rows: 55% 1fr;
@@ -4844,5 +4910,54 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 }
 @media (max-width: 540px) {
-    .nos-cards-grid { grid-template-columns: 1fr; }
+    /* На мобиле — 1 карточка */
+    .nos-card { flex: 0 0 100%; }
+}
+
+/* ══════════════════════════════════════════════════════
+   ВНЕШНИЕ НОСИТЕЛИ
+══════════════════════════════════════════════════════ */
+
+/* Отступ 160px перед секцией */
+#vneshnie-nositeli {
+    margin-top: var(--gap-block);
+}
+
+/* Заголовок «Внешние носители» */
+.vnesh-main-title {
+    margin: 0 0 0;
+    color: var(--deep-blue);
+}
+
+/* Кнопка «Назад» — зеркалим стрелку */
+.nos-nav-btn--prev .arr-svg {
+    transform: scaleX(-1);
+}
+
+/* Отступ между nav-row и каруселью */
+.vnesh-subsection .nos-nav-row {
+    margin-bottom: 2rem;
+}
+
+/* Скрываем неактивные вкладки */
+.vnesh-subsection[hidden] { display: none; }
+
+/* ── Вариант-тогл в попапе (Светлый / Тёмный и т.п.) ── */
+.nos-modal__variants {
+    display: inline-flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 1.5rem;   /* 24px — отступ от текста описания */
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+.nos-modal__variants[hidden] { display: none; }
+.nos-modal__variants input[type="radio"] { display: none; }
+/* Вертикальная склейка: убираем двойную верхнюю границу */
+.nos-modal__variants input[type="radio"] + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue); /* восстанавливаем левую */
+    border-top: none;                            /* убираем верхнюю у всех кроме первого */
+}
+.nos-modal__variants input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-top: 2px solid var(--volzhsky-blue);  /* первая кнопка — с верхней границей */
 }

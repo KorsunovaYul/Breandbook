@@ -1240,6 +1240,17 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     display: block;
 }
 
+/* Хинт «нажмите на цифру» */
+.celi-hint {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.875rem;
+    color: rgba(21, 58, 97, 0.4);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+    margin-top: -0.75rem;
+}
+
 /* ===== БЛОК МИССИЯ. КЛЮЧЕВЫЕ СООБЩЕНИЯ ===== */
 
 .missiya-section {
@@ -1346,9 +1357,13 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     color: var(--deep-blue);
 }
 
+/* Обёртка фиксирует высоту — JS выставит min-height */
+.zadacha-text-wrap {
+    position: relative;
+}
+
 .zadacha-text.active {
     display: block;
-    min-height: calc(1.25rem * 1.5 * 2);  /* 2 строки текста */
 }
 
 /* ===== БЛОК ПОЗИЦИОНИРОВАНИЕ. Ц/А ===== */
@@ -3052,6 +3067,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
 .marshr-img-col {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .marshr-img {
@@ -3338,8 +3357,17 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
 @media (max-width: 768px) {
     .portrety-grid {
-        grid-template-columns: repeat(3, 1fr);
-        row-gap: 2rem;
+        grid-template-columns: repeat(6, 42vw);  /* каждый портрет ~42% ширины экрана */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;          /* Firefox */
+        padding-bottom: 0.5rem;
+    }
+    .portrety-grid::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+
+    .portret-item {
+        scroll-snap-align: start;
     }
 }
 
@@ -3401,7 +3429,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 /* Мобилка */
 @media (max-width: 768px) {
     .animaciya-radio-row {
-        justify-content: flex-start;
+        justify-content: flex-end;
     }
 
     /* Вертикальная анимация — на мобилке во всю ширину (4 колонки) */
@@ -3412,6 +3440,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 /* ══════════════ STYLEGUIDE ══════════════ */
+
+.styleguide-section {
+    overflow-x: hidden;   /* поворот карточки не вызывает горизонтальный скроллбар → нет вздрагивания */
+}
 
 /* Шапка: табы слева + Сайт/Брендбук справа */
 .sg-nav-row {
@@ -3428,11 +3460,19 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin-bottom: 0;
 }
 
+/* Правый блок шапки: тогл устройства + Сайт/Брендбук */
+.sg-nav-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
 /* Сайт / Брендбук */
 .sg-mode-wrap {
     display: flex;
     flex-shrink: 0;
-    align-self: flex-start;
 }
 .sg-mode-wrap input[type="radio"] { display: none; }
 .sg-mode-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
@@ -3443,6 +3483,14 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .sg-block {
     margin-top: var(--gap-h2-to-h3);
 }
+
+/* Разделитель между блоками StyleGuide — линия + большой воздух */
+.sg-block + .sg-block {
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 2px solid var(--volzhsky-blue);
+}
+
 .sg-block > .h3 {
     margin-bottom: var(--gap-h3-to-text);
 }
@@ -3592,7 +3640,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
     .sg-grid-footer {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 0.75rem;
     }
     /* Зазор — справа (сетка симметрична, последний зазор = то же расстояние от правого края) */
@@ -3608,4 +3656,905 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .sg-anno-wrap {
         width: 100% !important;
     }
+}
+
+/* ══════════════ ТИПОГРАФИЧЕСКАЯ ИЕРАРХИЯ (StyleGuide) ══════════════ */
+
+.sg-typo-list {
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Строка: текст слева, спецификации справа */
+/*
+ * Два равных полублока по 6 колонок:
+ * [образец текста  1fr] | [спецификации  1fr]
+ */
+.sg-typo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    column-gap: var(--col-gap);
+    border-bottom: 1.5px solid rgba(21, 58, 97, 0.15);
+    padding: 0.25rem 0;
+    cursor: default;
+}
+
+/* Образец текста — правое выравнивание прижимает к разделителю */
+.sg-typo-sample {
+    color: var(--deep-blue);
+    text-align: right;
+}
+
+.sg-typo-sample--h1  { font-family: 'Arsenal SC', serif; font-weight: 700; font-size: 6rem;   line-height: 1; }
+.sg-typo-sample--h2  { font-family: 'Arsenal SC', serif; font-weight: 700; font-size: 4rem;   line-height: 3.6875rem; }
+.sg-typo-sample--h3  { font-family: 'Arsenal SC', serif; font-weight: 700; font-size: 3rem;   line-height: 3.125rem; }
+.sg-typo-sample--txt1 { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 1.5rem; }
+.sg-typo-sample--hl1  { font-family: 'Arsenal SC', serif; font-weight: 700; font-size: 1.5rem; }
+.sg-typo-sample--txt2 { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 1.25rem; }
+.sg-typo-sample--hl2  { font-family: 'Arsenal SC', serif; font-weight: 700; font-size: 1.25rem; }
+.sg-typo-sample--hl3  { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.25rem; }
+
+/* Правый полублок: 4 спецификации в строку, прижаты влево */
+.sg-typo-specs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+.sg-typo-row:hover .sg-typo-specs { opacity: 1; }
+
+.sg-typo-spec {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--deep-blue);
+    white-space: nowrap;
+}
+
+/* Переключатель устройств — справа внизу */
+.sg-typo-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.sg-typo-device-wrap {
+    display: flex;
+}
+.sg-typo-device-wrap input[type="radio"] { display: none; }
+.sg-typo-device-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+    /* Типографическая иерархия — на мобилке стек */
+    .sg-typo-row {
+        grid-template-columns: 1fr;
+    }
+    .sg-typo-sample {
+        text-align: left;   /* заголовок слева */
+    }
+    .sg-typo-specs {
+        opacity: 1;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-end;  /* подпись справа */
+    }
+    .sg-typo-spec { font-size: 0.9375rem; }
+
+    /* Образцы — всегда мобильный размер */
+    .sg-typo-sample--h1  { font-size: 3rem;       line-height: 1; }       /* 48px */
+    .sg-typo-sample--h2  { font-size: 2.25rem;    line-height: 2.5rem; }  /* 36px */
+    .sg-typo-sample--h3  { font-size: 1.5rem;     line-height: 1.5rem; }  /* 24px */
+    .sg-typo-sample--txt1 { font-size: 1rem; }                             /* 16px */
+    .sg-typo-sample--hl1  { font-size: 1.125rem; }                         /* 18px */
+    .sg-typo-sample--txt2 { font-size: 1rem; }                             /* 16px */
+    .sg-typo-sample--hl2  { font-size: 0.9375rem; }                        /* 15px */
+    .sg-typo-sample--hl3  { font-size: 1rem; }                             /* 16px */
+}
+
+/* ═══════════════════════════════════════════
+   STYLEGUIDE — КНОПКИ (#sg-knopki)
+═══════════════════════════════════════════ */
+
+.sg-knopki-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--col-gap);
+    align-items: start;
+}
+
+/* поле ввода + дропдаун — левые 8 колонок */
+.sg-knopki-right {
+    grid-column: 1 / 9;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* кнопки — колонки 9–12 (правая четверть) */
+.sg-knopki-left {
+    grid-column: 9 / 13;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.sg-btn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sg-btn-item {
+    display: flex;
+    align-items: center;
+}
+
+.sg-knopki-label {
+    display: block;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 2.5rem;      /* заголовок 3 */
+    line-height: 3.125rem;
+    color: var(--deep-blue);
+    margin-bottom: 1.5rem;
+}
+
+/* Подметка внутри колонки (Поле ввода, Разворачивающийся список) */
+.sg-knopki-sublabel {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--deep-blue);
+    opacity: 0.45;
+    margin-bottom: 0.5rem;
+}
+
+.sg-input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Обёртка элемента + описание */
+.sg-elem-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;        /* 8px между кнопкой и описанием */
+}
+
+.sg-elem-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;     /* шрифт «Текст» — Inter Light 20px */
+    line-height: 1.5;
+    color: rgba(21, 58, 97, 0.6);
+    margin-top: 0.5rem;     /* +8px от элемента */
+}
+
+/* ── Кнопка 1: Игра на знание города (nav-link--cta) ── */
+.sgk-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15.375rem;   /* 246px */
+    height: 3.25rem;    /* 52px */
+    padding: 0 1rem;
+    background-color: var(--volzhsky-blue);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+.sgk-cta-btn:hover  { background-color: var(--amber); }
+.sgk-cta-btn:active { background-color: var(--deep-blue); }
+
+/* ── Кнопка 2: Маршруты (city-map-more-btn) ── */
+.sgk-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.125rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.sgk-map-btn span {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--deep-blue);
+    transition: color 0.2s ease;
+}
+.sgk-map-arrow {
+    width: 4.4375rem;   /* 71px */
+    height: 2.875rem;   /* 46px */
+    flex-shrink: 0;
+}
+.sgk-arrow-fill   { fill: var(--volzhsky-blue);  transition: fill   0.2s ease; }
+.sgk-arrow-stroke { stroke: var(--deep-blue);    transition: stroke 0.2s ease; }
+.sgk-map-btn:hover span            { color: var(--amber); }
+.sgk-map-btn:hover .sgk-arrow-fill { fill: var(--amber); }
+.sgk-map-btn:active span             { color: var(--deep-blue); }
+.sgk-map-btn:active .sgk-arrow-fill  { fill: var(--deep-blue); }
+.sgk-map-btn:active .sgk-arrow-stroke { stroke: var(--amber); }
+
+/* ── Кнопка 3: Московский мост (quiz-option) ── */
+.sgk-quiz-btn {
+    width: 100%;
+    max-width: 26rem;
+    padding: 0.875rem 1.25rem;
+    background: #ffffff;
+    border: 2px solid var(--volzhsky-blue);
+    color: var(--deep-blue);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, font-weight 0.15s ease;
+}
+.sgk-quiz-btn:hover {
+    background: var(--volzhsky-blue);
+    color: #ffffff;
+    font-weight: 700;
+}
+.sgk-quiz-btn:active {
+    background: var(--deep-blue);
+    color: #ffffff;
+    border-color: var(--deep-blue);
+}
+/* Выбранное состояние — жёлтый фон, болд, тёмно-синий текст */
+.sgk-quiz-btn--selected {
+    background: var(--amber);
+    color: var(--deep-blue);
+    border-color: var(--amber);
+    font-weight: 700;
+}
+/* Ховер на выбранном — синий фон, белый текст */
+.sgk-quiz-btn--selected:hover {
+    background: var(--volzhsky-blue);
+    color: #ffffff;
+    border-color: var(--volzhsky-blue);
+}
+/* Статичный hover-стейт для стайлгайда */
+.sgk-quiz-btn--hover {
+    background: var(--volzhsky-blue);
+    color: #ffffff;
+    font-weight: 700;
+    border-color: var(--volzhsky-blue);
+}
+
+/* ── Квиз-кнопка: 3 состояния рядом ── */
+.sgk-quiz-states {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+.sgk-state-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    flex: 1;
+}
+.sgk-state-label {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    color: rgba(21, 58, 97, 0.45);
+    text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   СПЕЦИФИКАЦИЯ: расстояния
+═══════════════════════════════════════════ */
+
+/* Двухколоночная раскладка: сайдбар + мокап */
+.sg-spec-layout {
+    display: grid;
+    grid-template-columns: 17rem 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Сайдбар с лейблами */
+.sg-spec-labels {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 2rem;
+}
+
+/* Кнопки — вертикальный сегментированный контрол (стиль pattern-radio-lbl) */
+.sg-spec-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 2px solid var(--volzhsky-blue);
+    border-top: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, border-color 0.15s;
+}
+/* Первая кнопка получает верхнюю границу */
+.sg-spec-label:first-of-type { border-top: 2px solid var(--volzhsky-blue); }
+
+/* Активное состояние */
+.sg-spec-label.active {
+    background: var(--volzhsky-blue);
+    border-color: var(--volzhsky-blue);
+}
+/* Ховер (только для неактивных) */
+.sg-spec-label:hover:not(.active) {
+    background: var(--amber);
+    border-color: var(--amber);
+}
+
+.sg-spec-label-px {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--volzhsky-blue);
+    line-height: 1;
+    transition: color 0.15s;
+}
+.sg-spec-label.active .sg-spec-label-px { color: #fff; }
+
+.sg-spec-label-desc {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--volzhsky-blue);
+    line-height: 1.3;
+    transition: color 0.15s;
+}
+.sg-spec-label.active .sg-spec-label-desc { color: #fff; }
+
+/* ── Мини-страница сайта ── */
+.sg-mockup {
+    border: 1.5px solid var(--deep-blue);
+    background: #fff;
+    user-select: none;
+    width: 100%;
+    transition: width 0.25s;
+}
+
+/* Ширина мокапа по устройству —
+   управляем через третью колонку-спейсер в sg-spec-layout,
+   а не через max-width (% в grid считается от контейнера, не от трека) */
+#sg-spec[data-sg-device="desktop"] .sg-spec-layout { grid-template-columns: 17rem 1fr; }
+#sg-spec[data-sg-device="lptop"]   .sg-spec-layout { grid-template-columns: 17rem 17fr 3fr; }
+#sg-spec[data-sg-device="ipad"]    .sg-spec-layout { grid-template-columns: 17rem 13fr 7fr; }
+#sg-spec[data-sg-device="mobile"]  .sg-spec-layout { grid-template-columns: 17rem 16rem 1fr; }
+
+/* Навбар */
+.sg-mock-nav {
+    padding: 0.375rem 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid var(--deep-blue);
+}
+.sg-mock-nav-dot {
+    width: 1rem;
+    height: 1rem;
+    background: var(--volzhsky-blue);
+}
+.sg-mock-nav-links {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+}
+.sg-mock-nav-link {
+    height: 0.25rem;
+    width: 1.25rem;
+    background: var(--deep-blue);
+}
+.sg-mock-nav-link--cta {
+    width: 2rem;
+    height: 0.5rem;
+    background: var(--volzhsky-blue);
+}
+
+/* Секции страницы */
+.sg-mock-page-section {
+    padding: 0 0.875rem 0.875rem;
+}
+
+/* Заголовки в мокапе */
+.sg-mock-h1 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: var(--deep-blue);
+    line-height: 1;
+    padding-top: 0.625rem;
+}
+.sg-mock-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.5rem;
+    color: var(--deep-blue);
+    opacity: 0.6;
+    margin-top: 0.2rem;
+}
+.sg-mock-h2 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: bold;
+    font-size: 0.6875rem;
+    color: var(--deep-blue);
+    line-height: 1.1;
+    padding-top: 0.625rem;
+}
+
+/* Прямоугольники-заглушки */
+.sg-mock-rect             { background: var(--sky); width: 100%; }
+.sg-mock-rect--video      { height: 3rem; }
+.sg-mock-rect--map        { height: 3.5rem; }
+.sg-mock-rect--about-text { flex: 1; height: 2.5rem; }
+
+/* Блок «О городе» */
+.sg-mock-about-row {
+    display: flex;
+    gap: 0.375rem;
+    align-items: stretch;
+}
+.sg-mock-stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex-shrink: 0;
+    width: 28%;
+}
+.sg-mock-stat {
+    flex: 1;
+    background: var(--sky);
+}
+
+/* Футер */
+.sg-mock-footer {
+    background: var(--deep-blue);
+    padding: 0.625rem 0.875rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.sg-mock-footer-line {
+    height: 0.2rem;
+    background: var(--sky);
+    width: 30%;
+}
+
+/* ── Зоны отступов ── */
+.sg-mock-gap {
+    width: 100%;
+    background: transparent;
+    transition: background 0.15s;
+}
+/* Янтарная подсветка всей зоны при активном лейбле */
+.sg-mock-gap.active         { background: var(--amber); }
+.sg-mock-gap--inner.active  { background: var(--amber); }
+
+/* Мобилка: значения обновляются через JS в setDevice */
+
+/* ── Поле ввода (souv-search) ── */
+.sgk-search {
+    width: 100%;
+    height: 4.5rem;    /* 72px */
+    padding: 0 1.5rem;
+    background: #ffffff;
+    border: 2px solid var(--volzhsky-blue);
+    color: var(--deep-blue);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    outline: none;
+    transition: box-shadow 0.15s ease;
+}
+.sgk-search::placeholder { color: #9ab3d4; }
+.sgk-search:focus { box-shadow: inset 0 0 0 1px var(--volzhsky-blue); }
+
+/* ── Разворачивающийся список (souv-sort) ── */
+.sgk-sort-wrap {
+    position: relative;
+    width: 24.0625rem;   /* 3 колонки: 3×115px + 2×20px gap = 385px */
+}
+
+.sgk-sort-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4.5rem;    /* 72px */
+    padding: 0 1.5rem;
+    background-color: var(--volzhsky-blue);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    gap: 0.75rem;
+    transition: background-color 0.2s ease;
+}
+.sgk-sort-btn:hover { background-color: var(--amber); }
+
+.sgk-sort-arrow {
+    width: 2rem;        /* 32px — пропорция оригинала 65×43 */
+    height: 1.3125rem;  /* ~21px */
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+.sgk-sort-btn[aria-expanded="true"] .sgk-sort-arrow { transform: rotate(180deg); }
+
+.sgk-sort-dropdown {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 2px solid var(--volzhsky-blue);
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 100;
+}
+.sgk-sort-dropdown[hidden] { display: none; }
+.sgk-sort-dropdown li + li { border-top: 0.125rem solid var(--volzhsky-blue); }
+
+.sgk-sort-option {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--deep-blue);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.sgk-sort-option:hover { background: var(--amber); color: var(--deep-blue); }
+.sgk-sort-option--active { color: var(--volzhsky-blue); }
+
+/* ── Мобилка ── */
+@media (max-width: 768px) {
+    .sg-knopki-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .sg-knopki-right { grid-column: 1 / -1; }
+    .sg-knopki-left  { grid-column: 1 / -1; }
+    /* Лейблы «Поле ввода» / «Разворачивающийся список» — мобильный заголовок 3 */
+    .sg-knopki-label {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+    .sgk-cta-btn {
+        width: 100%;
+        max-width: none;
+    }
+    .sgk-quiz-btn { max-width: none; }
+    .sgk-search {
+        height: 3rem;
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    .sgk-sort-btn {
+        height: 3rem;
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    .sgk-sort-option {
+        font-size: 1rem;
+        padding: 0.625rem 1rem;
+    }
+}
+
+/* ── Кнопки/поля по устройству (data-sg-device) ── */
+
+/* Laptop */
+#sg-knopki[data-sg-device="lptop"] .sgk-cta-btn  { width: 13rem; height: 3rem; font-size: 1.125rem; }
+#sg-knopki[data-sg-device="lptop"] .sgk-map-btn span { font-size: 1.25rem; }
+#sg-knopki[data-sg-device="lptop"] .sgk-map-arrow { width: 3.5rem; height: 2.25rem; }
+#sg-knopki[data-sg-device="lptop"] .sgk-quiz-btn  { font-size: 0.875rem; }
+#sg-knopki[data-sg-device="lptop"] .sgk-search    { height: 3.5rem; font-size: 1.25rem; }
+#sg-knopki[data-sg-device="lptop"] .sgk-sort-btn  { height: 3.5rem; font-size: 1.25rem; }
+#sg-knopki[data-sg-device="lptop"] .sgk-sort-wrap { width: 18rem; }
+
+/* iPad */
+#sg-knopki[data-sg-device="ipad"] .sgk-cta-btn  { width: 12rem; height: 2.75rem; font-size: 1rem; }
+#sg-knopki[data-sg-device="ipad"] .sgk-map-btn span { font-size: 1.125rem; }
+#sg-knopki[data-sg-device="ipad"] .sgk-map-arrow { width: 3rem; height: 1.9375rem; }
+#sg-knopki[data-sg-device="ipad"] .sgk-quiz-btn  { font-size: 0.875rem; }
+#sg-knopki[data-sg-device="ipad"] .sgk-search    { height: 3rem; font-size: 1rem; }
+#sg-knopki[data-sg-device="ipad"] .sgk-sort-btn  { height: 3rem; font-size: 1rem; }
+#sg-knopki[data-sg-device="ipad"] .sgk-sort-wrap { width: 14rem; }
+
+/* Mobile — только сужаем размеры, компоновка остаётся */
+#sg-knopki[data-sg-device="mobile"] .sgk-cta-btn  { width: 11rem; height: 2.75rem; font-size: 1rem; }
+#sg-knopki[data-sg-device="mobile"] .sgk-map-btn span { font-size: 1rem; }
+#sg-knopki[data-sg-device="mobile"] .sgk-map-arrow { width: 2.5rem; height: 1.625rem; }
+#sg-knopki[data-sg-device="mobile"] .sgk-quiz-btn  { font-size: 0.875rem; }
+#sg-knopki[data-sg-device="mobile"] .sgk-search    { height: 3rem; font-size: 1rem; padding: 0 1rem; }
+#sg-knopki[data-sg-device="mobile"] .sgk-sort-btn  { height: 3rem; font-size: 1rem; padding: 0 1rem; }
+#sg-knopki[data-sg-device="mobile"] .sgk-sort-wrap { width: 14rem; }
+
+/* ═══════════════════════════════════════════
+   STYLEGUIDE — КАРТОЧКИ + ИКОНКИ
+═══════════════════════════════════════════ */
+
+/* Общий блок — 12-колоночный грид брендбука */
+.sg-two-col-block {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--col-gap);
+    align-items: start;
+}
+
+/* Карточки: колонки 1–7 */
+#sg-kartochki {
+    grid-column: 1 / 8;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Иконки: колонки 9–12 */
+#sg-ikonki {
+    grid-column: 9 / 13;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ── Карточки ── */
+.sg-cards-row {
+    display: grid;
+    grid-template-columns: 4fr 3fr;   /* маршрут 4 кол, открытка 3 кол */
+    column-gap: var(--col-gap);
+    align-items: start;
+}
+.sgc-card-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Карточка маршрута */
+.sgc-route-card {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform 0.3s ease;
+}
+.sgc-route-card:hover { transform: rotate(-2deg); }
+
+.sgc-route-card__inner {
+    position: relative;
+    z-index: 1;
+    padding: 1.25rem;
+}
+
+.sgc-route-card__title {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 3rem;        /* 48px — как на сайте */
+    line-height: 3.125rem;
+    color: var(--deep-blue);
+}
+
+.sgc-route-card__params {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.sgc-route-param {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sgc-param-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+.sgc-param-icon--time {
+    filter: brightness(0) saturate(100%) invert(44%) sepia(78%) saturate(500%) hue-rotate(185deg) brightness(97%) contrast(95%);
+}
+.sgc-param-icon--distance {
+    filter: brightness(0) saturate(100%) invert(58%) sepia(40%) saturate(450%) hue-rotate(128deg) brightness(92%) contrast(88%);
+}
+
+.sgc-param-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--deep-blue);
+}
+
+/* Карточка сувенира */
+.sgc-souvenir {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.sgc-souvenir-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.sgc-souvenir-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.sgc-souvenir:hover .sgc-souvenir-img { transform: scale(1.1); }
+
+.sgc-souvenir-info {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sgc-souvenir-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--deep-blue);
+}
+
+.sgc-souvenir-price {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--deep-blue);
+}
+
+/* ── Иконки ── */
+.sg-icons-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sg-icons-grid-wrap {
+    display: flex;
+}
+.sg-icons-grid-wrap input[type="radio"] { display: none; }
+.sg-icons-grid-wrap input[type="radio"]:first-of-type + .pattern-radio-lbl {
+    border-left: 2px solid var(--volzhsky-blue);
+}
+
+.sg-icons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sg-icon-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.sg-icon-strip {
+    width: auto;
+    display: block;
+    align-self: flex-start;
+}
+.sg-icon-strip--90 { height: 5.625rem; }   /* 90px */
+.sg-icon-strip--56 { height: 3.5rem; }     /* 56px */
+
+.sg-icon-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--deep-blue);
+}
+
+/* ── Карточки по устройству (data-sg-device) ── */
+
+/* Laptop */
+.sg-two-col-block[data-sg-device="lptop"] .sgc-route-card__title { font-size: 2.25rem; line-height: 2.5rem; }
+.sg-two-col-block[data-sg-device="lptop"] .sgc-souvenir-name,
+.sg-two-col-block[data-sg-device="lptop"] .sgc-souvenir-price    { font-size: 1.25rem; }
+
+/* iPad */
+.sg-two-col-block[data-sg-device="ipad"] .sgc-route-card__title { font-size: 2rem; line-height: 2.25rem; }
+.sg-two-col-block[data-sg-device="ipad"] .sgc-souvenir-name,
+.sg-two-col-block[data-sg-device="ipad"] .sgc-souvenir-price    { font-size: 1.125rem; }
+
+/* Mobile — карточки в мобильной раскладке */
+.sg-two-col-block[data-sg-device="mobile"] {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.sg-two-col-block[data-sg-device="mobile"] #sg-kartochki { grid-column: 1 / -1; }
+.sg-two-col-block[data-sg-device="mobile"] #sg-ikonki    { grid-column: 1 / -1; }
+.sg-two-col-block[data-sg-device="mobile"] .sg-cards-row {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 1rem;
+}
+.sg-two-col-block[data-sg-device="mobile"] .sgc-card-wrap:first-child { grid-column: 1 / -1; }
+.sg-two-col-block[data-sg-device="mobile"] .sgc-card-wrap:last-child  { grid-column: 1 / 3; }
+.sg-two-col-block[data-sg-device="mobile"] .sgc-route-card__title { font-size: 1.75rem; line-height: 1.875rem; }
+.sg-two-col-block[data-sg-device="mobile"] .sgc-souvenir-name,
+.sg-two-col-block[data-sg-device="mobile"] .sgc-souvenir-price    { font-size: 1rem; }
+
+/* ── Переключение описаний по устройству ── */
+.sg-elem-desc--mobile { display: none; }
+
+#sg-knopki[data-sg-device="mobile"] .sg-elem-desc--desktop { display: none; }
+#sg-knopki[data-sg-device="mobile"] .sg-elem-desc--mobile  { display: block; }
+
+.sg-two-col-block[data-sg-device="mobile"] .sg-elem-desc--desktop { display: none; }
+.sg-two-col-block[data-sg-device="mobile"] .sg-elem-desc--mobile  { display: block; }
+
+.sg-knopki-mobile-note {
+    display: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: rgba(21, 58, 97, 0.45);
+    letter-spacing: 0.04em;
+    margin-top: 1.25rem;
+}
+#sg-knopki[data-sg-device="mobile"] .sg-knopki-mobile-note { display: block; }
+
+/* ── Мобилка ── */
+@media (max-width: 768px) {
+    .sg-two-col-block {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    #sg-kartochki { grid-column: 1 / -1; }
+    #sg-ikonki    { grid-column: 1 / -1; }
+
+    /* Карточки: 4-колоночный грид — маршрут на всю ширину, открытка на 2 колонки */
+    .sg-cards-row {
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 1rem;
+    }
+    .sgc-card-wrap:first-child {
+        grid-column: 1 / -1;       /* все 4 колонки */
+    }
+    .sgc-card-wrap:last-child {
+        grid-column: 1 / 3;        /* 2 колонки */
+    }
+
+    .sgc-souvenir-name,
+    .sgc-souvenir-price { font-size: 1rem; }
+    .sgc-route-card__title { font-size: 1.75rem; line-height: 1.875rem; }
 }

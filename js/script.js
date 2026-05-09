@@ -938,39 +938,51 @@ function makeNosCarousel(gridEl, btnPrev, btnNext) {
     if (!cards.length) return null;
     let offset = 0;
 
-    function visibleCount() {
-        const vw = gridEl.parentElement.offsetWidth;
-        if (vw < 540) return 1;
-        if (vw < 900) return 2;
-        return 4;
-    }
+    const STEP        = 3;   // десктоп: шаг в карточках
+    const MOBILE_PAGE = 4;   // мобилка: карточек на странице (2×2)
+
+    function isMobile() { return gridEl.parentElement.offsetWidth < 540; }
+
     function maxOffset() {
-        return Math.max(0, cards.length - visibleCount());
-    }
-    function update() {
-        const cardW = cards[0].offsetWidth;
-        const gap   = parseFloat(getComputedStyle(gridEl).gap) || 0;
-        gridEl.style.transform = offset > 0
-            ? `translateX(-${offset * (cardW + gap)}px)`
-            : '';
-        btnPrev.style.opacity      = offset === 0            ? '0.35' : '1';
-        btnPrev.style.pointerEvents= offset === 0            ? 'none' : '';
-        btnNext.style.opacity      = offset >= maxOffset()   ? '0.35' : '1';
-        btnNext.style.pointerEvents= offset >= maxOffset()   ? 'none' : '';
+        if (isMobile()) return Math.max(0, Math.ceil(cards.length / MOBILE_PAGE) - 1);
+        const vw = gridEl.parentElement.offsetWidth;
+        return Math.max(0, cards.length - (vw < 900 ? 2 : 4));
     }
 
-    const STEP = 3;
+    function update() {
+        if (isMobile()) {
+            // Постраничный режим: показываем ровно MOBILE_PAGE карточек
+            const start = offset * MOBILE_PAGE;
+            const end   = start + MOBILE_PAGE;
+            cards.forEach((card, i) => {
+                card.classList.toggle('nos-card--hidden', i < start || i >= end);
+            });
+            gridEl.style.transform = '';
+        } else {
+            // Горизонтальный скролл translateX
+            cards.forEach(card => card.classList.remove('nos-card--hidden'));
+            const cardW = cards[0].offsetWidth;
+            const gap   = parseFloat(getComputedStyle(gridEl).gap) || 0;
+            gridEl.style.transform = offset > 0
+                ? `translateX(-${offset * (cardW + gap)}px)`
+                : '';
+        }
+        btnPrev.style.opacity      = offset === 0          ? '0.35' : '1';
+        btnPrev.style.pointerEvents= offset === 0          ? 'none' : '';
+        btnNext.style.opacity      = offset >= maxOffset() ? '0.35' : '1';
+        btnNext.style.pointerEvents= offset >= maxOffset() ? 'none' : '';
+    }
 
     btnNext.addEventListener('click', e => {
         e.preventDefault();
-        if (offset < maxOffset()) { offset = Math.min(offset + STEP, maxOffset()); update(); }
+        if (offset < maxOffset()) { offset = Math.min(offset + (isMobile() ? 1 : STEP), maxOffset()); update(); }
     });
     btnPrev.addEventListener('click', e => {
-        if (offset > 0) { e.preventDefault(); offset = Math.max(offset - STEP, 0); update(); }
+        if (offset > 0) { e.preventDefault(); offset = Math.max(offset - (isMobile() ? 1 : STEP), 0); update(); }
     });
 
     update();
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', () => { offset = 0; update(); });
     return { reset() { offset = 0; update(); } };
 }
 

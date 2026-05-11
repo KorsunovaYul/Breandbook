@@ -5250,3 +5250,215 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     color: var(--volzhsky-blue);
     font-weight: bold;
 }
+
+/* ══════════════════════════════════════════════════
+   STYLEGUIDE — БРЕНДБУК UI-КИТ (статичный)
+══════════════════════════════════════════════════ */
+
+/* Скрытие/показ режимов */
+.sg-site-wrap[hidden],
+.sg-bb-wrap[hidden] { display: none; }
+
+/* Устройство-тоггл прячется в режиме Брендбука */
+.sg-nav-controls.sg-bb-mode #sg-global-device { display: none; }
+
+/* ── Метка устройства ── */
+.sg-bb-badge {
+    display: inline-block;
+    background: var(--volzhsky-blue);
+    color: #fff;
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.375rem 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+/* ── Верхний ряд: Типографика + Расстояния (2 колонки) ── */
+.sg-bb-top-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Образцы типографики: всегда видны (не fade-on-hover) */
+.sg-bb-specs { opacity: 1 !important; }
+
+/* Образцы брендбука — уменьшены чтобы влезли в колонку */
+.sg-typo-sample--bb-h0 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 5.5rem;  /* представляет 160 px */
+    line-height: 1;
+}
+.sg-typo-sample--bb-h1 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 4.5rem;  /* представляет 128 px */
+    line-height: 1;
+}
+.sg-typo-sample--bb-h3 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 2.5rem;  /* 40 px — реальный размер */
+    line-height: 3.125rem;
+}
+
+/* ── Расстояния ── */
+.sg-bb-dist-list {
+    margin-top: var(--gap-h3-to-text);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.sg-bb-dist-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(35,118,217,0.25);
+}
+.sg-bb-dist-row:first-child { border-top: 1px solid rgba(35,118,217,0.25); }
+.sg-bb-dist-px {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--deep-blue);
+    min-width: 4.5rem;
+    white-space: nowrap;
+}
+.sg-bb-dist-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--deep-blue);
+    line-height: 1.4;
+}
+
+/* ── Иконографика (стрелка) ── */
+.sg-bb-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: var(--gap-h3-to-text);
+}
+.sg-bb-icon-arrow { flex-shrink: 0; }
+
+/* ── Статичная сетка (1920 пт) ── */
+.sg-bb-grid-viz {
+    --sg-margin-px: 115;
+    --sg-gap-px: 20;
+    --sg-num-cols: 12;
+    --sg-width-pct: 100%;
+    --sg-gap-left-pct: 12.37%;
+}
+.sg-bb-cols { grid-template-columns: repeat(12, 1fr); }
+
+/* ── Два столбца: Радиокнопки + Тоглы ── */
+.sg-bb-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* ── Заголовки состояний ── */
+.sg-bb-states-head {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 0.5rem;
+    margin-top: var(--gap-h3-to-text);
+}
+.sg-bb-states-head--3 { grid-template-columns: repeat(3, 1fr); }
+.sg-bb-states-head--2 { grid-template-columns: repeat(2, 1fr); }
+.sg-bb-states-head--inline { margin-top: 0; margin-bottom: 0.375rem; }
+.sg-bb-states-head span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: rgba(21,58,97,0.6);
+    white-space: nowrap;
+}
+
+/* ── Полоска радиокнопок-демо ── */
+.sg-bb-btns-strip {
+    display: inline-flex;
+    margin-top: 0;
+}
+.sg-bb-btns-strip .grafika-btn { flex: none; }
+
+/* Состояния-демо для радиокнопок */
+.sg-bb-demo-hover.grafika-btn {
+    background: var(--amber);
+    color: var(--deep-blue);
+}
+.sg-bb-demo-pressed.grafika-btn {
+    background: var(--deep-blue);
+    color: #fff;
+}
+
+/* ── Тоглы-демо ── */
+.sg-bb-tabs-strip { margin-top: 0.25rem; flex-wrap: nowrap; }
+.sg-bb-demo-tab-hover.grafika-tab { color: var(--amber); }
+
+/* ── Блок Кнопки ── */
+.sg-bb-knopki-row {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Ряд из нескольких кнопок одного типа */
+.sg-bb-btn-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Сброс grid-позиционирования btn-hero внутри StyleGuide */
+.sg-bb-hero-btn {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    display: inline-block;
+    width: auto;
+    text-decoration: none;
+}
+.sg-bb-demo-hover.btn-hero  { background: var(--amber);    color: var(--deep-blue); }
+.sg-bb-demo-pressed.btn-hero { background: var(--deep-blue); }
+
+/* Стрелка-демо ── hover-состояние */
+.sg-bb-arrow-demo { cursor: default; }
+.sg-bb-demo-arrow-hover .arr-tri { fill: var(--amber); }
+
+/* ── Карточки ── */
+.sg-bb-cards-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: var(--gap-h3-to-text);
+}
+.sg-bb-card-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+.sg-bb-card {
+    /* сброс flex: 0 0 25% из карусели */
+    flex: none !important;
+    width: 14rem;
+}
+
+/* ── Мобилка ── */
+@media (max-width: 768px) {
+    .sg-bb-top-row { grid-template-columns: 1fr; gap: 2rem; }
+    .sg-bb-two-col  { grid-template-columns: 1fr; gap: 2rem; }
+    .sg-bb-knopki-row { gap: 2rem; }
+    .sg-bb-states-head { gap: 0.25rem; }
+    .sg-bb-states-head span { font-size: 0.75rem; }
+    .sg-typo-sample--bb-h0 { font-size: 3rem; }
+    .sg-typo-sample--bb-h1 { font-size: 2.5rem; }
+    .sg-bb-btn-row { gap: 0.75rem; }
+}

@@ -930,6 +930,30 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     });
 })();
 
+// ── StyleGuide: переключатель Сайт / Брендбук ──
+(function () {
+    const siteWrap   = document.getElementById('sg-site-wrap');
+    const bbWrap     = document.getElementById('sg-bb-wrap');
+    const navControls = document.querySelector('.sg-nav-controls');
+
+    if (!siteWrap || !bbWrap) return;
+
+    function setMode(mode) {
+        const isBB = mode === 'brendbuk';
+        siteWrap.hidden = isBB;
+        bbWrap.hidden   = !isBB;
+        if (navControls) navControls.classList.toggle('sg-bb-mode', isBB);
+    }
+
+    document.querySelectorAll('[name="sg-mode"]').forEach(radio => {
+        radio.addEventListener('change', () => setMode(radio.value));
+    });
+
+    // применить при загрузке
+    const checked = document.querySelector('[name="sg-mode"]:checked');
+    if (checked) setMode(checked.value);
+})();
+
 // ── 3 Носители: фабрика карусели ──
 function makeNosCarousel(gridEl, btnPrev, btnNext, visibleDesktop = 4) {
     if (!gridEl || !btnPrev || !btnNext) return null;

@@ -29,13 +29,13 @@
 
     <!-- БРЕНДБУК / 2026 -->
     <div class="sidebar-header">
-        <span>Брендбук</span>
+        <a href="#" class="sidebar-brand-link">Брендбук</a>
         <span>2026</span>
     </div>
 
     <!-- Логотип -->
     <div class="sidebar-logo">
-        <img src="img/logo.svg" alt="Логотип Ульяновска">
+        <a href="#"><img src="img/logo.svg" alt="Логотип Ульяновска"></a>
     </div>
 
     <hr class="divider">
@@ -52,7 +52,7 @@
     <a href="#structure" class="nav-category">Структура</a>
 
     <div class="nav-section">
-        <div class="nav-section-title">1 Концепция</div>
+        <a href="#koncepciya" class="nav-section-title nav-section-title--link">1 Концепция</a>
         <ul>
             <li><a href="#koncepciya">Введение</a></li>
             <li><a href="#missiya">Миссия. Ключевые сообщения</a></li>
@@ -66,7 +66,7 @@
     <hr class="nav-divider">
 
     <div class="nav-section">
-        <div class="nav-section-title">2 Визуальная система</div>
+        <a href="#vizualnaya" class="nav-section-title nav-section-title--link">2 Визуальная система</a>
         <ul>
             <li><a href="#logo-section">Логотип</a></li>
             <li><a href="#color-section">Цветовая система</a></li>
@@ -82,7 +82,7 @@
     <hr class="nav-divider">
 
     <div class="nav-section">
-        <div class="nav-section-title">3 Носители</div>
+        <a href="#vnutrennie-nositeli" class="nav-section-title nav-section-title--link">3 Носители</a>
         <ul>
             <li><a href="#vnutrennie-nositeli">Внутренние носители</a></li>
             <li><a href="#vneshnie-nositeli">Внешние носители</a></li>
@@ -110,7 +110,7 @@
 
         <!-- БРЕНДБУК / 2026 -->
         <div class="sidebar-header">
-            <span>Брендбук</span>
+            <a href="#" class="sidebar-brand-link">Брендбук</a>
             <span>2026</span>
         </div>
 
@@ -135,7 +135,7 @@
             <a href="#structure" class="nav-category">Структура</a>
 
             <div class="nav-section">
-                <div class="nav-section-title">1 Концепция</div>
+                <a href="#koncepciya" class="nav-section-title nav-section-title--link">1 Концепция</a>
                 <ul>
                     <li><a href="#koncepciya">Введение</a></li>
                     <li><a href="#missiya">Миссия. Ключевые сообщения</a></li>
@@ -149,7 +149,7 @@
             <hr class="nav-divider">
 
             <div class="nav-section">
-                <div class="nav-section-title">2 Визуальная система</div>
+                <a href="#vizualnaya" class="nav-section-title nav-section-title--link">2 Визуальная система</a>
                 <ul>
                     <li><a href="#logo-section">Логотип</a></li>
                     <li><a href="#color-section">Цветовая система</a></li>
@@ -165,7 +165,7 @@
             <hr class="nav-divider">
 
             <div class="nav-section">
-                <div class="nav-section-title">3 Носители</div>
+                <a href="#vnutrennie-nositeli" class="nav-section-title nav-section-title--link">3 Носители</a>
                 <ul>
                     <li><a href="#vnutrennie-nositeli">Внутренние носители</a></li>
                     <li><a href="#vneshnie-nositeli">Внешние носители</a></li>
@@ -232,20 +232,15 @@
                 <a href="#koncepciya" class="btn-hero">Начать</a>
             </div>
             <div class="hero-right">
-                <div class="hero-envelope" id="heroEnvelope" title="Рассылочное письмо" style="cursor:pointer">
+                <div class="hero-envelope" id="heroEnvelope" style="cursor:pointer">
+                    <div class="letter-slide-wrap" id="letterSlideWrap">
+                        <img src="img/рассылочное писмо.png" alt="Рассылочное письмо" class="letter-slide-img">
+                    </div>
                     <img src="img/визуальная система/письмо.png" alt="Письмо в Ульяновск" class="envelope-img">
+                    <span class="envelope-hint">Нажми на письмо</span>
                 </div>
             </div>
         </section>
-
-        <!-- Попап: Рассылочное письмо (вылетает сверху) -->
-        <div class="letter-popup" id="letterPopup" hidden>
-            <div class="letter-popup__overlay" id="letterPopupOverlay"></div>
-            <div class="letter-popup__panel">
-                <button class="letter-popup__close" id="letterPopupClose" aria-label="Закрыть">✕</button>
-                <img src="img/носители/внешние/интернет/рассылочное письмо.png" alt="Рассылочное письмо" class="letter-popup__img" id="letterPopupImg">
-            </div>
-        </div>
 
         <!-- Блок: Структура -->
         <section id="structure">
@@ -2389,16 +2384,6 @@
                         <span class="nos-card__name">Ларёк с газетой</span>
                     </div>
 
-                    <!-- Указатели -->
-                    <div class="nos-card" data-nos-id="ukazateli" data-name="Указатели"
-                         data-mockup="img/носители/внешние/городская среда/указатели.png"
-                         data-layout="img/носители/внешние/городская среда/макет указатели.png">
-                        <div class="nos-card__img-wrap">
-                            <img src="img/носители/внешние/городская среда/указатели.png" alt="Указатели" class="nos-card__img">
-                        </div>
-                        <span class="nos-card__name">Указатели</span>
-                    </div>
-
                     <!-- Остановка -->
                     <div class="nos-card" data-nos-id="ostanovka" data-name="Остановка"
                          data-mockup="img/носители/внешние/городская среда/остановка.png"
@@ -2407,16 +2392,6 @@
                             <img src="img/носители/внешние/городская среда/остановка.png" alt="Остановка" class="nos-card__img">
                         </div>
                         <span class="nos-card__name">Остановка</span>
-                    </div>
-
-                    <!-- Таблички домов -->
-                    <div class="nos-card" data-nos-id="tablichki" data-name="Таблички домов"
-                         data-mockup="img/носители/внешние/городская среда/табличка дома.png"
-                         data-layout="img/носители/внешние/городская среда/макет таблички дома.png">
-                        <div class="nos-card__img-wrap">
-                            <img src="img/носители/внешние/городская среда/табличка дома.png" alt="Таблички домов" class="nos-card__img">
-                        </div>
-                        <span class="nos-card__name">Таблички домов</span>
                     </div>
 
                     <!-- Плакаты -->
@@ -2447,6 +2422,26 @@
                             <img src="img/носители/внешние/сувениры/presswall.png" alt="Press Wall" class="nos-card__img">
                         </div>
                         <span class="nos-card__name">Press Wall</span>
+                    </div>
+
+                    <!-- Указатели -->
+                    <div class="nos-card" data-nos-id="ukazateli" data-name="Указатели"
+                         data-mockup="img/носители/внешние/городская среда/указатели.png"
+                         data-layout="img/носители/внешние/городская среда/макет указатели.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/указатели.png" alt="Указатели" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Указатели</span>
+                    </div>
+
+                    <!-- Таблички домов -->
+                    <div class="nos-card" data-nos-id="tablichki" data-name="Таблички домов"
+                         data-mockup="img/носители/внешние/городская среда/табличка дома.png"
+                         data-layout="img/носители/внешние/городская среда/макет таблички дома.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/табличка дома.png" alt="Таблички домов" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Таблички домов</span>
                     </div>
 
                 </div>
@@ -2580,6 +2575,15 @@
             </div><!-- [data-vnesh="transport"] -->
 
         </section>
+
+        <!-- Футер -->
+        <footer class="site-footer">
+            <div class="site-footer__line"></div>
+            <div class="site-footer__inner">
+                <span class="site-footer__copy highlight-2">©2026, Коршунова Юлия Дмитриевна</span>
+                <span class="site-footer__info">Прикладная информатика в дизайне<br>Городской брендбук</span>
+            </div>
+        </footer>
 
     </main>
 
@@ -2883,11 +2887,12 @@
             <div class="nos-modal__desc" id="nosModalDesc"></div>
             <div class="nos-modal__toggles-row">
                 <div class="nos-modal__variants" id="nosModalVariants" hidden></div>
-                <div class="nos-modal__view-toggle">
+                <div class="nos-modal__view-toggle" id="nosModalViewToggle">
                     <input type="radio" name="nos-view" id="nos-view-mockup" value="mockup" checked>
                     <label for="nos-view-mockup" class="pattern-radio-lbl">Мокап</label><input type="radio" name="nos-view" id="nos-view-layout" value="layout">
                     <label for="nos-view-layout" class="pattern-radio-lbl">Макет</label>
                 </div>
+                <a href="https://ulyanovsk-seven.vercel.app/" target="_blank" class="btn-city" id="nosModalCityBtn" hidden>Сайт города</a>
             </div>
         </div>
     </div>

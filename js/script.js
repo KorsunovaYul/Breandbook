@@ -1012,11 +1012,13 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
 
     const overlay    = document.getElementById('nosModalOverlay');
     const closeBtn   = document.getElementById('nosModalClose');
-    const imgWrap    = document.getElementById('nosModalImgWrap');
-    const nameEl     = document.getElementById('nosModalName');
-    const descEl     = document.getElementById('nosModalDesc');
-    const variantsEl = document.getElementById('nosModalVariants');
-    const radios     = modal.querySelectorAll('input[name="nos-view"]');
+    const imgWrap      = document.getElementById('nosModalImgWrap');
+    const nameEl       = document.getElementById('nosModalName');
+    const descEl       = document.getElementById('nosModalDesc');
+    const variantsEl   = document.getElementById('nosModalVariants');
+    const viewToggleEl = document.getElementById('nosModalViewToggle');
+    const cityBtnEl    = document.getElementById('nosModalCityBtn');
+    const radios       = modal.querySelectorAll('input[name="nos-view"]');
 
     let currentCard     = null;
     let currentVariants = null;   // массив [{label, mockup, layout}, ...]
@@ -1053,6 +1055,11 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
         } else {
             variantsEl.hidden = true;
         }
+
+        // Для карточки Сайт — скрыть тоггл, показать кнопку; для остальных наоборот
+        const isSajt = card.dataset.nosId === 'sajt';
+        if (viewToggleEl) viewToggleEl.hidden = isSajt;
+        if (cityBtnEl)    cityBtnEl.hidden    = !isSajt;
 
         // Сбросить переключатель Мокап / Макет
         radios.forEach(r => { r.checked = r.value === 'mockup'; });
@@ -1213,32 +1220,133 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
     });
 })();
 
-// ── Попап рассылочного письма (вылетает сверху при клике на конверт) ──
+// ── Рассылочное письмо — вылетает сверху над конвертом при клике ──
 (function () {
-    const envelope = document.getElementById('heroEnvelope');
-    const popup    = document.getElementById('letterPopup');
-    const overlay  = document.getElementById('letterPopupOverlay');
-    const closeBtn = document.getElementById('letterPopupClose');
-    if (!envelope || !popup) return;
+    const envelope  = document.getElementById('heroEnvelope');
+    const slideWrap = document.getElementById('letterSlideWrap');
+    if (!envelope || !slideWrap) return;
+    envelope.addEventListener('click', () => slideWrap.classList.toggle('open'));
+})();
 
-    function openLetter() {
-        popup.hidden = false;
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => popup.classList.add('letter-popup--open'));
+// ── Поиск по странице (навигационные ссылки) ──
+(function () {
+    // Собираем все уникальные пункты навигации: текст + href
+    function buildIndex() {
+        const seen = new Set();
+        const items = [];
+        // Берём все ссылки из боковой панели и мобильного меню
+        document.querySelectorAll('.sidebar-nav a, .mobile-nav a').forEach(a => {
+            const text = a.textContent.trim();
+            const href = a.getAttribute('href');
+            if (!text || !href || href === '#') return;
+            const key = text + href;
+            if (seen.has(key)) return;
+            seen.add(key);
+            items.push({ text, href });
         });
-        document.body.style.overflow = 'hidden';
+        return items;
     }
 
-    function closeLetter() {
-        popup.classList.remove('letter-popup--open');
-        setTimeout(() => {
-            popup.hidden = true;
-            document.body.style.overflow = '';
-        }, 450);
+    function escapeRe(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    envelope.addEventListener('click', openLetter);
-    overlay.addEventListener('click', closeLetter);
-    closeBtn.addEventListener('click', closeLetter);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLetter(); });
+    function highlight(text, query) {
+        const re = new RegExp('(' + escapeRe(query) + ')', 'gi');
+        return text.replace(re, '<mark>$1</mark>');
+    }
+
+    function initSearch(input) {
+        const box = input.closest('.search-box');
+        if (!box) return;
+
+        // Контейнер результатов
+        const results = document.createElement('div');
+        results.className = 'search-results';
+        box.appendChild(results);
+
+        const index = buildIndex();
+        let focusedIdx = -1;
+
+        function closeResults() {
+            results.innerHTML = '';
+            focusedIdx = -1;
+        }
+
+        function renderResults(query) {
+            results.innerHTML = '';
+            focusedIdx = -1;
+            if (!query) return;
+
+            const q = query.toLowerCase();
+            const matched = index.filter(item => item.text.toLowerCase().includes(q));
+
+            matched.forEach((item, i) => {
+                const el = document.createElement('a');
+                el.className = 'search-result-item';
+                el.href = item.href;
+                el.innerHTML = highlight(item.text, query);
+
+                el.addEventListener('mousedown', e => {
+                    e.preventDefault(); // не теряем фокус до клика
+                });
+                el.addEventListener('click', e => {
+                    e.preventDefault();
+                    input.value = '';
+                    closeResults();
+                    // Закрыть мобильное меню если открыто
+                    const mobileNav = document.querySelector('.mobile-nav');
+                    const overlay   = document.querySelector('.nav-overlay');
+                    const burger    = document.querySelector('.burger');
+                    if (mobileNav && mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        if (overlay) overlay.classList.remove('active');
+                        if (burger)  burger.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                    // Скролл к секции
+                    const target = document.querySelector(item.href);
+                    if (target) {
+                        setTimeout(() => {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 50);
+                    }
+                });
+                results.appendChild(el);
+            });
+        }
+
+        input.addEventListener('input', () => renderResults(input.value.trim()));
+
+        input.addEventListener('keydown', e => {
+            const items = results.querySelectorAll('.search-result-item');
+            if (!items.length) return;
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                focusedIdx = Math.min(focusedIdx + 1, items.length - 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                focusedIdx = Math.max(focusedIdx - 1, 0);
+            } else if (e.key === 'Enter' && focusedIdx >= 0) {
+                e.preventDefault();
+                items[focusedIdx].click();
+                return;
+            } else if (e.key === 'Escape') {
+                closeResults();
+                input.blur();
+                return;
+            }
+            items.forEach((el, i) => el.classList.toggle('focused', i === focusedIdx));
+            if (focusedIdx >= 0) items[focusedIdx].scrollIntoView({ block: 'nearest' });
+        });
+
+        input.addEventListener('blur', () => {
+            // Небольшая задержка, чтобы mousedown на результате успел сработать
+            setTimeout(closeResults, 150);
+        });
+    }
+
+    // Применяем ко всем полям поиска
+    document.querySelectorAll('.search-box input[type="text"]').forEach(initSearch);
 })();

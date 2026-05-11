@@ -930,19 +930,163 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     });
 })();
 
+// ── StyleGuide Брендбук: синхронизация с глобальным тоглом устройства ──
+(function () {
+    const bbWrap = document.getElementById('sg-bb-wrap');
+    if (!bbWrap) return;
+
+    // ── Данные типографики ──
+    const bbTypo = {
+        desktop: {
+            h0:  { size: '160 px', lh: 'Auto'  },
+            h1:  { size: '128 px', lh: 'Auto'  },
+            h2:  { size: '64 px',  lh: '59 px' },
+            h3:  { size: '40 px',  lh: '50 px' },
+            txt: { size: '20 px',  lh: 'Auto'  },
+            hl1: { size: '24 px',  lh: 'Auto'  },
+            hl2: { size: '20 px',  lh: 'Auto'  },
+            hl3: { size: '20 px',  lh: 'Auto'  },
+        },
+        lptop: {
+            h0:  { size: '128 px', lh: 'Auto'  },
+            h1:  { size: '96 px',  lh: 'Auto'  },
+            h2:  { size: '48 px',  lh: '52 px' },
+            h3:  { size: '32 px',  lh: '34 px' },
+            txt: { size: '16 px',  lh: 'Auto'  },
+            hl1: { size: '20 px',  lh: 'Auto'  },
+            hl2: { size: '16 px',  lh: 'Auto'  },
+            hl3: { size: '16 px',  lh: 'Auto'  },
+        },
+        mobile: {
+            h0:  { size: '96 px',  lh: 'Auto'  },
+            h1:  { size: '64 px',  lh: 'Auto'  },
+            h2:  { size: '36 px',  lh: '40 px' },
+            h3:  { size: '24 px',  lh: '28 px' },
+            txt: { size: '16 px',  lh: 'Auto'  },
+            hl1: { size: '18 px',  lh: 'Auto'  },
+            hl2: { size: '15 px',  lh: 'Auto'  },
+            hl3: { size: '16 px',  lh: 'Auto'  },
+        },
+    };
+    bbTypo.ipad = bbTypo.lptop; // iPad = те же размеры, что и Laptop
+
+    // ── Данные сетки ──
+    const bbGridSpecs = {
+        desktop: { total: 1920, margin: 115, gap: 20, cols: 12 },
+        lptop:   { total: 1366, margin: 93,  gap: 20, cols: 12 },
+        ipad:    { total: 834,  margin: 53,  gap: 16, cols: 6  },
+        mobile:  { total: 375,  margin: 16,  gap: 16, cols: 4  },
+    };
+
+    function applyBBDevice(val) {
+        // ── Типографика ──
+        const typo = bbTypo[val] || bbTypo.desktop;
+        bbWrap.querySelectorAll('.sg-typo-row[data-bb-key]').forEach(row => {
+            const key  = row.dataset.bbKey;
+            const spec = typo[key];
+            if (!spec) return;
+            const sizeEl = row.querySelector('.sg-bb-spec-size');
+            const lhEl   = row.querySelector('.sg-bb-spec-lh');
+            if (sizeEl) sizeEl.textContent = spec.size;
+            if (lhEl)   lhEl.textContent   = spec.lh;
+        });
+
+        // ── Спецификация ──
+        const bbSpec = document.getElementById('sg-bb-spec');
+        if (bbSpec) {
+            bbSpec.setAttribute('data-sg-device', val);
+            bbSpec.querySelectorAll('.sg-mock-gap[data-h-desktop]').forEach(gap => {
+                let h = val === 'mobile'               ? gap.dataset.hMobile
+                      : (val === 'lptop' || val === 'ipad') ? (gap.dataset.hLptop || gap.dataset.hDesktop)
+                      : gap.dataset.hDesktop;
+                gap.style.height = h + 'px';
+            });
+            bbSpec.querySelectorAll('.sg-spec-label-px[data-desktop]').forEach(px => {
+                let v = val === 'mobile'               ? px.dataset.mobile
+                      : (val === 'lptop' || val === 'ipad') ? (px.dataset.lptop || px.dataset.desktop)
+                      : px.dataset.desktop;
+                px.textContent = (v || px.dataset.desktop) + ' px';
+            });
+            // Сбросить активное выделение при смене устройства
+            bbSpec.querySelectorAll('.sg-spec-label').forEach(l => l.classList.remove('active'));
+            bbSpec.querySelectorAll('.sg-mock-gap').forEach(g => g.classList.remove('active'));
+        }
+
+        // ── Сетка ──
+        const bbGridViz   = bbWrap.querySelector('.sg-bb-grid-viz');
+        const bbGridCols  = bbWrap.querySelector('.sg-bb-cols');
+        const bbMarginLbl = bbWrap.querySelector('.sg-anno--margin .sg-anno-label');
+        const bbGapLbl    = bbWrap.querySelector('.sg-anno--gap .sg-anno-label');
+        const bbTotalLbl  = bbWrap.querySelector('.sg-anno--total .sg-anno-label');
+        const gSpec = bbGridSpecs[val] || bbGridSpecs.desktop;
+        if (bbGridViz) {
+            const colWidth   = (gSpec.total - 2 * gSpec.margin - (gSpec.cols - 1) * gSpec.gap) / gSpec.cols;
+            const gapLeftPct = ((gSpec.margin + colWidth) / gSpec.total * 100).toFixed(4) + '%';
+            bbGridViz.style.setProperty('--sg-margin-px',    gSpec.margin);
+            bbGridViz.style.setProperty('--sg-gap-px',       gSpec.gap);
+            bbGridViz.style.setProperty('--sg-num-cols',     gSpec.cols);
+            bbGridViz.style.setProperty('--sg-width-pct',    '100%');
+            bbGridViz.style.setProperty('--sg-gap-left-pct', gapLeftPct);
+            if (bbGridCols) {
+                bbGridCols.style.gridTemplateColumns = `repeat(${gSpec.cols}, 1fr)`;
+                bbGridCols.querySelectorAll('.sg-col').forEach((c, i) => { c.hidden = i >= gSpec.cols; });
+            }
+            if (bbMarginLbl) bbMarginLbl.textContent = `${gSpec.margin} px`;
+            if (bbGapLbl)    bbGapLbl.textContent    = `${gSpec.gap} px`;
+            if (bbTotalLbl)  bbTotalLbl.textContent  = `${gSpec.total} px`;
+        }
+
+        // ── Кнопки + Карточки: device-атрибут для CSS ──
+        const bbKnopki    = document.getElementById('sg-bb-knopki');
+        const bbKartochki = document.getElementById('sg-bb-kartochki');
+        if (bbKnopki)    bbKnopki.setAttribute('data-sg-device', val);
+        if (bbKartochki) bbKartochki.setAttribute('data-sg-device', val);
+    }
+
+    // Слушаем глобальный тогл устройств
+    document.querySelectorAll('#sg-global-device input[type="radio"]').forEach(r => {
+        r.addEventListener('change', () => applyBBDevice(r.value));
+    });
+
+    // Применить Desktop при загрузке
+    applyBBDevice('desktop');
+})();
+
+// ── StyleGuide Брендбук: тогл сетки иконок ──
+(function () {
+    document.querySelectorAll('[name="sg-bb-icons-grid"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const val = radio.value; // 'no' | 'yes'
+            document.querySelectorAll('.sg-icon-strip[data-no]').forEach(img => {
+                const closest = img.closest('.sg-col-half, .sg-icons-list');
+                // Применяем только внутри bb-wrap иконок
+                const inBB = img.closest('#sg-bb-kartochki');
+                if (!inBB) return;
+                img.src = val === 'yes' ? img.dataset.yes : img.dataset.no;
+            });
+        });
+    });
+})();
+
 // ── StyleGuide: переключатель Сайт / Брендбук ──
 (function () {
-    const siteWrap   = document.getElementById('sg-site-wrap');
-    const bbWrap     = document.getElementById('sg-bb-wrap');
-    const navControls = document.querySelector('.sg-nav-controls');
+    const siteWrap = document.getElementById('sg-site-wrap');
+    const bbWrap   = document.getElementById('sg-bb-wrap');
 
     if (!siteWrap || !bbWrap) return;
+
+    // Вкладки навигации StyleGuide (ссылки на якоря)
+    const navLinks = document.querySelectorAll('.sg-tabs a[data-site-href]');
 
     function setMode(mode) {
         const isBB = mode === 'brendbuk';
         siteWrap.hidden = isBB;
         bbWrap.hidden   = !isBB;
-        if (navControls) navControls.classList.toggle('sg-bb-mode', isBB);
+
+        // Обновляем href вкладок: сайт → #sg-setka, брендбук → #sg-bb-setka
+        navLinks.forEach(a => {
+            a.href = isBB ? a.dataset.bbHref : a.dataset.siteHref;
+        });
     }
 
     document.querySelectorAll('[name="sg-mode"]').forEach(radio => {

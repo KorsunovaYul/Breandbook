@@ -4073,14 +4073,18 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     gap: 0.1rem;
     padding: 0.75rem 1rem;
     background: #fff;
+    /* только боковые границы; верх/низ только у крайних (горизонтальных линий между кнопками нет) */
     border: 2px solid var(--volzhsky-blue);
     border-top: none;
+    border-bottom: none;
     cursor: pointer;
     text-align: left;
     transition: background 0.15s, border-color 0.15s;
 }
-/* Первая кнопка получает верхнюю границу */
+/* Первая кнопка — верхняя граница */
 .sg-spec-label:first-of-type { border-top: 2px solid var(--volzhsky-blue); }
+/* Последняя кнопка — нижняя граница */
+.sg-spec-label:last-of-type  { border-bottom: 2px solid var(--volzhsky-blue); }
 
 /* Активное состояние */
 .sg-spec-label.active {
@@ -4124,33 +4128,17 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         gap: 1.5rem;
     }
 
+    /* В мобилке метки — столбик, как на десктопе сайта, но с разделителями */
     .sg-spec-labels {
         position: static;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
         top: auto;
-        gap: 0;
     }
 
+    /* Возвращаем горизонтальные разделители между кнопками */
     .sg-spec-label {
-        flex-direction: row;
-        align-items: center;
-        gap: 0.25rem;
-        padding: 0.375rem 0.625rem;
-        border-top: none;
-        border-left: 2px solid var(--volzhsky-blue);
         border-bottom: 2px solid var(--volzhsky-blue);
-        border-right: none;
-    }
-
-    .sg-spec-label:first-of-type {
-        border-top: 2px solid var(--volzhsky-blue);
-        border-left: 2px solid var(--volzhsky-blue);
-    }
-
-    .sg-spec-label + .sg-spec-label {
-        border-top: none;
-        border-left: none;
+        padding: 0.5rem 0.75rem;
     }
 
     .sg-spec-label-px,
@@ -5259,10 +5247,39 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .sg-site-wrap[hidden],
 .sg-bb-wrap[hidden] { display: none; }
 
-/* Устройство-тоггл прячется в режиме Брендбука */
-.sg-nav-controls.sg-bb-mode #sg-global-device { display: none; }
+/* Устройство-тоггл остаётся виден в режиме Брендбука — управляет BB-контентом тоже */
 
-/* ── Метка устройства ── */
+/* ── spec-layout BB: ширины колонок (аналогично #sg-spec) ── */
+#sg-bb-spec[data-sg-device="desktop"] .sg-spec-layout { grid-template-columns: 17rem 1fr; }
+#sg-bb-spec[data-sg-device="lptop"]  .sg-spec-layout { grid-template-columns: 17rem 17fr 3fr; }
+#sg-bb-spec[data-sg-device="ipad"]   .sg-spec-layout { grid-template-columns: 17rem 13fr 7fr; }
+#sg-bb-spec[data-sg-device="mobile"] .sg-spec-layout { grid-template-columns: 17rem 16rem 1fr; }
+
+/* ── BB Переключатель: скрываем input, оставляем label-кнопки ── */
+.sg-bb-radio-group { display: inline-flex; }
+.sg-bb-radio-group input[type="radio"] { display: none; }
+
+/* ── BB BB-иконки: скрываем input ── */
+.sg-bb-icons-grid-wrap input[type="radio"] { display: none; }
+
+/* ── BB Элементы: device-зависимые подписи ── */
+#sg-bb-knopki    .sg-elem-desc--mobile  { display: none; }
+#sg-bb-knopki[data-sg-device="mobile"] .sg-elem-desc--desktop { display: none; }
+#sg-bb-knopki[data-sg-device="mobile"] .sg-elem-desc--mobile  { display: block; }
+
+#sg-bb-kartochki    .sg-elem-desc--mobile  { display: none; }
+#sg-bb-kartochki[data-sg-device="mobile"] .sg-elem-desc--desktop { display: none; }
+#sg-bb-kartochki[data-sg-device="mobile"] .sg-elem-desc--mobile  { display: block; }
+
+/* ── Шапка брендбук-вкладки: badge + переключатель устройства ── */
+.sg-bb-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+}
+
 .sg-bb-badge {
     display: inline-block;
     background: var(--volzhsky-blue);
@@ -5272,8 +5289,11 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     font-size: 1rem;
     padding: 0.375rem 1rem;
     border-radius: 0.25rem;
-    margin-bottom: 0.25rem;
 }
+
+/* Радио-инпуты скрыты, лейблы — кнопки */
+.sg-bb-device-wrap { display: inline-flex; }
+.sg-bb-device-wrap input[type="radio"] { display: none; }
 
 /* ── Верхний ряд: Типографика + Расстояния (2 колонки) ── */
 .sg-bb-top-row {

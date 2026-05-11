@@ -5321,17 +5321,30 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .sg-bb-icons-grid-wrap input[type="radio"] { display: none; }
 
 /* ── BB Переключатель + Поиск в одну строку ── */
+/* sg-knopki-right = 8 колонок из 12; переключатель на 1-4, поиск на 5-6 */
 .sg-bb-inputs-row {
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: var(--col-gap);
+    align-items: start;
+}
+.sg-bb-inputs-row .sg-input-group:first-child {
+    grid-column: 1 / 5;
+}
+.sg-bb-inputs-row .sg-input-group:last-child {
+    grid-column: 5 / 7;
 }
 
 /* ── BB Карточки (широко) + Иконки (узко, справа) ── */
 #sg-bb-kartochki {
-    grid-template-columns: 10fr 2fr;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+}
+
+/* BB: sg-cards-row рассчитан на 2 карточки — сбрасываем в однострочный */
+#sg-bb-kartochki .sg-cards-row {
+    display: block;
+    margin-top: 1.5rem;
 }
 
 /* ── BB Элементы: device-зависимые подписи ── */
@@ -5650,5 +5663,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     /* BB карточки + иконки — стек на мобилке */
     #sg-bb-kartochki { grid-template-columns: 1fr; }
     /* Переключатель + поиск — стек на мобилке */
-    .sg-bb-inputs-row { flex-direction: column; gap: 1.5rem; }
+    .sg-bb-inputs-row { grid-template-columns: 1fr; }
+    .sg-bb-inputs-row .sg-input-group:first-child,
+    .sg-bb-inputs-row .sg-input-group:last-child { grid-column: 1 / -1; }
 }

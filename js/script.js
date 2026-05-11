@@ -1307,12 +1307,6 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
                 el = document.createElement('img');
                 el.src = src;
                 el.alt = currentCard.dataset.name || '';
-                // Сайт — гифка в 2 раза меньше в попапе
-                if (currentCard.dataset.nosId === 'sajt') {
-                    el.style.objectFit = 'contain';
-                    el.style.transform = 'scale(0.8)';
-                    el.style.transformOrigin = 'center center';
-                }
             }
             imgWrap.appendChild(el);
             imgWrap.classList.remove('nos-modal__img-wrap--empty');

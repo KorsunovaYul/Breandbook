@@ -5618,6 +5618,25 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     width: 24rem;
 }
 
+.sg-bb-card-desc {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 24rem;
+}
+.sg-bb-card-desc p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--deep-blue);
+    line-height: 1.5;
+    margin: 0;
+}
+.sg-bb-card-desc strong {
+    font-weight: 700;
+}
+
 /* ── Мобилка ── */
 @media (max-width: 768px) {
     .sg-bb-top-row { grid-template-columns: 1fr; gap: 2rem; }

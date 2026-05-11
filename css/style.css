@@ -5335,10 +5335,18 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     grid-column: 5 / 7;
 }
 
-/* ── BB Карточки (широко) + Иконки (узко, справа) ── */
+/* ── BB Карточки (1-4 кол) + Иконки (5-6 кол) — в линию с переключателем/поиском ── */
 #sg-bb-kartochki {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: repeat(12, 1fr);
     align-items: start;
+}
+#sg-bb-kartochki .sg-col-half:first-child {
+    grid-column: 1 / 5;
+    grid-row: 1;
+}
+#sg-bb-kartochki .sg-col-half:last-child {
+    grid-column: 5 / 7;
+    grid-row: 1;
 }
 
 /* BB: sg-cards-row рассчитан на 2 карточки — сбрасываем в однострочный */
@@ -5661,7 +5669,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .sg-typo-sample--bb-h1 { font-size: 2.5rem; }
     .sg-bb-btn-row { gap: 0.75rem; }
     /* BB карточки + иконки — стек на мобилке */
-    #sg-bb-kartochki { grid-template-columns: 1fr; }
+    #sg-bb-kartochki .sg-col-half:first-child,
+    #sg-bb-kartochki .sg-col-half:last-child { grid-column: 1 / -1; grid-row: auto; }
     /* Переключатель + поиск — стек на мобилке */
     .sg-bb-inputs-row { grid-template-columns: 1fr; }
     .sg-bb-inputs-row .sg-input-group:first-child,

@@ -2262,10 +2262,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .hero-stat-num { font-size: 3.5rem; height: 3.5rem; }
     .stat-flip-wrap { height: 3.5rem; }
 
-    /* Конверт: на мобилке идёт первым */
+    /* Конверт: на мобилке идёт после кнопки «Начать» */
     .hero-right {
-        order: -10;
-        margin-bottom: 1.5rem;
+        order: 10;
+        margin-top: 1.5rem;
         align-self: auto;
     }
 
@@ -2422,7 +2422,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
     /* --- Мобильные отступы по UI-киту --- */
     :root {
-        --gap-h2-to-h3: 1.5rem;     /* 24px */
+        --gap-h2-to-h3: 2.5rem;     /* 40px */
         --gap-h3-to-text: 1.5rem;   /* 24px */
         --gap-block: 5rem;           /* 80px */
         --gap-to-footer: 6rem;       /* 96px */
@@ -2705,17 +2705,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         font-weight: 700;
         font-size: 0.9375rem; /* 15px */
         padding: 0.5rem;      /* 8px */
-        /* Кнопки растягиваются равномерно и сжимаются при переносе */
-        flex: 1;
-        white-space: normal;
-        text-align: center;
+        flex: none;           /* естественная ширина — у каждой кнопки своя */
+        white-space: nowrap;
         line-height: 1.2;
-        min-width: 0;
-    }
-
-    /* Группа кнопок-фильтров — на всю ширину, чтобы flex: 1 работало */
-    .logotip-filter-group {
-        width: 100%;
     }
 
     /* Все фото — не выходят за ширину сетки */
@@ -3127,6 +3119,16 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
 /* Картинка на все 12 контентных колонок */
 .illyust-img-wrap {
+    margin-top: var(--gap-h3-to-text);
+}
+
+/* Горизонтальная линия перед контентом в блоках Карта / Маршруты / Игра / Вопросы */
+#illyust-karta .illyust-img-wrap,
+#illyust-marshruty .marshr-grid,
+#illyust-igra .marshr-grid,
+#illyust-voprosy .marshr-grid {
+    border-top: 2px solid var(--volzhsky-blue);
+    padding-top: var(--gap-h3-to-text);
     margin-top: var(--gap-h3-to-text);
 }
 
@@ -4106,6 +4108,53 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     transition: color 0.15s;
 }
 .sg-spec-label.active .sg-spec-label-desc { color: #fff; }
+
+/* ── Спецификация: мобильная раскладка ── */
+@media (max-width: 768px) {
+    .sg-spec-layout {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+
+    .sg-spec-labels {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        top: auto;
+        gap: 0;
+    }
+
+    .sg-spec-label {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.375rem 0.625rem;
+        border-top: none;
+        border-left: 2px solid var(--volzhsky-blue);
+        border-bottom: 2px solid var(--volzhsky-blue);
+        border-right: none;
+    }
+
+    .sg-spec-label:first-of-type {
+        border-top: 2px solid var(--volzhsky-blue);
+        border-left: 2px solid var(--volzhsky-blue);
+    }
+
+    .sg-spec-label + .sg-spec-label {
+        border-top: none;
+        border-left: none;
+    }
+
+    .sg-spec-label-px,
+    .sg-spec-label-desc {
+        font-size: 0.875rem;
+        line-height: 1.2;
+    }
+
+    .sg-mockup {
+        overflow-x: auto;
+    }
+}
 
 /* ── Мини-страница сайта ── */
 .sg-mockup {

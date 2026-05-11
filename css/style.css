@@ -5329,14 +5329,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     flex-wrap: wrap;
 }
 
-/* ── BB Карточки: 1-10 кол, Иконки: 11-12 кол ── */
-#sg-bb-kartochki .sg-col-half:first-child {
-    grid-column: 1 / 11;
-    grid-row: 1;
-}
-#sg-bb-kartochki .sg-col-half:last-child {
-    grid-column: 11 / 13;
-    grid-row: 1;
+/* ── BB Карточки (широко) + Иконки (узко, справа) ── */
+#sg-bb-kartochki {
+    grid-template-columns: 10fr 2fr;
 }
 
 /* ── BB Элементы: device-зависимые подписи ── */
@@ -5634,8 +5629,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .sg-typo-sample--bb-h1 { font-size: 2.5rem; }
     .sg-bb-btn-row { gap: 0.75rem; }
     /* BB карточки + иконки — стек на мобилке */
-    #sg-bb-kartochki .sg-col-half:first-child,
-    #sg-bb-kartochki .sg-col-half:last-child { grid-column: 1 / -1; grid-row: auto; }
+    #sg-bb-kartochki { grid-template-columns: 1fr; }
     /* Переключатель + поиск — стек на мобилке */
     .sg-bb-inputs-row { flex-direction: column; gap: 1.5rem; }
 }

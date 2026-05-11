@@ -655,6 +655,14 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .pattern-radio-lbl {
         font-size: 0.9375rem; /* 15px */
         padding: 0.5rem;      /* 8px all sides */
+        flex: none;
+        white-space: nowrap;
+        line-height: 1.2;
+    }
+
+    .grafika-tab {
+        font-size: 0.9375rem; /* 15px — как у остальных переключателей */
+        padding: 0.375rem 0;
     }
 }
 
@@ -2270,7 +2278,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .hero-envelope {
-        max-width: 18rem;
+        max-width: 70%;
         margin: 0 auto;
     }
 

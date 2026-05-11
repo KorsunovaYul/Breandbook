@@ -971,8 +971,9 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     bbTypo.ipad = bbTypo.lptop; // iPad = те же размеры, что и Laptop
 
     // ── Данные сетки ──
+    // BB desktop: margin=20, gap=20, cols=14 → col≈115.7 px (как на картинке)
     const bbGridSpecs = {
-        desktop: { total: 1920, margin: 115, gap: 20, cols: 12 },
+        desktop: { total: 1920, margin: 20,  gap: 20, cols: 14 },
         lptop:   { total: 1366, margin: 93,  gap: 20, cols: 12 },
         ipad:    { total: 834,  margin: 53,  gap: 16, cols: 6  },
         mobile:  { total: 375,  margin: 16,  gap: 16, cols: 4  },

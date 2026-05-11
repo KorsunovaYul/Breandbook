@@ -654,15 +654,15 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .pattern-btn,
     .pattern-radio-lbl {
         font-size: 0.9375rem; /* 15px */
-        padding: 0.5rem;      /* 8px all sides */
+        padding: 0.5rem;
         flex: none;
         white-space: nowrap;
         line-height: 1.2;
     }
 
     .grafika-tab {
-        font-size: 0.9375rem; /* 15px — как у остальных переключателей */
-        padding: 0.375rem 0;
+        font-size: 0.75rem; /* 12px — вкладки под заголовками разделов */
+        padding: 0.25rem 0;
     }
 }
 
@@ -2209,6 +2209,34 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 /* ============================================
+   Цветовые сочетания — адаптация 900–1280px
+   ============================================ */
+@media (max-width: 1280px) {
+    .sochet-grid {
+        grid-template-columns: 1fr 3fr;
+        column-gap: var(--col-gap);
+        row-gap: 1.25rem;
+        position: relative;
+    }
+    .sochet-left,
+    .sochet-right {
+        display: contents;
+    }
+    .sochet-right::before { display: none; }
+    .sochet-left .sochet-label-col { border-right: none; }
+    .sochet-grid::before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: calc((100% - var(--col-gap)) / 4);
+        width: 2px;
+        background: var(--volzhsky-blue);
+        pointer-events: none;
+        z-index: 0;
+    }
+}
+
+/* ============================================
    МЕДИАЗАПРОС — мобильная версия до 900px
    ============================================ */
 
@@ -2779,7 +2807,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .grafika-tab {
-        font-size: 1.125rem;
+        font-size: 0.75rem; /* 12px — уменьшено для мобилки */
     }
 
     /* Доп. цвета — на мобилке тоже 2 колонки, но меньше высота */
@@ -4082,18 +4110,14 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     gap: 0.1rem;
     padding: 0.75rem 1rem;
     background: #fff;
-    /* только боковые границы; верх/низ только у крайних (горизонтальных линий между кнопками нет) */
     border: 2px solid var(--volzhsky-blue);
     border-top: none;
-    border-bottom: none;
     cursor: pointer;
     text-align: left;
     transition: background 0.15s, border-color 0.15s;
 }
 /* Первая кнопка — верхняя граница */
 .sg-spec-label:first-of-type { border-top: 2px solid var(--volzhsky-blue); }
-/* Последняя кнопка — нижняя граница */
-.sg-spec-label:last-of-type  { border-bottom: 2px solid var(--volzhsky-blue); }
 
 /* Активное состояние */
 .sg-spec-label.active {
@@ -4262,7 +4286,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     background: var(--sky);
 }
 
-/* Футер */
+/* Футер мокапа (сайт — тёмный с линиями) */
 .sg-mock-footer {
     background: var(--deep-blue);
     padding: 0.625rem 0.875rem;
@@ -4274,6 +4298,34 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     height: 0.2rem;
     background: var(--sky);
     width: 30%;
+}
+
+/* Футер мокапа брендбука — как реальный site-footer */
+.sg-mock-footer--bb {
+    background: transparent;
+    padding: 0;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+}
+.sg-mock-footer-rule {
+    height: 1.5px;
+    background: var(--volzhsky-blue);
+    width: 100%;
+    opacity: 0.4;
+}
+.sg-mock-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0.25rem 0.25rem;
+}
+.sg-mock-footer-copy {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 0.35rem;
+    color: var(--deep-blue);
+    opacity: 0.55;
+    line-height: 1.2;
 }
 
 /* ── Зоны отступов ── */
@@ -4446,17 +4498,19 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     align-items: start;
 }
 
-/* Карточки: колонки 1–7 */
+/* Карточки: колонки 1–7, строка 1 */
 #sg-kartochki {
     grid-column: 1 / 8;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-/* Иконки: колонки 9–12 */
+/* Иконки: строка 2, колонки 9–12 (под карточками, на уровне кнопок) */
 #sg-ikonki {
     grid-column: 9 / 13;
+    grid-row: 2;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -4468,6 +4522,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     grid-template-columns: 4fr 3fr;   /* маршрут 4 кол, открытка 3 кол */
     column-gap: var(--col-gap);
     align-items: start;
+    margin-top: 1.5rem; /* 24px от заголовка до карточек */
 }
 .sgc-card-wrap {
     display: flex;
@@ -4684,8 +4739,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    #sg-kartochki { grid-column: 1 / -1; }
-    #sg-ikonki    { grid-column: 1 / -1; }
+    #sg-kartochki { grid-column: 1 / -1; grid-row: auto; }
+    #sg-ikonki    { grid-column: 1 / -1; grid-row: auto; }
 
     /* Карточки: 4-колоночный грид — маршрут на всю ширину, открытка на 2 колонки */
     .sg-cards-row {
@@ -5271,6 +5326,23 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 /* ── BB BB-иконки: скрываем input ── */
 .sg-bb-icons-grid-wrap input[type="radio"] { display: none; }
 
+/* ── BB Переключатель + Поиск в одну строку ── */
+.sg-bb-inputs-row {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* ── BB Карточки: 1-10 кол, Иконки: 11-12 кол ── */
+#sg-bb-kartochki .sg-col-half:first-child {
+    grid-column: 1 / 11;
+}
+#sg-bb-kartochki .sg-col-half:last-child {
+    grid-column: 11 / 13;
+}
+
 /* ── BB Элементы: device-зависимые подписи ── */
 #sg-bb-knopki    .sg-elem-desc--mobile  { display: none; }
 #sg-bb-knopki[data-sg-device="mobile"] .sg-elem-desc--desktop { display: none; }
@@ -5313,7 +5385,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 /* Образцы типографики: всегда видны (не fade-on-hover) */
-.sg-bb-specs { opacity: 1 !important; }
+/* .sg-bb-specs наследует hover-эффект из .sg-typo-row:hover .sg-typo-specs */
 
 /* Образцы брендбука — уменьшены чтобы влезли в колонку */
 .sg-typo-sample--bb-h0 {
@@ -5374,6 +5446,74 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin-top: var(--gap-h3-to-text);
 }
 .sg-bb-icon-arrow { flex-shrink: 0; }
+
+/* ══ BB СПЕЦИФИКАЦИЯ: мокап с боковым меню ══ */
+
+/* Мокап брендбука — вертикальный флекс (nav сверху, body, footer снизу) */
+.sg-mockup--bb {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Тело: сайдбар + основной контент */
+.sg-mock-body {
+    display: flex;
+    flex: 1;
+}
+
+/* Мини-сайдбар */
+.sg-mock-sidebar {
+    flex: 0 0 2.75rem;
+    border-right: 1.5px solid rgba(21, 58, 97, 0.2);
+    padding: 0.625rem 0.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.sg-mock-sidebar-logo {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--volzhsky-blue);
+    opacity: 0.7;
+    border-radius: 50%;
+    margin-bottom: 0.25rem;
+}
+.sg-mock-sidebar-link {
+    height: 0.3125rem;
+    background: var(--volzhsky-blue);
+    opacity: 0.25;
+    border-radius: 0.125rem;
+    width: 80%;
+}
+.sg-mock-sidebar-link--active {
+    opacity: 0.85;
+    width: 100%;
+}
+
+/* Основной контент */
+.sg-mock-main {
+    flex: 1;
+    padding: 0 0.75rem 0.75rem;
+    overflow: hidden;
+}
+
+/* H1 брендбука в мокапе (самый большой — УЛЬЯНОВСК) */
+.sg-mock-bb-h1 {
+    font-family: 'Arsenal SC', serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--deep-blue);
+    line-height: 1;
+    padding-top: 0.5rem;
+}
+
+/* Сайдбар скрывается на iPad / Mobile */
+#sg-bb-spec[data-sg-device="ipad"]   .sg-mock-sidebar { display: none; }
+#sg-bb-spec[data-sg-device="mobile"] .sg-mock-sidebar { display: none; }
+
+/* Зазоры внутри sg-mock-main не нуждаются в width: 100% переопределении */
+.sg-mock-main .sg-mock-gap { width: 100%; }
+.sg-mock-main .sg-mock-rect { width: 100%; }
 
 /* ── Статичная сетка (1920 пт) ── */
 .sg-bb-grid-viz {
@@ -5451,6 +5591,13 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin-bottom: 0.5rem;
 }
 
+/* Демо поля поиска в StyleGuide брендбука */
+.sg-bb-search-demo {
+    border-bottom: 2px solid var(--volzhsky-blue);
+    padding-bottom: 0.25rem;
+    max-width: 16rem;
+}
+
 /* Сброс grid-позиционирования btn-hero внутри StyleGuide */
 .sg-bb-hero-btn {
     grid-column: auto !important;
@@ -5475,9 +5622,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 .sg-bb-card-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
 .sg-bb-card {
-    /* сброс flex: 0 0 25% из карусели */
+    /* сброс flex: 0 0 25% из карусели; ~3 колонки BB-сетки */
     flex: none !important;
-    width: 14rem;
+    width: 24rem;
 }
 
 /* ── Мобилка ── */
@@ -5490,4 +5637,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .sg-typo-sample--bb-h0 { font-size: 3rem; }
     .sg-typo-sample--bb-h1 { font-size: 2.5rem; }
     .sg-bb-btn-row { gap: 0.75rem; }
+    /* BB карточки + иконки — стек на мобилке */
+    #sg-bb-kartochki .sg-col-half:first-child,
+    #sg-bb-kartochki .sg-col-half:last-child { grid-column: 1 / -1; }
+    /* Переключатель + поиск — стек на мобилке */
+    .sg-bb-inputs-row { flex-direction: column; gap: 1.5rem; }
 }

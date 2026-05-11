@@ -454,15 +454,27 @@ langBtns.forEach(btn => {
     document.addEventListener('touchend', () => { isDragging = false; });
 })();
 
-// Типографика — кнопки Light / Regular / Bold для Inter
+// Типографика — кнопки для Arsenal SC (Bold / Bold Italic) и Inter (Light / Regular / Bold)
 document.querySelectorAll('.typo-weight-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.typo-weight-btn').forEach(b => b.classList.remove('active'));
+        // Снимаем active только у кнопок в той же группе (том же .typo-weight-wrap)
+        btn.closest('.typo-weight-wrap').querySelectorAll('.typo-weight-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const weight = btn.dataset.weight;
-        document.querySelectorAll('.typo-alphabet--inter').forEach(el => {
-            el.style.fontWeight = weight;
-        });
+
+        const font = btn.dataset.font;
+
+        if (font === 'inter') {
+            const weight = btn.dataset.weight;
+            document.querySelectorAll('.typo-alphabet--inter').forEach(el => {
+                el.style.fontWeight = weight;
+                el.style.fontStyle  = 'normal';
+            });
+        } else if (font === 'arsenal') {
+            const style = btn.dataset.style || 'normal';
+            document.querySelectorAll('.typo-alphabet--arsenal').forEach(el => {
+                el.style.fontStyle = style;
+            });
+        }
     });
 });
 
@@ -971,10 +983,11 @@ document.querySelectorAll('.color-codes span').forEach(span => {
     bbTypo.ipad = bbTypo.lptop; // iPad = те же размеры, что и Laptop
 
     // ── Данные сетки ──
-    // BB desktop: margin=20, gap=20, cols=14 → col≈115.7 px (как на картинке)
+    // BB desktop: margin=20, gap=20, cols=14 → col≈115.7 px
+    // BB lptop:   margin=16, gap=16, cols=14 → col≈80.4 px
     const bbGridSpecs = {
         desktop: { total: 1920, margin: 20,  gap: 20, cols: 14 },
-        lptop:   { total: 1366, margin: 93,  gap: 20, cols: 12 },
+        lptop:   { total: 1366, margin: 16,  gap: 16, cols: 14 },
         ipad:    { total: 834,  margin: 53,  gap: 16, cols: 6  },
         mobile:  { total: 375,  margin: 16,  gap: 16, cols: 4  },
     };
@@ -1023,10 +1036,12 @@ document.querySelectorAll('.color-codes span').forEach(span => {
         if (bbGridViz) {
             const colWidth   = (gSpec.total - 2 * gSpec.margin - (gSpec.cols - 1) * gSpec.gap) / gSpec.cols;
             const gapLeftPct = ((gSpec.margin + colWidth) / gSpec.total * 100).toFixed(4) + '%';
+            const widthPct   = (gSpec.total / 1920 * 100).toFixed(3) + '%';
+            bbGridViz.style.setProperty('--sg-total',        gSpec.total);
             bbGridViz.style.setProperty('--sg-margin-px',    gSpec.margin);
             bbGridViz.style.setProperty('--sg-gap-px',       gSpec.gap);
             bbGridViz.style.setProperty('--sg-num-cols',     gSpec.cols);
-            bbGridViz.style.setProperty('--sg-width-pct',    '100%');
+            bbGridViz.style.setProperty('--sg-width-pct',    widthPct);
             bbGridViz.style.setProperty('--sg-gap-left-pct', gapLeftPct);
             if (bbGridCols) {
                 bbGridCols.style.gridTemplateColumns = `repeat(${gSpec.cols}, 1fr)`;

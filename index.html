@@ -1198,7 +1198,8 @@
                     <p class="text typo-desc">Используется для логотипа, заголовоков, подзаголовков и акцентов в тексте. Используется только в жирном начертании (bold).</p>
                     <div class="typo-font-name typo-font-name--arsenal">Arsenal SC</div>
                     <div class="typo-weight-wrap">
-                        <span class="typo-weight-badge">Bold</span>
+                        <button class="typo-weight-btn active" data-font="arsenal" data-weight="700" data-style="normal">Bold</button>
+                        <button class="typo-weight-btn" data-font="arsenal" data-weight="700" data-style="italic">Bold Italic</button>
                     </div>
                     <p class="typo-alphabet typo-alphabet--arsenal">Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ ъ ы ь Ээ Юю Яя</p>
                     <p class="typo-alphabet typo-alphabet--arsenal">Aa Bb Cc Dd Ee Ff Gg Hh Ii Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Vv Xx Yy Zz</p>
@@ -1211,9 +1212,9 @@
                     <p class="text typo-desc">Используется для основного текста и деловых документов. Используется в тонком (light), нормальном (regular) и жирном (bold) начертаниях.</p>
                     <div class="typo-font-name typo-font-name--inter">Inter</div>
                     <div class="typo-weight-wrap">
-                        <button class="typo-weight-btn active" data-weight="300">Light</button>
-                        <button class="typo-weight-btn" data-weight="400">Regular</button>
-                        <button class="typo-weight-btn" data-weight="700">Bold</button>
+                        <button class="typo-weight-btn active" data-font="inter" data-weight="300">Light</button>
+                        <button class="typo-weight-btn" data-font="inter" data-weight="400">Regular</button>
+                        <button class="typo-weight-btn" data-font="inter" data-weight="700">Bold</button>
                     </div>
                     <div class="typo-inter-alphabets">
                         <p class="typo-alphabet typo-alphabet--inter">Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ ъ ы ь Ээ Юю Яя</p>
@@ -2134,7 +2135,12 @@
                         <aside class="sg-spec-labels">
                             <p class="celi-hint" style="margin-top:0;margin-bottom:1.25rem">нажмите на значение</p>
 
-                            <button class="sg-spec-label" data-gap="bb-h2h3">
+                            <button class="sg-spec-label" data-gap="bb-h1h2">
+                                <span class="sg-spec-label-px" data-desktop="128" data-lptop="80" data-mobile="64">128 px</span>
+                                <span class="sg-spec-label-desc">от заголовка 1 до заголовка 2</span>
+                            </button>
+
+                            <button class="sg-spec-label sg-spec-label--inner" data-gap="bb-h2h3">
                                 <span class="sg-spec-label-px" data-desktop="56" data-lptop="56" data-mobile="40">56 px</span>
                                 <span class="sg-spec-label-desc">от заголовка 2 до заголовка 3</span>
                             </button>
@@ -2155,62 +2161,79 @@
                             </button>
                         </aside>
 
-                        <!-- та же мини-страница, что и у Сайта -->
-                        <div class="sg-mockup">
-                            <div class="sg-mock-nav">
-                                <div class="sg-mock-nav-dot"></div>
-                                <div class="sg-mock-nav-links">
-                                    <div class="sg-mock-nav-link"></div>
-                                    <div class="sg-mock-nav-link"></div>
-                                    <div class="sg-mock-nav-link"></div>
-                                    <div class="sg-mock-nav-link"></div>
-                                    <div class="sg-mock-nav-link sg-mock-nav-link--cta"></div>
+                        <!-- мини-страница брендбука с боковым меню -->
+                        <div class="sg-mockup sg-mockup--bb">
+
+                            <!-- Тело: боковое меню + контент -->
+                            <div class="sg-mock-body">
+
+                                <!-- Мини-сайдбар (только Desktop / Laptop) -->
+                                <div class="sg-mock-sidebar">
+                                    <div class="sg-mock-sidebar-logo"></div>
+                                    <div class="sg-mock-sidebar-link sg-mock-sidebar-link--active"></div>
+                                    <div class="sg-mock-sidebar-link"></div>
+                                    <div class="sg-mock-sidebar-link"></div>
+                                    <div class="sg-mock-sidebar-link"></div>
+                                    <div class="sg-mock-sidebar-link"></div>
                                 </div>
-                            </div>
 
-                            <div class="sg-mock-gap" data-gap-id="bb-h2h3"
-                                 data-h-desktop="14" data-h-lptop="14" data-h-mobile="10" style="height:14px"></div>
+                                <!-- Основной контент -->
+                                <div class="sg-mock-main">
 
-                            <div class="sg-mock-page-section">
-                                <div class="sg-mock-h1">Концепция</div>
-                                <div class="sg-mock-subtitle">Введение в брендбук</div>
-                                <div class="sg-mock-gap sg-mock-gap--inner" data-gap-id="bb-h3txt"
-                                     data-h-desktop="6" data-h-lptop="5" data-h-mobile="4" style="height:6px"></div>
-                                <div class="sg-mock-rect sg-mock-rect--video"></div>
-                            </div>
+                                    <!-- H1: УЛЬЯНОВСК (заголовок 1) -->
+                                    <div class="sg-mock-bb-h1">УЛЬЯНОВСК</div>
 
-                            <div class="sg-mock-gap" data-gap-id="bb-block"
-                                 data-h-desktop="40" data-h-lptop="26" data-h-mobile="20" style="height:40px"></div>
+                                    <!-- Отступ H1 → H2 -->
+                                    <div class="sg-mock-gap" data-gap-id="bb-h1h2"
+                                         data-h-desktop="32" data-h-lptop="20" data-h-mobile="16" style="height:32px"></div>
 
-                            <div class="sg-mock-page-section">
-                                <div class="sg-mock-h2">Визуальная система</div>
-                                <div class="sg-mock-gap sg-mock-gap--inner" data-gap-id="bb-h3txt"
-                                     data-h-desktop="6" data-h-lptop="5" data-h-mobile="4" style="height:6px"></div>
-                                <div class="sg-mock-rect sg-mock-rect--map"></div>
-                            </div>
+                                    <!-- H2: Концепция (заголовок 2) -->
+                                    <div class="sg-mock-h1">Концепция</div>
 
-                            <div class="sg-mock-gap" data-gap-id="bb-block"
-                                 data-h-desktop="40" data-h-lptop="26" data-h-mobile="20" style="height:40px"></div>
+                                    <!-- Отступ H2 → H3 -->
+                                    <div class="sg-mock-gap" data-gap-id="bb-h2h3"
+                                         data-h-desktop="14" data-h-lptop="14" data-h-mobile="10" style="height:14px"></div>
 
-                            <div class="sg-mock-page-section">
-                                <div class="sg-mock-h2">Носители</div>
-                                <div class="sg-mock-gap sg-mock-gap--inner" data-gap-id="bb-h3txt"
-                                     data-h-desktop="6" data-h-lptop="5" data-h-mobile="4" style="height:6px"></div>
-                                <div class="sg-mock-about-row">
-                                    <div class="sg-mock-rect sg-mock-rect--about-text"></div>
-                                    <div class="sg-mock-stat-col">
-                                        <div class="sg-mock-stat"></div>
-                                        <div class="sg-mock-stat"></div>
+                                    <!-- H3: Введение в брендбук (заголовок 3) -->
+                                    <div class="sg-mock-h2">Введение в брендбук</div>
+
+                                    <!-- Отступ H3 → Текст -->
+                                    <div class="sg-mock-gap sg-mock-gap--inner" data-gap-id="bb-h3txt"
+                                         data-h-desktop="6" data-h-lptop="5" data-h-mobile="4" style="height:6px"></div>
+
+                                    <!-- Контент-блок -->
+                                    <div class="sg-mock-rect sg-mock-rect--video"></div>
+
+                                    <!-- Отступ блок → блок -->
+                                    <div class="sg-mock-gap" data-gap-id="bb-block"
+                                         data-h-desktop="40" data-h-lptop="26" data-h-mobile="20" style="height:40px"></div>
+
+                                    <!-- H2: Визуальная система (второй блок, заголовок 2) -->
+                                    <div class="sg-mock-h1">Визуальная система</div>
+
+                                    <!-- Контент-блок -->
+                                    <div class="sg-mock-about-row" style="margin-top:0.375rem">
+                                        <div class="sg-mock-rect sg-mock-rect--about-text"></div>
+                                        <div class="sg-mock-stat-col">
+                                            <div class="sg-mock-stat"></div>
+                                            <div class="sg-mock-stat"></div>
+                                        </div>
                                     </div>
+
+                                    <!-- Отступ блок → футер -->
+                                    <div class="sg-mock-gap" data-gap-id="bb-footer"
+                                         data-h-desktop="46" data-h-lptop="30" data-h-mobile="24" style="height:46px"></div>
+
+                                </div><!-- .sg-mock-main -->
+                            </div><!-- .sg-mock-body -->
+
+                            <!-- Футер -->
+                            <div class="sg-mock-footer sg-mock-footer--bb">
+                                <div class="sg-mock-footer-rule"></div>
+                                <div class="sg-mock-footer-inner">
+                                    <span class="sg-mock-footer-copy">©2026, КЮД</span>
+                                    <span class="sg-mock-footer-copy">Городской брендбук</span>
                                 </div>
-                            </div>
-
-                            <div class="sg-mock-gap" data-gap-id="bb-footer"
-                                 data-h-desktop="46" data-h-lptop="30" data-h-mobile="24" style="height:46px"></div>
-
-                            <div class="sg-mock-footer">
-                                <div class="sg-mock-footer-line"></div>
-                                <div class="sg-mock-footer-line" style="width:35%"></div>
                             </div>
                         </div><!-- .sg-mockup -->
                     </div><!-- .sg-spec-layout -->
@@ -2309,17 +2332,28 @@
                     <h3 class="h3">Элементы интерфейса</h3>
                     <div class="sg-knopki-grid">
 
-                        <!-- Левый: переключатель -->
+                        <!-- Левый: переключатель + поиск в строку -->
                         <div class="sg-knopki-right">
-                            <div class="sg-input-group">
-                                <span class="sg-knopki-label">Переключатель</span>
-                                <div class="sg-bb-radio-group">
-                                    <input type="radio" name="sg-bb-lang" id="sg-bb-lang-ru" checked>
-                                    <label for="sg-bb-lang-ru" class="pattern-radio-lbl">Русский</label><input type="radio" name="sg-bb-lang" id="sg-bb-lang-en">
-                                    <label for="sg-bb-lang-en" class="pattern-radio-lbl">English</label>
+                            <div class="sg-bb-inputs-row">
+                                <div class="sg-input-group">
+                                    <span class="sg-knopki-label">Переключатель</span>
+                                    <div class="sg-bb-radio-group">
+                                        <input type="radio" name="sg-bb-lang" id="sg-bb-lang-ru" checked>
+                                        <label for="sg-bb-lang-ru" class="pattern-radio-lbl">Русский</label><input type="radio" name="sg-bb-lang" id="sg-bb-lang-en">
+                                        <label for="sg-bb-lang-en" class="pattern-radio-lbl">English</label>
+                                    </div>
+                                    <p class="sg-elem-desc sg-elem-desc--desktop">Arsenal SC Bold 20 пт</p>
+                                    <p class="sg-elem-desc sg-elem-desc--mobile">Arsenal SC Bold 15 пт</p>
                                 </div>
-                                <p class="sg-elem-desc sg-elem-desc--desktop">Arsenal SC Bold 20 пт</p>
-                                <p class="sg-elem-desc sg-elem-desc--mobile">Arsenal SC Bold 15 пт</p>
+                                <div class="sg-input-group">
+                                    <span class="sg-knopki-label">Поиск</span>
+                                    <div class="search-box sg-bb-search-demo">
+                                        <img src="img/Поиск.svg" alt="Поиск">
+                                        <input type="text" placeholder="Поиск">
+                                    </div>
+                                    <p class="sg-elem-desc sg-elem-desc--desktop">Arsenal SC Bold 20 пт</p>
+                                    <p class="sg-elem-desc sg-elem-desc--mobile">Arsenal SC Bold 20 пт</p>
+                                </div>
                             </div>
                         </div>
 
@@ -2376,16 +2410,6 @@
                                 <p class="sg-elem-desc sg-elem-desc--desktop">~400×400 пт</p>
                                 <p class="sg-elem-desc sg-elem-desc--mobile">~163×163 пт</p>
                             </div>
-                            <div class="sgc-card-wrap">
-                                <div class="nos-card sg-bb-card">
-                                    <div class="nos-card__img-wrap">
-                                        <img src="img/носители/внутренние/Бейджики 1.png" alt="Бейдж" class="nos-card__img">
-                                    </div>
-                                    <span class="nos-card__name">Бейдж</span>
-                                </div>
-                                <p class="sg-elem-desc sg-elem-desc--desktop">~400×400 пт</p>
-                                <p class="sg-elem-desc sg-elem-desc--mobile">~163×163 пт</p>
-                            </div>
                         </div>
                     </div>
 
@@ -2394,9 +2418,9 @@
                         <h3 class="h3">Иконки</h3>
                         <div class="sg-icons-list">
                             <div class="sg-icon-row">
-                                <img src="img/визуальная система/styleguide/3 строка иконок без сетки.png" alt="Стрелка" class="sg-icon-strip sg-icon-strip--90"
-                                     data-no="img/визуальная система/styleguide/3 строка иконок без сетки.png"
-                                     data-yes="img/визуальная система/styleguide/3 строка иконок c сеткой.png">
+                                <img src="img/визуальная система/styleguide/стреклка иконка брендбук без сетки.png" alt="Стрелка" class="sg-icon-strip sg-icon-strip--90"
+                                     data-no="img/визуальная система/styleguide/стреклка иконка брендбук без сетки.png"
+                                     data-yes="img/визуальная система/styleguide/стреклка иконка брендбук с сеткой.png">
                                 <p class="sg-elem-desc">71×46 пт</p>
                                 <p class="sg-icon-desc">Стрелка пролистывания или перехода на другую страницу</p>
                             </div>
@@ -2817,10 +2841,10 @@
 
                     <!-- Сайт -->
                     <div class="nos-card" data-nos-id="sajt" data-name="Сайт"
-                         data-mockup="img/носители/внешние/интернет/сайт.gif"
+                         data-mockup="img/носители/внешние/интернет/сайт.mp4"
                          data-layout="">
                         <div class="nos-card__img-wrap">
-                            <img src="img/носители/внешние/интернет/сайт.gif" alt="Сайт" class="nos-card__img">
+                            <img src="img/носители/внешние/интернет/Сайт.PNG" alt="Сайт" class="nos-card__img">
                         </div>
                         <span class="nos-card__name">Сайт</span>
                     </div>

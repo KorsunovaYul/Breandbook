@@ -485,6 +485,60 @@ body {
     50%       { transform: translateY(-1.5rem); }
 }
 
+/* ── Попап рассылочного письма ── */
+.letter-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.letter-popup[hidden] { display: none; }
+
+.letter-popup__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(21, 58, 97, 0.55);
+}
+
+.letter-popup__panel {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    max-width: 52rem;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 0 0 0.75rem 0.75rem;
+    padding: 2rem;
+    transform: translateY(-100%);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.letter-popup--open .letter-popup__panel {
+    transform: translateY(0);
+}
+
+.letter-popup__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: var(--deep-blue);
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+}
+.letter-popup__close:hover { color: var(--volzhsky-blue); }
+
+.letter-popup__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* ================================================================
    КОМПОНЕНТ: СЕГМЕНТИРОВАННАЯ РАДИОКНОПКА
    Один источник правды для всех переключателей на сайте.
@@ -4004,6 +4058,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     background: var(--amber);
     border-color: var(--amber);
 }
+.sg-spec-label:hover:not(.active) .sg-spec-label-px,
+.sg-spec-label:hover:not(.active) .sg-spec-label-desc {
+    color: var(--deep-blue);
+}
 
 .sg-spec-label-px {
     font-family: 'Arsenal SC', serif;
@@ -4774,7 +4832,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     cursor: zoom-in;
 }
 /* Мокап — обрезается, заполняет */
-.nos-modal__img-wrap img {
+.nos-modal__img-wrap img,
+.nos-modal__img-wrap video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -4782,8 +4841,27 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     transition: opacity 0.2s;
 }
 /* Макет — показывается целиком на белом фоне */
-.nos-modal__img-wrap--layout img {
+.nos-modal__img-wrap--layout img,
+.nos-modal__img-wrap--layout video {
     object-fit: contain;
+}
+
+/* Landscape-карточки (3 в ряд, пропорция 3:2) — Городская среда и Транспорт */
+.nos-cards-grid--landscape .nos-card {
+    flex: 0 0 calc(33.333% - var(--col-gap) * 2 / 3);
+}
+.nos-cards-grid--landscape .nos-card__img-wrap {
+    aspect-ratio: 3 / 2;
+}
+@media (max-width: 900px) {
+    .nos-cards-grid--landscape .nos-card { flex: 0 0 calc(50% - var(--col-gap) / 2); }
+}
+
+/* Сайт — гифка чуть меньше (в карточке) */
+.nos-card[data-nos-id="sajt"] .nos-card__img {
+    object-fit: contain;
+    transform: scale(0.8);
+    transform-origin: center center;
 }
 
 /* Приписка «все значения в мм» на макетах */
@@ -4810,11 +4888,12 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     overflow-y: auto;
 }
 
-/* Переключалка Мокап/Макет — внизу правой панели */
+/* Переключалка Мокап/Макет — справа от варианта */
 .nos-modal__view-toggle {
     display: flex;
-    margin-top: 0.5rem;   /* 8px — маленький отступ между двумя тоглами */
+    margin-top: 0;
     flex-shrink: 0;
+    align-self: flex-start;
 }
 
 /* Скрываем нативные кружки radio, оставляем только лейблы */
@@ -4968,15 +5047,26 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin-bottom: 2rem;
 }
 
-/* Скрываем неактивные вкладки */
-.vnesh-subsection[hidden] { display: none; }
+/* Отступ между подблоками — как между блоками в других секциях */
+.vnesh-subsection + .vnesh-subsection {
+    margin-top: var(--gap-h2-to-h3);
+}
+
+/* ── Ряд: варианты слева + Мокап/Макет справа ── */
+.nos-modal__toggles-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-top: 1.5rem;   /* 24px — отступ от текста описания */
+}
 
 /* ── Вариант-тогл в попапе (Светлый / Тёмный и т.п.) ── */
 .nos-modal__variants {
     display: inline-flex;
     flex-direction: column;
     align-self: flex-start;
-    margin-top: 1.5rem;   /* 24px — отступ от текста описания */
+    margin-top: 0;
     margin-bottom: 0;
     flex-shrink: 0;
 }

@@ -931,7 +931,7 @@ document.querySelectorAll('.color-codes span').forEach(span => {
 })();
 
 // ── 3 Носители: фабрика карусели ──
-function makeNosCarousel(gridEl, btnPrev, btnNext) {
+function makeNosCarousel(gridEl, btnPrev, btnNext, visibleDesktop = 4) {
     if (!gridEl || !btnPrev || !btnNext) return null;
 
     const cards = gridEl.querySelectorAll('.nos-card');
@@ -946,7 +946,7 @@ function makeNosCarousel(gridEl, btnPrev, btnNext) {
     function maxOffset() {
         if (isMobile()) return Math.max(0, Math.ceil(cards.length / MOBILE_PAGE) - 1);
         const vw = gridEl.parentElement.offsetWidth;
-        return Math.max(0, cards.length - (vw < 900 ? 2 : 4));
+        return Math.max(0, cards.length - (vw < 900 ? 2 : visibleDesktop));
     }
 
     function update() {
@@ -999,24 +999,11 @@ makeNosCarousel(
     document.getElementById('vneshSuvenirPrev'),
     document.getElementById('vneshSuvenirNext')
 );
-// Внешние носители — Навигация / Интернет / Транспорт (пока пустые)
-makeNosCarousel(document.getElementById('vneshNavGrid'),    document.getElementById('vneshNavPrev'),    document.getElementById('vneshNavNext'));
-makeNosCarousel(document.getElementById('vneshInetGrid'),   document.getElementById('vneshInetPrev'),   document.getElementById('vneshInetNext'));
-makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementById('vneshTranspPrev'), document.getElementById('vneshTranspNext'));
+makeNosCarousel(document.getElementById('vneshNavGrid'),    document.getElementById('vneshNavPrev'),    document.getElementById('vneshNavNext'),    3);
+makeNosCarousel(document.getElementById('vneshInetGrid'),   document.getElementById('vneshInetPrev'),   document.getElementById('vneshInetNext'),   3);
+makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementById('vneshTranspPrev'), document.getElementById('vneshTranspNext'), 3);
 
-// ── Внешние носители: переключение вкладок ──
-(function () {
-    const tabs   = document.querySelectorAll('#vnesh-tabs .grafika-tab');
-    const panels = document.querySelectorAll('.vnesh-subsection');
-    if (!tabs.length) return;
-    tabs.forEach(btn => {
-        btn.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            btn.classList.add('active');
-            panels.forEach(p => { p.hidden = (p.dataset.vnesh !== btn.dataset.vnesh); });
-        });
-    });
-})();
+// Вкладки внешних носителей удалены — все подблоки отображаются стопкой
 
 // ── 3 Носители: попап карточки носителя ──
 (function () {
@@ -1099,14 +1086,13 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
             : '';
     }
 
-    /* ── Показать изображение по типу (мокап / макет) ── */
+    /* ── Показать изображение / видео по типу (мокап / макет) ── */
     function showImage(type) {
         if (!currentCard) return;
 
         let src;
         if (currentVariants && currentVariants[currentVariant]) {
             const v = currentVariants[currentVariant];
-            // если у варианта нет своего макета — берём макет самой карточки
             src = type === 'layout'
                 ? (v.layout || currentCard.dataset.layout)
                 : (v.mockup || currentCard.dataset.mockup);
@@ -1117,10 +1103,27 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
         imgWrap.innerHTML = '';
         imgWrap.classList.toggle('nos-modal__img-wrap--layout', type === 'layout');
         if (src) {
-            const img = document.createElement('img');
-            img.src   = src;
-            img.alt   = currentCard.dataset.name || '';
-            imgWrap.appendChild(img);
+            let el;
+            if (/\.mp4$/i.test(src)) {
+                // Видео-мокап
+                el = document.createElement('video');
+                el.src         = src;
+                el.autoplay    = true;
+                el.loop        = true;
+                el.muted       = true;
+                el.playsInline = true;
+            } else {
+                el = document.createElement('img');
+                el.src = src;
+                el.alt = currentCard.dataset.name || '';
+                // Сайт — гифка в 2 раза меньше в попапе
+                if (currentCard.dataset.nosId === 'sajt') {
+                    el.style.objectFit = 'contain';
+                    el.style.transform = 'scale(0.8)';
+                    el.style.transformOrigin = 'center center';
+                }
+            }
+            imgWrap.appendChild(el);
             imgWrap.classList.remove('nos-modal__img-wrap--empty');
         } else {
             imgWrap.classList.add('nos-modal__img-wrap--empty');
@@ -1208,4 +1211,34 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
             }, 300);
         }, 2500);
     });
+})();
+
+// ── Попап рассылочного письма (вылетает сверху при клике на конверт) ──
+(function () {
+    const envelope = document.getElementById('heroEnvelope');
+    const popup    = document.getElementById('letterPopup');
+    const overlay  = document.getElementById('letterPopupOverlay');
+    const closeBtn = document.getElementById('letterPopupClose');
+    if (!envelope || !popup) return;
+
+    function openLetter() {
+        popup.hidden = false;
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => popup.classList.add('letter-popup--open'));
+        });
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLetter() {
+        popup.classList.remove('letter-popup--open');
+        setTimeout(() => {
+            popup.hidden = true;
+            document.body.style.overflow = '';
+        }, 450);
+    }
+
+    envelope.addEventListener('click', openLetter);
+    overlay.addEventListener('click', closeLetter);
+    closeBtn.addEventListener('click', closeLetter);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLetter(); });
 })();

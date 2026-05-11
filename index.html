@@ -84,12 +84,12 @@
     <div class="nav-section">
         <div class="nav-section-title">3 Носители</div>
         <ul>
-            <li><a href="#">Внутренние носители</a></li>
+            <li><a href="#vnutrennie-nositeli">Внутренние носители</a></li>
             <li><a href="#vneshnie-nositeli">Внешние носители</a></li>
-            <li class="sub-item"><a href="#vneshnie-nositeli">Сувенирная продукция</a></li>
-            <li class="sub-item"><a href="#vneshnie-nositeli">Навигация</a></li>
-            <li class="sub-item"><a href="#vneshnie-nositeli">Интернет</a></li>
-            <li class="sub-item"><a href="#vneshnie-nositeli">Транспорт</a></li>
+            <li class="sub-item"><a href="#vnesh-suveniry">Сувенирная продукция</a></li>
+            <li class="sub-item"><a href="#vnesh-sreda">Городская среда</a></li>
+            <li class="sub-item"><a href="#vnesh-internet">Интернет</a></li>
+            <li class="sub-item"><a href="#vnesh-transport">Транспорт</a></li>
         </ul>
     </div>
 
@@ -169,10 +169,10 @@
                 <ul>
                     <li><a href="#vnutrennie-nositeli">Внутренние носители</a></li>
                     <li><a href="#vneshnie-nositeli">Внешние носители</a></li>
-                    <li class="sub-item"><a href="#vneshnie-nositeli">Сувенирная продукция</a></li>
-                    <li class="sub-item"><a href="#vneshnie-nositeli">Навигация</a></li>
-                    <li class="sub-item"><a href="#vneshnie-nositeli">Интернет</a></li>
-                    <li class="sub-item"><a href="#vneshnie-nositeli">Транспорт</a></li>
+                    <li class="sub-item"><a href="#vnesh-suveniry">Сувенирная продукция</a></li>
+                    <li class="sub-item"><a href="#vnesh-sreda">Городская среда</a></li>
+                    <li class="sub-item"><a href="#vnesh-internet">Интернет</a></li>
+                    <li class="sub-item"><a href="#vnesh-transport">Транспорт</a></li>
                 </ul>
             </div>
 
@@ -232,11 +232,20 @@
                 <a href="#koncepciya" class="btn-hero">Начать</a>
             </div>
             <div class="hero-right">
-                <div class="hero-envelope">
+                <div class="hero-envelope" id="heroEnvelope" title="Рассылочное письмо" style="cursor:pointer">
                     <img src="img/визуальная система/письмо.png" alt="Письмо в Ульяновск" class="envelope-img">
                 </div>
             </div>
         </section>
+
+        <!-- Попап: Рассылочное письмо (вылетает сверху) -->
+        <div class="letter-popup" id="letterPopup" hidden>
+            <div class="letter-popup__overlay" id="letterPopupOverlay"></div>
+            <div class="letter-popup__panel">
+                <button class="letter-popup__close" id="letterPopupClose" aria-label="Закрыть">✕</button>
+                <img src="img/носители/внешние/интернет/рассылочное письмо.png" alt="Рассылочное письмо" class="letter-popup__img" id="letterPopupImg">
+            </div>
+        </div>
 
         <!-- Блок: Структура -->
         <section id="structure">
@@ -276,12 +285,12 @@
                 <div class="structure-card">
                     <div class="structure-card-title">Носители</div>
                     <ul>
-                        <li><a href="#">Внутренние носители</a></li>
+                        <li><a href="#vnutrennie-nositeli">Внутренние носители</a></li>
                         <li><a href="#vneshnie-nositeli">Внешние носители</a></li>
-                        <li class="sub-item"><a href="#vneshnie-nositeli">Сувенирная продукция</a></li>
-                        <li class="sub-item"><a href="#vneshnie-nositeli">Навигация</a></li>
-                        <li class="sub-item"><a href="#vneshnie-nositeli">Интернет</a></li>
-                        <li class="sub-item"><a href="#vneshnie-nositeli">Транспорт</a></li>
+                        <li class="sub-item"><a href="#vnesh-suveniry">Сувенирная продукция</a></li>
+                        <li class="sub-item"><a href="#vnesh-sreda">Городская среда</a></li>
+                        <li class="sub-item"><a href="#vnesh-internet">Интернет</a></li>
+                        <li class="sub-item"><a href="#vnesh-transport">Транспорт</a></li>
                     </ul>
                 </div>
 
@@ -1386,7 +1395,7 @@
                              alt="Паттерн Янтарный">
                         <img class="pattern-img pattern-img--delovoj"
                              src="img/визуальная система/паттерн/паттерн 6.png"
-                             alt="Паттерн Деловой">
+                             alt="Паттерн Монохромный">
                     </div>
 
                     <!-- Правая колонка: 6 контентных колонок -->
@@ -1407,7 +1416,7 @@
                             <input type="radio" name="pattern-versii" id="pr-yantarnyj" value="yantarnyj">
                             <label for="pr-yantarnyj" class="pattern-radio-lbl">Янтарный</label>
                             <input type="radio" name="pattern-versii" id="pr-delovoj"   value="delovoj">
-                            <label for="pr-delovoj"   class="pattern-radio-lbl">Деловой</label>
+                            <label for="pr-delovoj"   class="pattern-radio-lbl">Монохромный</label>
                         </div>
                     </div>
 
@@ -1427,19 +1436,19 @@
                              alt="Яркий паттерн">
                         <img class="pattern-img pattern-img--delovoj-isp"
                              src="img/визуальная система/паттерн/деловой.png"
-                             alt="Деловой паттерн">
+                             alt="Монохромный паттерн">
                     </div>
 
                     <!-- Правая колонка -->
                     <div class="pattern-info-col">
                         <h3 class="h3">Использование паттерна</h3>
                         <p class="text pattern-desc">Яркий паттерн предназначен для внешних носителей: он привлекает внимание широкой аудитории. Можно использовать паттерн целиком или брать отдельные блоки, выстраивая их в горизонтальную полосу. Блоки расположены по квадратной сетке — ряды выровнены ровно друг под другом.</p>
-                        <p class="text pattern-desc">Деловой паттерн используется в корпоративной документации. Его отличительная черта — кирпичная раскладка: каждый ряд блоков сдвинут на полшага вправо относительно предыдущего. Так же можно использовать паттерн целиком или выстраивать блоки в линию.</p>
+                        <p class="text pattern-desc">Монохромный паттерн используется в корпоративной документации и сувенирной продукции. Его отличительная черта — кирпичная раскладка: каждый ряд блоков сдвинут на полшага вправо относительно предыдущего. Так же можно использовать паттерн целиком или выстраивать блоки в линию.</p>
 
                         <div class="pattern-radio-wrap">
                             <input type="radio" name="pattern-isp" id="pi-yarkij"  value="yarkij"     checked>
                             <label for="pi-yarkij"  class="pattern-radio-lbl">Яркий</label><input type="radio" name="pattern-isp" id="pi-delovoj" value="delovoj-isp">
-                            <label for="pi-delovoj" class="pattern-radio-lbl">Деловой</label>
+                            <label for="pi-delovoj" class="pattern-radio-lbl">Монохромный</label>
                         </div>
                     </div>
 
@@ -2155,12 +2164,15 @@
                     <span class="nos-card__name">Бланк</span>
                 </div>
 
-                <!-- Презентация (мокап будет добавлен позже) -->
-                <div class="nos-card nos-card--placeholder" data-nos-id="prezentaciya"
-                     data-name="Презентация"
-                     data-mockup=""
-                     data-layout="">
-                    <div class="nos-card__img-wrap nos-card__img-wrap--empty"></div>
+                <!-- Презентация -->
+                <div class="nos-card" data-nos-id="prezentaciya" data-name="Презентация"
+                     data-mockup="img/носители/внутренние/презентация слайд 1.png"
+                     data-layout="img/носители/внутренние/макет слайд 1.png"
+                     data-slides='["img/носители/внутренние/презентация слайд 1.png","img/носители/внутренние/презентация слайд 2.png","img/носители/внутренние/презентация слайд 3.png","img/носители/внутренние/презентация слайд 4.png"]'
+                     data-variants='[{"label":"Слайд 1","mockup":"img/носители/внутренние/презентация слайд 1.png","layout":"img/носители/внутренние/макет слайд 1.png"},{"label":"Слайд 2","mockup":"img/носители/внутренние/презентация слайд 2.png","layout":"img/носители/внутренние/макет слайд 2.png"},{"label":"Слайд 3","mockup":"img/носители/внутренние/презентация слайд 3.png","layout":"img/носители/внутренние/макет слайд 3.png"},{"label":"Слайд 4","mockup":"img/носители/внутренние/презентация слайд 4.png","layout":"img/носители/внутренние/макет слайд 4.png"}]'>
+                    <div class="nos-card__img-wrap">
+                        <img src="img/носители/внутренние/презентация слайд 1.png" alt="Презентация" class="nos-card__img">
+                    </div>
                     <span class="nos-card__name">Презентация</span>
                 </div>
 
@@ -2176,16 +2188,10 @@
 
             <div class="nos-chapter-head">
                 <h2 class="h2 vnesh-main-title">Внешние носители</h2>
-                <nav class="grafika-tabs" id="vnesh-tabs">
-                    <button class="grafika-tab active" data-vnesh="suveniry">Сувенирная продукция</button>
-                    <button class="grafika-tab" data-vnesh="navigaciya">Навигация</button>
-                    <button class="grafika-tab" data-vnesh="internet">Интернет</button>
-                    <button class="grafika-tab" data-vnesh="transport">Транспорт</button>
-                </nav>
             </div>
 
             <!-- ── Сувенирная продукция ── -->
-            <div class="vnesh-subsection" data-vnesh="suveniry">
+            <div class="vnesh-subsection" data-vnesh="suveniry" id="vnesh-suveniry">
                 <h3 class="nos-subsection-title">Сувенирная продукция</h3>
                 <div class="nos-nav-row">
                     <button class="nos-nav-btn nos-nav-btn--prev" id="vneshSuvenirPrev" aria-label="Назад">
@@ -2219,31 +2225,25 @@
                         <span class="nos-card__name">Открытка</span>
                     </div>
 
-                    <!-- Плакаты (2 варианта: Светлый / Тёмный) -->
-                    <div class="nos-card" data-nos-id="plakaty" data-name="Плакаты"
-                         data-mockup="" data-layout=""
-                         data-variants='[{"label":"Светлый","mockup":"","layout":""},{"label":"Тёмный","mockup":"","layout":""}]'>
-                        <div class="nos-card__img-wrap nos-card__img-wrap--empty"></div>
-                        <span class="nos-card__name">Плакаты</span>
-                    </div>
 
-                    <!-- Баннер -->
-                    <div class="nos-card" data-nos-id="banner" data-name="Баннер" data-mockup="" data-layout="">
-                        <div class="nos-card__img-wrap nos-card__img-wrap--empty"></div>
-                        <span class="nos-card__name">Баннер</span>
-                    </div>
-
-                    <!-- Стикеры -->
-                    <div class="nos-card" data-nos-id="stikery" data-name="Стикеры" data-mockup="" data-layout="">
-                        <div class="nos-card__img-wrap nos-card__img-wrap--empty"></div>
-                        <span class="nos-card__name">Стикеры</span>
+                    <!-- Стикерпак -->
+                    <div class="nos-card" data-nos-id="stikery" data-name="Стикерпак"
+                         data-mockup="img/носители/внешние/сувениры/стикерпак.png"
+                         data-layout="img/носители/внешние/сувениры/макет стикерпак.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/сувениры/стикерпак.png" alt="Стикерпак" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Стикерпак</span>
                     </div>
 
                     <!-- Футболки (2 варианта: Светлый / Тёмный) -->
                     <div class="nos-card" data-nos-id="futbolki" data-name="Футболки"
-                         data-mockup="" data-layout=""
-                         data-variants='[{"label":"Светлый","mockup":"","layout":""},{"label":"Тёмный","mockup":"","layout":""}]'>
-                        <div class="nos-card__img-wrap nos-card__img-wrap--empty"></div>
+                         data-mockup="img/носители/внешние/сувениры/футболка светлая.png"
+                         data-layout="img/носители/внешние/сувениры/макет футболок.png"
+                         data-variants='[{"label":"Светлый","mockup":"img/носители/внешние/сувениры/футболка светлая.png","layout":"img/носители/внешние/сувениры/макет футболок.png","tpl":"nos-desc-futbolki-svetly"},{"label":"Тёмный","mockup":"img/носители/внешние/сувениры/футболка тёмная.png","layout":"img/носители/внешние/сувениры/макет футболок.png","tpl":"nos-desc-futbolki-temny"}]'>
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/сувениры/футболка светлая.png" alt="Футболки" class="nos-card__img">
+                        </div>
                         <span class="nos-card__name">Футболки</span>
                     </div>
 
@@ -2341,29 +2341,23 @@
                         <span class="nos-card__name">Кепка</span>
                     </div>
 
-                    <!-- Press Wall -->
-                    <div class="nos-card" data-nos-id="presswall" data-name="Press Wall"
-                         data-mockup="img/носители/внешние/сувениры/presswall.png"
-                         data-layout="img/носители/внешние/сувениры/presswall макет.png">
+                    <!-- Буклет -->
+                    <div class="nos-card" data-nos-id="buklet" data-name="Буклет"
+                         data-mockup="img/носители/внешние/сувениры/буклет.png"
+                         data-layout="img/носители/внешние/сувениры/буклет мокап.png">
                         <div class="nos-card__img-wrap">
-                            <img src="img/носители/внешние/сувениры/presswall.png" alt="Press Wall" class="nos-card__img">
+                            <img src="img/носители/внешние/сувениры/буклет.png" alt="Буклет" class="nos-card__img">
                         </div>
-                        <span class="nos-card__name">Press Wall</span>
-                    </div>
-
-                    <!-- Рассылочное письмо -->
-                    <div class="nos-card" data-nos-id="rassylka" data-name="Рассылочное письмо" data-mockup="" data-layout="">
-                        <div class="nos-card__img-wrap nos-card__img-wrap--empty"></div>
-                        <span class="nos-card__name">Рассылочное письмо</span>
+                        <span class="nos-card__name">Буклет</span>
                     </div>
 
                 </div><!-- #vneshSuvenirGrid -->
                 </div><!-- .nos-cards-viewport -->
             </div><!-- [data-vnesh="suveniry"] -->
 
-            <!-- ── Навигация ── -->
-            <div class="vnesh-subsection" data-vnesh="navigaciya" hidden>
-                <h3 class="nos-subsection-title">Навигация</h3>
+            <!-- ── Городская среда ── -->
+            <div class="vnesh-subsection" data-vnesh="navigaciya" id="vnesh-sreda">
+                <h3 class="nos-subsection-title">Городская среда</h3>
                 <div class="nos-nav-row">
                     <button class="nos-nav-btn nos-nav-btn--prev" id="vneshNavPrev" aria-label="Назад">
                         <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2383,14 +2377,84 @@
                     </button>
                 </div>
                 <div class="nos-cards-viewport">
-                <div class="nos-cards-grid" id="vneshNavGrid">
-                    <!-- Карточки навигации — в разработке -->
+                <div class="nos-cards-grid nos-cards-grid--landscape" id="vneshNavGrid">
+
+                    <!-- Ларёк с газетой -->
+                    <div class="nos-card" data-nos-id="larek" data-name="Ларёк с газетой"
+                         data-mockup="img/носители/внешние/городская среда/ларёк с газетой.png"
+                         data-layout="img/носители/внешние/городская среда/макет ларёк с газетой.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/ларёк с газетой.png" alt="Ларёк с газетой" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Ларёк с газетой</span>
+                    </div>
+
+                    <!-- Указатели -->
+                    <div class="nos-card" data-nos-id="ukazateli" data-name="Указатели"
+                         data-mockup="img/носители/внешние/городская среда/указатели.png"
+                         data-layout="img/носители/внешние/городская среда/макет указатели.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/указатели.png" alt="Указатели" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Указатели</span>
+                    </div>
+
+                    <!-- Остановка -->
+                    <div class="nos-card" data-nos-id="ostanovka" data-name="Остановка"
+                         data-mockup="img/носители/внешние/городская среда/остановка.png"
+                         data-layout="img/носители/внешние/городская среда/макет остановки.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/остановка.png" alt="Остановка" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Остановка</span>
+                    </div>
+
+                    <!-- Таблички домов -->
+                    <div class="nos-card" data-nos-id="tablichki" data-name="Таблички домов"
+                         data-mockup="img/носители/внешние/городская среда/табличка дома.png"
+                         data-layout="img/носители/внешние/городская среда/макет таблички дома.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/табличка дома.png" alt="Таблички домов" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Таблички домов</span>
+                    </div>
+
+                    <!-- Плакаты -->
+                    <div class="nos-card" data-nos-id="plakaty" data-name="Плакаты"
+                         data-mockup="img/носители/внешние/городская среда/плакаты.png"
+                         data-layout="img/носители/внешние/городская среда/макет плакатов.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/плакаты.png" alt="Плакаты" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Плакаты</span>
+                    </div>
+
+                    <!-- Баннер -->
+                    <div class="nos-card" data-nos-id="banner" data-name="Баннер"
+                         data-mockup="img/носители/внешние/городская среда/баннер.mp4"
+                         data-layout="img/носители/внешние/городская среда/макет баннера.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/городская среда/баннер.PNG" alt="Баннер" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Баннер</span>
+                    </div>
+
+                    <!-- Press Wall -->
+                    <div class="nos-card" data-nos-id="presswall" data-name="Press Wall"
+                         data-mockup="img/носители/внешние/сувениры/presswall.png"
+                         data-layout="img/носители/внешние/сувениры/presswall макет.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/сувениры/presswall.png" alt="Press Wall" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Press Wall</span>
+                    </div>
+
                 </div>
                 </div>
             </div><!-- [data-vnesh="navigaciya"] -->
 
             <!-- ── Интернет ── -->
-            <div class="vnesh-subsection" data-vnesh="internet" hidden>
+            <div class="vnesh-subsection" data-vnesh="internet" id="vnesh-internet">
                 <h3 class="nos-subsection-title">Интернет</h3>
                 <div class="nos-nav-row">
                     <button class="nos-nav-btn nos-nav-btn--prev" id="vneshInetPrev" aria-label="Назад">
@@ -2411,14 +2475,44 @@
                     </button>
                 </div>
                 <div class="nos-cards-viewport">
-                <div class="nos-cards-grid" id="vneshInetGrid">
-                    <!-- Карточки интернета — в разработке -->
+                <div class="nos-cards-grid nos-cards-grid--landscape" id="vneshInetGrid">
+
+                    <!-- ВКонтакте -->
+                    <div class="nos-card" data-nos-id="vk" data-name="ВКонтакте"
+                         data-mockup="img/носители/внешние/интернет/вк.png"
+                         data-layout="img/носители/внешние/интернет/макет вк.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/интернет/вк.png" alt="ВКонтакте" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">ВКонтакте</span>
+                    </div>
+
+                    <!-- Сайт -->
+                    <div class="nos-card" data-nos-id="sajt" data-name="Сайт"
+                         data-mockup="img/носители/внешние/интернет/сайт.gif"
+                         data-layout="">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/интернет/сайт.gif" alt="Сайт" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Сайт</span>
+                    </div>
+
+                    <!-- Стикеры в ТГ -->
+                    <div class="nos-card" data-nos-id="stikery-tg" data-name="Стикеры в ТГ"
+                         data-mockup="img/носители/внешние/интернет/стикеры тг.mp4"
+                         data-layout="img/носители/внешние/интернет/макет стикеров.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/интернет/тг.PNG" alt="Стикеры в ТГ" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Стикеры в ТГ</span>
+                    </div>
+
                 </div>
                 </div>
             </div><!-- [data-vnesh="internet"] -->
 
             <!-- ── Транспорт ── -->
-            <div class="vnesh-subsection" data-vnesh="transport" hidden>
+            <div class="vnesh-subsection" data-vnesh="transport" id="vnesh-transport">
                 <h3 class="nos-subsection-title">Транспорт</h3>
                 <div class="nos-nav-row">
                     <button class="nos-nav-btn nos-nav-btn--prev" id="vneshTranspPrev" aria-label="Назад">
@@ -2439,8 +2533,48 @@
                     </button>
                 </div>
                 <div class="nos-cards-viewport">
-                <div class="nos-cards-grid" id="vneshTranspGrid">
-                    <!-- Карточки транспорта — в разработке -->
+                <div class="nos-cards-grid nos-cards-grid--landscape" id="vneshTranspGrid">
+
+                    <!-- Автобус -->
+                    <div class="nos-card" data-nos-id="avtobus" data-name="Автобус"
+                         data-mockup="img/носители/внешние/транспорт/автобус.png"
+                         data-layout="img/носители/внешние/транспорт/макет автобуса.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/транспорт/автобус.png" alt="Автобус" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Автобус</span>
+                    </div>
+
+                    <!-- Самолёт -->
+                    <div class="nos-card" data-nos-id="samolet" data-name="Самолёт"
+                         data-mockup="img/носители/внешние/транспорт/самолёт.png"
+                         data-layout="img/носители/внешние/транспорт/макет самолёта.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/транспорт/самолёт.png" alt="Самолёт" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Самолёт</span>
+                    </div>
+
+                    <!-- Транспортная карта -->
+                    <div class="nos-card" data-nos-id="bilet" data-name="Транспортная карта"
+                         data-mockup="img/носители/внешние/транспорт/транспортная карта.png"
+                         data-layout="img/носители/внешние/транспорт/макет транспортная карта.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/транспорт/транспортная карта.png" alt="Транспортная карта" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Транспортная карта</span>
+                    </div>
+
+                    <!-- Сидения в транспорте -->
+                    <div class="nos-card" data-nos-id="sidenia" data-name="Сидения в транспорте"
+                         data-mockup="img/носители/внешние/транспорт/сидения в автобусе.png"
+                         data-layout="img/носители/внешние/транспорт/макет сидения в автобусе.png">
+                        <div class="nos-card__img-wrap">
+                            <img src="img/носители/внешние/транспорт/сидения в автобусе.png" alt="Сидения в транспорте" class="nos-card__img">
+                        </div>
+                        <span class="nos-card__name">Сидения в транспорте</span>
+                    </div>
+
                 </div>
                 </div>
             </div><!-- [data-vnesh="transport"] -->
@@ -2454,25 +2588,31 @@
 <!-- ══ Описания для попапа (template) ══ -->
 <template id="nos-desc-papka">
     <p>Лицевая сторона папки украшена логотипом с подписью и паттерном.</p>
-    <p><strong>Размер</strong> в сложенном виде: 216×303 мм<br><strong>Материал:</strong> мелованная бумага белого цвета, 240–300 г/м²</p>
+    <p><strong>Размер</strong> в сложенном виде: 216×303 мм</p>
+    <p><strong>Материал:</strong> мелованная бумага белого цвета, 240–300 г/м²</p>
 </template>
 
 <template id="nos-desc-bejdzh">
     <p>На бейдже на лицевой стороне указаны имя и должность сотрудника. На обратной стороне — знак из логотипа.</p>
     <p><strong>Имя сотрудника</strong><br>Шрифт: Arsenal SC Bold<br>Кегль: 16 п.<br>Интерлиньяж: 18 п.</p>
     <p><strong>Должность</strong><br>Шрифт: Inter Regular<br>Кегль: 10 п.<br>Интерлиньяж: 12 п.</p>
-    <p><strong>Размер:</strong> 120×90 мм<br><strong>Материал:</strong> белый пластик</p>
+    <p><strong>Размер:</strong> 120×90 мм</p>
+    <p><strong>Материал:</strong> белый пластик</p>
 </template>
 
 <template id="nos-desc-konvert">
     <p>На фирменных конвертах с лицевой стороны печатается логотип с адресным блоком. Адрес получателя впечатывается на принтере или заполняется от руки.</p>
     <p>На обратной стороне расположены паттерн и адресный блок.</p>
+    <p><strong>Размер:</strong> DL — 110×220 мм</p>
+    <p><strong>Материал:</strong> офсетная бумага 90 г/м²</p>
     <p><strong>Адресный блок</strong><br>Шрифт: Inter Regular<br>Кегль: 10 п.<br>Интерлиньяж: 14 п.</p>
 </template>
 
 <template id="nos-desc-blank">
     <p>В пресс-релизе имеются заголовок, основной текст и блок с контактными данными. Вся информация оформляется единообразно во всех пресс-релизах.</p>
     <p>Сверху слева — светлый горизонтальный логотип с подписью, снизу — фирменные графические элементы в деловом стиле.</p>
+    <p><strong>Формат:</strong> А4 — 210×297 мм</p>
+    <p><strong>Материал:</strong> офсетная бумага 90 г/м²</p>
     <p><strong>Адресный блок</strong><br>Шрифт: Inter Regular<br>Кегль: 8 п.<br>Интерлиньяж: 9 п.</p>
     <p><strong>Заголовок</strong><br>Шрифт: Inter Regular<br>Кегль: 18 п.<br>Интерлиньяж: 20 п.</p>
     <p><strong>Текст</strong><br>Шрифт: Inter Regular<br>Кегль: 10 п.<br>Интерлиньяж: 12 п.</p>
@@ -2480,35 +2620,48 @@
 </template>
 
 <template id="nos-desc-prezentaciya">
-    <p>Мокап будет добавлен позже.</p>
+    <p>Представлено 4 слайда: титульный, слайд с картинкой, слайд с текстом и нумерацией, финальный слайд.</p>
+    <p><strong>Размер:</strong> 1920×1080 px</p>
+    <p><strong>Слайд 1 — заголовок:</strong> Arsenal SC Bold, 138 п., межстр. 84%<br>
+       <strong>Подпись:</strong> Inter Regular, 24 п.<br>
+       <strong>Год:</strong> Arsenal SC Bold, 34 п.</p>
+    <p><strong>Слайды 2–3 — заголовок:</strong> Arsenal SC Bold, 64 п., межстр. 67 п.<br>
+       <strong>Подпись / текст:</strong> Inter Regular, 24 п.<br>
+       <strong>Нумерация:</strong> Arsenal SC Bold, 36 п.</p>
 </template>
 
 <!-- ══ Внешние носители — описания ══ -->
 
 <template id="nos-desc-otkrytka">
     <p>На лицевой стороне открытки — иллюстрация с названием города. На задней стороне — логотип, поля для адреса и место для марки.</p>
+    <p><strong>Размер:</strong> А6 — 105×148 мм</p>
+    <p><strong>Материал:</strong> мелованная бумага 300 г/м²</p>
     <p><strong>Адресный блок</strong><br>Шрифт: Arsenal SC Bold / Regular<br>Кегль: 8 п.<br>Интерлиньяж: 9 п.</p>
     <p><strong>Ульяновск</strong><br>Шрифт: Arsenal SC Bold / Regular<br>Кегль: 48 п.<br>Интерлиньяж: 50 п.</p>
 </template>
 
 <template id="nos-desc-ruchki">
     <p>На ручку наносится логотип — светлый или тёмный — в соответствии с окраской ручки по фирменной палитре.</p>
-    <p><strong>Размер:</strong> 470×150 мм<br><strong>Материал:</strong> пластик</p>
+    <p><strong>Размер:</strong> 470×150 мм</p>
+    <p><strong>Материал:</strong> пластик</p>
 </template>
 
 <template id="nos-desc-ekosum">
     <p>На экосумку наносится логотип города с подписью и паттерн. Ручка окрашена в глубокий синий.</p>
-    <p><strong>Размер</strong> (без ручки): 380×350 мм<br><strong>Материал:</strong> 100% хлопок</p>
+    <p><strong>Размер</strong> (без ручки): 380×350 мм</p>
+    <p><strong>Материал:</strong> 100% хлопок</p>
 </template>
 
 <template id="nos-desc-bloknot">
     <p>На блокнот наносится логотип города с подписью и паттерн.</p>
-    <p><strong>Размер:</strong> A5 — 148×210 мм</p>
+    <p><strong>Размер:</strong> А5 — 148×210 мм</p>
+    <p><strong>Материал:</strong> мелованная обложка 300 г/м², внутренние листы офсет 80 г/м²</p>
 </template>
 
 <template id="nos-desc-vizitka">
     <p>На лицевой стороне — информация о сотруднике: ФИО, должность и адресный блок. На обратной стороне — светлый знак логотипа.</p>
-    <p><strong>Размер:</strong> 90×50 мм<br><strong>Материал:</strong> мелованная бумага белого цвета, 300 г/м²</p>
+    <p><strong>Размер:</strong> 90×50 мм</p>
+    <p><strong>Материал:</strong> мелованная бумага белого цвета, 300 г/м²</p>
     <p><strong>Имя сотрудника</strong><br>Шрифт: Arsenal SC Bold<br>Кегль: 12 п.<br>Интерлиньяж: 14 п.</p>
     <p><strong>Должность</strong><br>Шрифт: Inter Regular<br>Кегль: 8 п.<br>Интерлиньяж: 9 п.</p>
     <p><strong>Адресный блок</strong><br>Шрифт: Inter Regular<br>Кегль: 6 п.<br>Интерлиньяж: 8 п.<br>Разрядка: 20</p>
@@ -2517,17 +2670,140 @@
 <template id="nos-desc-znachki">
     <p>В серию входят 6 значков: 4 на основе иллюстраций зданий с карты города и 2 с логотипом — в светлой и тёмной расцветке (без текстовой части).</p>
     <p><strong>Иллюстрационные значки:</strong> Гостиница «Венец», Ленинский мемориал, Художественный музей, Церковь Св. Марии.</p>
-    <p><strong>Диаметр:</strong> 44 мм<br><strong>Крепление:</strong> булавка<br><strong>Материал:</strong> металл, полимерная эмаль</p>
+    <p><strong>Высота:</strong> 40 мм</p>
+    <p><strong>Ширина:</strong> 19–48 мм</p>
+    <p><strong>Крепление:</strong> булавка</p>
+    <p><strong>Материал:</strong> металл, полимерная эмаль</p>
+</template>
+
+<template id="nos-desc-stikery">
+    <p>На стикерпаке расположены запоминающиеся символы Ульяновска, созданные на основе иллюстраций из карты города: Гостиница «Венец», Ленинский мемориал, Художественный музей, Церковь Св. Марии. Также есть 2 стикера с логотипом в светлой и тёмной расцветке, и мини-стикеры: симбирцит, балалайка и памятник букве «Ё».</p>
+    <p><strong>Формат:</strong> А4 — 210×297 мм</p>
+    <p><strong>Материал:</strong> самоклеящаяся бумага</p>
 </template>
 
 <template id="nos-desc-presswall">
     <p>Пресс-волл состоит из вертикального светлого паттерна с подписью, расставленного в шахматном порядке.</p>
     <p>На макете показан фрагмент — размер пресс-волла подбирается индивидуально под формат мероприятия.</p>
+    <p><strong>Материал:</strong> баннерная ткань или виниловый баннер</p>
+</template>
+
+<template id="nos-desc-buklet">
+    <p>Буклет представлен с двух сторон. На внутренней стороне — карта города, на внешней — лицевая и оборотная часть с описанием Ульяновска.</p>
+    <p><strong>Формат:</strong> А4 — 210×297 мм</p>
+    <p><strong>Материал:</strong> мелованная бумага 170 г/м²</p>
+    <p><strong>Внешняя сторона — заголовок:</strong> Arsenal SC Bold, 28 п., межстр. 32 п.<br>
+       <strong>Текст:</strong> Inter Regular, 8 п., межстр. 120%<br>
+       <strong>Карта Ульяновска:</strong> Arsenal SC Bold, 46 п., межстр. 48 п.</p>
+    <p><strong>Внутренняя сторона — заголовок:</strong> Arsenal SC Bold, 28 п., межстр. 32 п.<br>
+       <strong>Подписи зданий на карте:</strong> Arsenal SC Bold, 14 п., межстр. 120%</p>
+</template>
+
+<template id="nos-desc-tablichki">
+    <p>На адресной табличке расположены номер и улица дома. Фон выполнен в цвете волжский синий с шумовым градиентом глубокого синего.</p>
+    <p><strong>Размер:</strong> 520×250 мм</p>
+    <p><strong>Материал:</strong> металл с полимерным покрытием</p>
+    <p><strong>Улица:</strong> Arsenal SC Bold, 50 п., межстр. 56 п.<br>
+       <strong>Название улицы:</strong> Arsenal SC Bold, 100 п., межстр. 110 п.<br>
+       <strong>Номер дома:</strong> Arsenal SC Bold, 130 п., межстр. 140 п.</p>
+</template>
+
+<template id="nos-desc-larek">
+    <p>Компактный газетный киоск в современной интерпретации классического домика с двускатной крышей. Дизайн объединяет текстуру синего дерева с яркими акцентами фирменного паттерна в нижней части фасада.</p>
+    <p><strong>Ширина:</strong> 3,2 м</p>
+    <p><strong>Глубина:</strong> 4,5 м</p>
+    <p><strong>Высота:</strong> 3,8 м</p>
+    <p><strong>ПРЕССА:</strong> Inter Bold, высота знака 0,2 м</p>
+</template>
+
+<template id="nos-desc-ostanovka">
+    <p>Остановка выкрашена в глубокий синий, лавочка — янтарного цвета. На боковых частях расположены плакат и паттерн. Фирменная табличка остановки выполнена в глубоком синем с названием и фирменным элементом.</p>
+    <p><strong>Название остановки:</strong> Arsenal SC Bold, высота знака 30 мм<br>
+       <strong>Улица:</strong> Arsenal SC Bold, высота знака 80 мм</p>
+</template>
+
+<template id="nos-desc-ukazateli">
+    <p>На указателе размещено название места. Фон может быть выполнен в трёх вариантах: волжский синий с шумовым градиентом глубокого синего; янтарный с градиентом терракотового; терракотовый с белым шумом.</p>
+    <p><strong>Основное название:</strong> Arsenal SC Bold, 125 п., межстр. 140 п.<br>
+       <strong>Транслитерация:</strong> Arsenal SC Bold, 62 п., межстр. 70 п.<br>
+       <strong>Время в пути:</strong> Arsenal SC Bold, 62 п., межстр. 70 п.</p>
+</template>
+
+<template id="nos-desc-plakaty">
+    <p>Представлены два плаката формата А3. Плакат 1 — приглашение посетить Ульяновск и его популярные места. Плакат 2 — анонс Дня города с указанием места (пл. Ленина) и программы мероприятий.</p>
+    <p><strong>Формат:</strong> А3 — 297×420 мм</p>
+    <p><strong>Материал:</strong> мелованная бумага 200 г/м²</p>
+    <p><strong>Плакат 1 — заголовок:</strong> Arsenal SC Bold, 90 п., межстр. 80 п.<br>
+       <strong>Места и призыв:</strong> Inter Bold, 16 п., межстр. 120%</p>
+    <p><strong>Плакат 2 — «В парках Ульяновска»:</strong> Arsenal SC Bold, 78 п., межстр. 80 п.<br>
+       <strong>День города:</strong> Arsenal SC Bold, 60 п.<br>
+       <strong>378:</strong> Arsenal SC Bold, 128 п.</p>
+</template>
+
+<template id="nos-desc-banner">
+    <p>Анимированный горизонтальный баннер. Справа — призыв посетить город и перечень самых известных мест.</p>
+    <p><strong>Размер:</strong> 3000×1000 px</p>
+    <p><strong>«Путешествие»:</strong> Arsenal SC Bold, 90 п., межстр. 80 п.<br>
+       <strong>Заголовок:</strong> Arsenal SC Bold Italic, 76 п.<br>
+       <strong>«2 дня»:</strong> Arsenal SC Bold, 70 п.<br>
+       <strong>Места:</strong> Inter Bold, 28 п.</p>
+</template>
+
+<template id="nos-desc-vk">
+    <p>Для сообщества ВКонтакте представлены: аватарка, фон сообщества, ссылки на ресурсы и посты.</p>
+    <p>Аватарка — светлый знак логотипа. На фоне — графические элементы в фирменных цветах и название города со слоганом. На ссылках — темы посередине на фирменных цветах с белым шумом. Посты демонстрируют применение паттернов и фирменных элементов.</p>
+    <p><strong>Аватарка:</strong> 512×512 px<br>
+       <strong>Фон:</strong> 1590×400 px<br>
+       <strong>Ссылки на ресурсы:</strong> 376×256 px, заголовок Arsenal SC Bold, 40 п.<br>
+       <strong>Посты:</strong> 1080×1080 px, заголовок Arsenal SC Bold, 135 п.</p>
+</template>
+
+<template id="nos-desc-stikery-tg">
+    <p>Стикеры на основе иллюстраций зданий из карты города: Гостиница «Венец», Ленинский мемориал, Художественный музей, Церковь Св. Марии. Также 2 стикера с логотипом — в светлой и тёмной расцветке, без шрифтовой части.</p>
+    <p><strong>Размер каждого стикера:</strong> 512×512 px</p>
+    <p><a href="https://t.me/addstickers/Ulyanovsk_where_you_want_to_fly" target="_blank" rel="noopener" class="hl">Открыть стикерпак в Telegram →</a></p>
+</template>
+
+<template id="nos-desc-rassylka">
+    <p>Рассылочное письмо — цифровой канал коммуникации с аудиторией. Содержит фирменную визуальную идентику: паттерн, логотип и фирменные цвета.</p>
+</template>
+
+<template id="nos-desc-avtobus">
+    <p>Автобус Yutong ZK6128H. В начале кузова — плавный шумовой градиент, в центральной части — логотип, ближе к хвостовой части — паттерн.</p>
+    <p><strong>Длина:</strong> 14,5 м</p>
+    <p><strong>Высота:</strong> 3,8 м</p>
+</template>
+
+<template id="nos-desc-samolet">
+    <p>Boeing 737-800. На переднюю часть нанесён логотип. Крылья и двигатель — волжский синий. Корпус окрашен в несколько оттенков цвета небесный и волжский синий. Хвостовая часть и киль — волжский синий с плавным белым шумовым градиентом.</p>
+    <p><strong>Длина:</strong> 39,5 м</p>
+    <p><strong>Размах крыльев:</strong> 34,3 м</p>
+    <p><strong>Высота:</strong> 12,5 м</p>
+</template>
+
+<template id="nos-desc-bilet">
+    <p>На лицевой стороне — название карты, логотип и указание области. По правому краю — паттерн. На оборотной стороне — ФИО владельца, номер карты, штрихкод и почта.</p>
+    <p><strong>Размер:</strong> 86×54 мм</p>
+    <p><strong>Материал:</strong> пластик</p>
+    <p><strong>ТРАНСПОРТНАЯ КАРТА:</strong> Arsenal SC Bold, 15 п., межстр. 17 п.<br>
+       <strong>ФИО владельца:</strong> Arsenal SC Bold, 10 п.<br>
+       <strong>Номер:</strong> Inter Bold, 10 п.</p>
+</template>
+
+<template id="nos-desc-sidenia">
+    <p>На ткани сидений — фирменный яркий паттерн. Боковые части сидения выполнены в цвете глубокий синий.</p>
+    <p><strong>Размер сидения (без ножек):</strong> 90×50 см</p>
+    <p><strong>Материал:</strong> велюровая ткань, боковины — жёсткий пластик</p>
+</template>
+
+<template id="nos-desc-sajt">
+    <p>На сайте представлены страницы: Маршруты, История, Сувениры, Об Ульяновске и Игра на знание города. Также есть ссылка на брендбук. Styleguide сайта показан в разделе StyleGuide брендбука.</p>
 </template>
 
 <template id="nos-desc-gramota">
     <p>На лицевой стороне грамоты расположены: паттерн, логотип, дата, название, поле для вписания ФИО получателя, место получения, а также должность и подпись вручающего.</p>
     <p><strong>Формат:</strong> А4 — 210×297 мм</p>
+    <p><strong>Материал:</strong> мелованная бумага 200 г/м²</p>
     <p><strong>Дата</strong> — Arsenal SC Bold, 20 п.<br>
     <strong>ГРАМОТА</strong> — Arsenal SC Bold, 35 п.<br>
     <strong>Награждается</strong> — Arsenal SC Bold, 20 п.<br>
@@ -2539,31 +2815,55 @@
 
 <template id="nos-desc-kruzhka">
     <p>На кружку наносится тёмный знак логотипа без подписи и яркий паттерн.</p>
-    <p><strong>Размер:</strong> 220×90 мм<br><strong>Объём:</strong> 330 мл<br><strong>Материал:</strong> керамика, покрытие пищевой глазурью</p>
+    <p><strong>Размер:</strong> 220×90 мм</p>
+    <p><strong>Объём:</strong> 330 мл</p>
+    <p><strong>Материал:</strong> керамика, покрытие пищевой глазурью</p>
 </template>
 
 <template id="nos-desc-tolstovki-svetly">
     <p>Толстовка выполнена в 2 расцветках — светлой и тёмной.</p>
     <p>На толстовке расположен светлый знак логотипа и карман кенгуру с деловым паттерном. Рукава с капюшоном цвета <strong>волжский синий</strong>, грудная часть белая. Снизу вверх на грудной части — шумный градиент цвета волжский синий.</p>
-    <p><strong>Размер:</strong> L<br><strong>Материал:</strong> 80% хлопок, 20% полиэстер, плотность 320 г/м²</p>
+    <p><strong>Размер:</strong> L</p>
+    <p><strong>Материал:</strong> 80% хлопок, 20% полиэстер, плотность 320 г/м²</p>
 </template>
 
 <template id="nos-desc-tolstovki-temny">
     <p>Толстовка выполнена в 2 расцветках — светлой и тёмной.</p>
     <p>На толстовке расположен тёмный знак логотипа и карман кенгуру с ярким паттерном. Рукава с капюшоном цвета <strong>глубокий синий</strong>, грудная часть цвета волжский синий. Снизу вверх на грудной части — шумный градиент цвета глубокий синий.</p>
-    <p><strong>Размер:</strong> L<br><strong>Материал:</strong> 80% хлопок, 20% полиэстер, плотность 320 г/м²</p>
+    <p><strong>Размер:</strong> L</p>
+    <p><strong>Материал:</strong> 80% хлопок, 20% полиэстер, плотность 320 г/м²</p>
+</template>
+
+<template id="nos-desc-futbolki">
+    <p>Представлены 2 варианта светлая и тёмная футболки.</p>
+</template>
+
+<template id="nos-desc-futbolki-svetly">
+    <p>Представлены 2 варианта светлая и тёмная футболки.</p>
+    <p>На светлой футболке ворот <strong>волжский синий</strong>, карман с монохромным паттерном. Футболка белая, снизу вверх шумный градиент цвета <strong>волжский синий</strong>.</p>
+    <p><strong>Размер:</strong> L (600 × 740 мм)</p>
+    <p><strong>Материал:</strong> 100% хлопок</p>
+</template>
+
+<template id="nos-desc-futbolki-temny">
+    <p>Представлены 2 варианта светлая и тёмная футболки.</p>
+    <p>На тёмной футболке ворот <strong>глубокий синий</strong>, карман с ночным паттерном. Футболка цвета <strong>волжский синий</strong>, снизу вверх шумный градиент цвета <strong>глубокий синий</strong>.</p>
+    <p><strong>Размер:</strong> L (600 × 740 мм)</p>
+    <p><strong>Материал:</strong> 100% хлопок</p>
 </template>
 
 <template id="nos-desc-kepka-svetly">
     <p>Кепка выполнена в 2 расцветках — светлой и тёмной.</p>
-    <p>Козырёк и сквитчер выделены цветом <strong>волжский синий</strong>. На ткани кепки — деловой паттерн.</p>
-    <p><strong>Размер</strong> (обхват головы, регулируемый): 490–600 мм<br><strong>Материал:</strong> 100% хлопок</p>
+    <p>Козырёк и сквитчер выделены цветом <strong>волжский синий</strong>. На ткани кепки — монохромный паттерн.</p>
+    <p><strong>Размер</strong> (обхват головы, регулируемый): 490–600 мм</p>
+    <p><strong>Материал:</strong> 100% хлопок</p>
 </template>
 
 <template id="nos-desc-kepka-temny">
     <p>Кепка выполнена в 2 расцветках — светлой и тёмной.</p>
     <p>Козырёк и сквитчер выделены цветом <strong>глубокий синий</strong>. На ткани кепки — яркий паттерн.</p>
-    <p><strong>Размер</strong> (обхват головы, регулируемый): 490–600 мм<br><strong>Материал:</strong> 100% хлопок</p>
+    <p><strong>Размер</strong> (обхват головы, регулируемый): 490–600 мм</p>
+    <p><strong>Материал:</strong> 100% хлопок</p>
 </template>
 
 <!-- ══ Попап носителя ══ -->
@@ -2581,11 +2881,13 @@
         <div class="nos-modal__info">
             <h2 class="nos-modal__name" id="nosModalName"></h2>
             <div class="nos-modal__desc" id="nosModalDesc"></div>
-            <div class="nos-modal__variants" id="nosModalVariants" hidden></div>
-            <div class="nos-modal__view-toggle">
-                <input type="radio" name="nos-view" id="nos-view-mockup" value="mockup" checked>
-                <label for="nos-view-mockup" class="pattern-radio-lbl">Мокап</label><input type="radio" name="nos-view" id="nos-view-layout" value="layout">
-                <label for="nos-view-layout" class="pattern-radio-lbl">Макет</label>
+            <div class="nos-modal__toggles-row">
+                <div class="nos-modal__variants" id="nosModalVariants" hidden></div>
+                <div class="nos-modal__view-toggle">
+                    <input type="radio" name="nos-view" id="nos-view-mockup" value="mockup" checked>
+                    <label for="nos-view-mockup" class="pattern-radio-lbl">Мокап</label><input type="radio" name="nos-view" id="nos-view-layout" value="layout">
+                    <label for="nos-view-layout" class="pattern-radio-lbl">Макет</label>
+                </div>
             </div>
         </div>
     </div>

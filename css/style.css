@@ -563,9 +563,20 @@ body {
     display: block;
 }
 
-/* Кнопка закрытия оверлея — только мобилка */
-.letter-close-btn {
+/* Бэкдроп за письмом — только мобилка */
+.letter-backdrop {
     display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(21, 58, 97, 0.55);
+    z-index: 1199;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.letter-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ================================================================
@@ -2349,20 +2360,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         display: block;
         object-fit: contain;
     }
-    .letter-close-btn {
-        display: block;
-        position: fixed;
-        top: 1rem;
-        right: 1.25rem;
-        font-size: 2rem;
-        line-height: 1;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--deep-blue);
-        z-index: 1210;
-        padding: 0.25rem;
-    }
+    .letter-backdrop { display: block; }
 
     /* --- Мобильная шапка (фиксированная, ПОВЕРХ шторки) --- */
     .mobile-header {

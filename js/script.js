@@ -1398,30 +1398,63 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
     });
 })();
 
-// ── Рассылочное письмо — вылетает над конвертом (десктоп) или на весь экран снизу (мобилка) ──
+// ── Рассылочное письмо — десктоп: вылетает над конвертом; мобилка: снизу на весь экран со свайпом ──
 (function () {
     const envelope  = document.getElementById('heroEnvelope');
     const slideWrap = document.getElementById('letterSlideWrap');
-    const closeBtn  = document.getElementById('letterCloseBtn');
+    const backdrop  = document.getElementById('letterBackdrop');
     if (!envelope || !slideWrap) return;
 
-    envelope.addEventListener('click', () => slideWrap.classList.toggle('open'));
+    const SWIPE_THRESHOLD = 80; // px для закрытия
+    const isMobile = () => window.innerWidth <= 900;
 
-    // Мобилка: тап по оверлею закрывает его (без всплытия к конверту)
-    slideWrap.addEventListener('click', (e) => {
-        if (window.innerWidth <= 900 && slideWrap.classList.contains('open')) {
-            e.stopPropagation();
-            slideWrap.classList.remove('open');
+    function openLetter() {
+        slideWrap.classList.add('open');
+        if (backdrop && isMobile()) backdrop.classList.add('open');
+    }
+    function closeLetter() {
+        slideWrap.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+        slideWrap.style.transform  = '';
+        slideWrap.classList.remove('open');
+        if (backdrop) {
+            backdrop.style.opacity = '';
+            backdrop.classList.remove('open');
         }
+    }
+
+    envelope.addEventListener('click', () => {
+        slideWrap.classList.contains('open') ? closeLetter() : openLetter();
     });
 
-    // Кнопка закрытия (мобилка)
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            slideWrap.classList.remove('open');
-        });
-    }
+    // ── Свайп вниз для закрытия (мобилка) ──
+    let startY = 0, dragging = false;
+
+    slideWrap.addEventListener('touchstart', (e) => {
+        if (!isMobile() || !slideWrap.classList.contains('open')) return;
+        startY   = e.touches[0].clientY;
+        dragging = true;
+        slideWrap.style.transition = 'none';
+    }, { passive: true });
+
+    slideWrap.addEventListener('touchmove', (e) => {
+        if (!dragging) return;
+        const delta = Math.max(0, e.touches[0].clientY - startY);
+        slideWrap.style.transform = `translateY(${delta}px)`;
+        if (backdrop) backdrop.style.opacity = String(Math.max(0, 1 - delta / 250));
+    }, { passive: true });
+
+    slideWrap.addEventListener('touchend', (e) => {
+        if (!dragging) return;
+        dragging = false;
+        const delta = e.changedTouches[0].clientY - startY;
+        if (delta > SWIPE_THRESHOLD) {
+            closeLetter();
+        } else {
+            slideWrap.style.transition = 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)';
+            slideWrap.style.transform  = 'translateY(0)';
+            if (backdrop) backdrop.style.opacity = '1';
+        }
+    });
 })();
 
 // ── Поиск по странице (навигационные ссылки) ──

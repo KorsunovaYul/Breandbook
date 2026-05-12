@@ -563,6 +563,11 @@ body {
     display: block;
 }
 
+/* Кнопка закрытия оверлея — только мобилка */
+.letter-close-btn {
+    display: none;
+}
+
 /* ================================================================
    КОМПОНЕНТ: СЕГМЕНТИРОВАННАЯ РАДИОКНОПКА
    Один источник правды для всех переключателей на сайте.
@@ -2302,13 +2307,59 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     /* Конверт: на мобилке идёт после кнопки «Начать» */
     .hero-right {
         order: 10;
-        margin-top: 1.5rem;
+        margin-top: 3rem;
         align-self: auto;
     }
 
     .hero-envelope {
         max-width: 70%;
         margin: 0 auto;
+    }
+
+    /* Мобильный оверлей письма — всплывает снизу на весь экран */
+    .letter-slide-wrap {
+        position: fixed;
+        inset: 0;
+        bottom: 0;
+        clip-path: none;
+        transform: translateY(100%);
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        z-index: 1200;
+        background: #fff;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        box-sizing: border-box;
+    }
+    .letter-slide-wrap.open {
+        transform: translateY(0);
+        clip-path: none;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: auto;
+    }
+    .letter-slide-img {
+        max-width: 100%;
+        max-height: 90dvh;
+        width: auto;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+    .letter-close-btn {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        right: 1.25rem;
+        font-size: 2rem;
+        line-height: 1;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--deep-blue);
+        z-index: 1210;
+        padding: 0.25rem;
     }
 
     /* --- Мобильная шапка (фиксированная, ПОВЕРХ шторки) --- */
@@ -3154,29 +3205,27 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin-top: var(--gap-h2-to-h3);
 }
 
-/* Картинка на все 12 контентных колонок */
-.illyust-img-wrap {
+/* Карта: заголовок → картинка → текст (без линии) */
+#illyust-karta .illyust-img-wrap {
     margin-top: var(--gap-h3-to-text);
 }
 
-/* Отступы перед контентом в блоках Карта / Маршруты / Игра / Вопросы */
-#illyust-karta .illyust-img-wrap,
-#illyust-marshruty .marshr-grid,
-#illyust-igra .marshr-grid,
-#illyust-voprosy .marshr-grid {
-    padding-top: var(--gap-h3-to-text);
-    margin-top: var(--gap-h3-to-text);
+/* Все блоки кроме Карты: flex-колонка + горизонтальная линия перед заголовком */
+.illyust-block:not(#illyust-karta) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-h3-to-text);
+}
+.illyust-block:not(#illyust-karta)::before {
+    content: '';
+    display: block;
+    height: 1.5px;
+    background: var(--volzhsky-blue);
+    flex-shrink: 0;
 }
 
-/* Горизонтальные линии — только мобилка и айпад */
-@media (max-width: 1024px) {
-    #illyust-karta .illyust-img-wrap,
-    #illyust-marshruty .marshr-grid,
-    #illyust-igra .marshr-grid,
-    #illyust-voprosy .marshr-grid {
-        border-top: 2px solid var(--volzhsky-blue);
-    }
-}
+/* Портреты: не нужен лишний margin-top, gap от родителя */
+#illyust-portrety .portrety-grid { margin-top: 0; }
 
 .illyust-img {
     width: 100%;
@@ -3214,13 +3263,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 .marshr-info-col {
-    border-left: 2px solid var(--volzhsky-blue);
-    padding-left: var(--col-gap);
-    align-self: stretch;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: var(--gap-h3-to-text); /* 1.5rem / 24px — от h3 до текста по UI-киту */
+    gap: var(--gap-h3-to-text);
 }
 
 .marshr-radio-wrap {
@@ -3238,19 +3283,6 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
 /* Мобилка */
 @media (max-width: 768px) {
-    .marshr-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .marshr-info-col {
-        order: -1;
-        border-left: none;
-        padding-left: 0;
-        border-bottom: 1.5px solid var(--volzhsky-blue);
-        padding-bottom: 2rem;
-        margin-bottom: 2rem;
-    }
-
     .marshr-img {
         width: 100%;
         margin: 0;

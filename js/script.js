@@ -1398,12 +1398,30 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
     });
 })();
 
-// ── Рассылочное письмо — вылетает сверху над конвертом при клике ──
+// ── Рассылочное письмо — вылетает над конвертом (десктоп) или на весь экран снизу (мобилка) ──
 (function () {
     const envelope  = document.getElementById('heroEnvelope');
     const slideWrap = document.getElementById('letterSlideWrap');
+    const closeBtn  = document.getElementById('letterCloseBtn');
     if (!envelope || !slideWrap) return;
+
     envelope.addEventListener('click', () => slideWrap.classList.toggle('open'));
+
+    // Мобилка: тап по оверлею закрывает его (без всплытия к конверту)
+    slideWrap.addEventListener('click', (e) => {
+        if (window.innerWidth <= 900 && slideWrap.classList.contains('open')) {
+            e.stopPropagation();
+            slideWrap.classList.remove('open');
+        }
+    });
+
+    // Кнопка закрытия (мобилка)
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            slideWrap.classList.remove('open');
+        });
+    }
 })();
 
 // ── Поиск по странице (навигационные ссылки) ──

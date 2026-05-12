@@ -685,7 +685,7 @@ document.querySelectorAll('.color-codes span').forEach(span => {
 
 // ── StyleGuide: активный таб по клику ──
 (function () {
-    const tabs = document.querySelectorAll('.sg-tabs .grafika-tab');
+    const tabs = document.querySelectorAll('.sg-tabs .logo-tab');
     if (!tabs.length) return;
 
     // первый таб активен при загрузке

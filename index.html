@@ -1489,89 +1489,92 @@
 
             <!-- Маршруты -->
             <div class="illyust-block" id="illyust-marshruty">
-                <h3 class="h3">Маршруты</h3>
-                <p class="text">Все три иллюстрации выполнены в едином стиле: шумовой эффект и мягкие градиенты связывают их с общей визуальной системой. В левом верхнем углу каждой намеренно оставлено свободное место — для заголовка маршрута и его параметров.</p>
-                <p class="text">Каждая иллюстрация говорит символами своего маршрута. <span class="hl">Литературная прогулка</span> — Дом Гончарова, портрет писателя и буква «Ё» как отсылка к Карамзину. <span class="hl">Дворянин на Волге</span> — парусная яхта, широкая река и Президентский мост. <span class="hl">Город семи ветров</span> — силуэт самолёта как символ авиастроения, Аленький цветочек и Ветровой орган у моста.</p>
-                <div class="marshr-radio-wrap">
-                    <input type="radio" name="marshr-route" id="mr-literatur" value="literatur" checked>
-                    <label for="mr-literatur" class="pattern-radio-lbl">Литературная</label><input type="radio" name="marshr-route" id="mr-navolge" value="navolge">
-                    <label for="mr-navolge" class="pattern-radio-lbl">На Волге</label><input type="radio" name="marshr-route" id="mr-semivetrov" value="semivetrov">
-                    <label for="mr-semivetrov" class="pattern-radio-lbl">Семи ветров</label>
-                </div>
-                <div class="marshr-img-col">
-                    <img class="marshr-img marshr-img--literatur active"
-                         src="img/визуальная система/иллюстрации/Литературная прогулка.png"
-                         alt="Литературная прогулка">
-                    <img class="marshr-img marshr-img--navolge"
-                         src="img/визуальная система/иллюстрации/Дворянин на Волге.png"
-                         alt="Дворянин на Волге">
-                    <img class="marshr-img marshr-img--semivetrov"
-                         src="img/визуальная система/иллюстрации/Город семи ветров.png"
-                         alt="Город семи ветров">
+                <div class="marshr-grid">
+                    <div class="marshr-img-col">
+                        <img class="marshr-img marshr-img--literatur active"
+                             src="img/визуальная система/иллюстрации/Литературная прогулка.png"
+                             alt="Литературная прогулка">
+                        <img class="marshr-img marshr-img--navolge"
+                             src="img/визуальная система/иллюстрации/Дворянин на Волге.png"
+                             alt="Дворянин на Волге">
+                        <img class="marshr-img marshr-img--semivetrov"
+                             src="img/визуальная система/иллюстрации/Город семи ветров.png"
+                             alt="Город семи ветров">
+                    </div>
+                    <div class="marshr-info-col">
+                        <h3 class="h3">Маршруты</h3>
+                        <p class="text">Все три иллюстрации выполнены в едином стиле: шумовой эффект и мягкие градиенты связывают их с общей визуальной системой. В левом верхнем углу каждой намеренно оставлено свободное место — для заголовка маршрута и его параметров.</p>
+                        <p class="text">Каждая иллюстрация говорит символами своего маршрута. <span class="hl">Литературная прогулка</span> — Дом Гончарова, портрет писателя и буква «Ё» как отсылка к Карамзину. <span class="hl">Дворянин на Волге</span> — парусная яхта, широкая река и Президентский мост. <span class="hl">Город семи ветров</span> — силуэт самолёта как символ авиастроения, Аленький цветочек и Ветровой орган у моста.</p>
+                        <div class="marshr-radio-wrap">
+                            <input type="radio" name="marshr-route" id="mr-literatur" value="literatur" checked>
+                            <label for="mr-literatur" class="pattern-radio-lbl">Литературная</label><input type="radio" name="marshr-route" id="mr-navolge" value="navolge">
+                            <label for="mr-navolge" class="pattern-radio-lbl">На Волге</label><input type="radio" name="marshr-route" id="mr-semivetrov" value="semivetrov">
+                            <label for="mr-semivetrov" class="pattern-radio-lbl">Семи ветров</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Игра -->
             <div class="illyust-block" id="illyust-igra">
-                <h3 class="h3">Игра</h3>
-                <p class="text">Иллюстрация собрана из мини-иллюстраций к вопросам игры: каждый элемент отсылает к одному из символов Ульяновска. На ней — крепость, буханка (УАЗик), Аленький цветочек, <span class="hl">Volgatitan simbirskiensis</span> — меловой титанозавр, найденный в Ульяновской области, самолёт над Волгой, симбирцит в воде, река и Президентский мост.</p>
-                <p class="text">Горизонтальная версия предназначена для компьютеров, вертикальная — для мобильных устройств. Состав символов сохраняется, меняется компоновка.</p>
-                <div class="marshr-radio-wrap">
-                    <input type="radio" name="igra-version" id="ig-desktop" value="desktop" checked>
-                    <label for="ig-desktop" class="pattern-radio-lbl">Горизонтальная</label><input type="radio" name="igra-version" id="ig-mobile" value="mobile">
-                    <label for="ig-mobile" class="pattern-radio-lbl">Вертикальная</label>
-                </div>
-                <div class="marshr-img-col" id="igra-hero-imgs">
-                    <img class="marshr-img marshr-img--desktop active"
-                         src="img/визуальная система/Игра/game-hero.png"
-                         alt="Игра — Desktop">
-                    <img class="marshr-img marshr-img--mobile"
-                         src="img/визуальная система/Игра/game-hero-mobile.png"
-                         alt="Игра — Mobile">
+                <div class="marshr-grid">
+                    <div class="marshr-img-col" id="igra-hero-imgs">
+                        <img class="marshr-img marshr-img--desktop active"
+                             src="img/визуальная система/Игра/game-hero.png"
+                             alt="Игра — Desktop">
+                        <img class="marshr-img marshr-img--mobile"
+                             src="img/визуальная система/Игра/game-hero-mobile.png"
+                             alt="Игра — Mobile">
+                    </div>
+                    <div class="marshr-info-col">
+                        <h3 class="h3">Игра</h3>
+                        <p class="text">Иллюстрация собрана из мини-иллюстраций к вопросам игры: каждый элемент отсылает к одному из символов Ульяновска. На ней — крепость, буханка (УАЗик), Аленький цветочек, <span class="hl">Volgatitan simbirskiensis</span> — меловой титанозавр, найденный в Ульяновской области, самолёт над Волгой, симбирцит в воде, река и Президентский мост.</p>
+                        <p class="text">Горизонтальная версия предназначена для компьютеров, вертикальная — для мобильных устройств. Состав символов сохраняется, меняется компоновка.</p>
+                        <div class="marshr-radio-wrap">
+                            <input type="radio" name="igra-version" id="ig-desktop" value="desktop" checked>
+                            <label for="ig-desktop" class="pattern-radio-lbl">Горизонтальная</label><input type="radio" name="igra-version" id="ig-mobile" value="mobile">
+                            <label for="ig-mobile" class="pattern-radio-lbl">Вертикальная</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Вопросы -->
             <div class="illyust-block" id="illyust-voprosy">
-                <h3 class="h3">Вопросы</h3>
-                <p class="text">Каждый вопрос игры сопровождается мини-иллюстрацией, выполненной в едином стиле с главной. Каждая карточка посвящена одному из символов Ульяновска — от крепости и буханки до симбирцита и самолёта.</p>
-                <div class="voprosy-nav">
-                    <button class="voprosy-btn voprosy-prev" aria-label="Предыдущий">
-                        <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
-                            <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
-                            <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
-                        </svg>
-                    </button>
-                    <span class="voprosy-counter">1 / 10</span>
-                    <button class="voprosy-btn voprosy-next" aria-label="Следующий">
-                        <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
-                            <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
-                            <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="marshr-img-col">
-                    <div class="voprosy-img-wrap">
-                        <img class="voprosy-img" src="img/визуальная система/Игра/Аленький цветочек.png" alt="Аленький цветочек">
+                <div class="marshr-grid">
+                    <div class="marshr-img-col">
+                        <div class="voprosy-img-wrap">
+                            <img class="voprosy-img" src="img/визуальная система/Игра/Аленький цветочек.png" alt="Аленький цветочек">
+                        </div>
+                        <p class="voprosy-caption">Аленький цветочек</p>
                     </div>
-                    <p class="voprosy-caption">Аленький цветочек</p>
+                    <div class="marshr-info-col">
+                        <h3 class="h3">Вопросы</h3>
+                        <p class="text">Каждый вопрос игры сопровождается мини-иллюстрацией, выполненной в едином стиле с главной. Каждая карточка посвящена одному из символов Ульяновска — от крепости и буханки до симбирцита и самолёта.</p>
+                        <div class="voprosy-nav">
+                            <button class="voprosy-btn voprosy-prev" aria-label="Предыдущий">
+                                <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
+                                    <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
+                                    <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <span class="voprosy-counter">1 / 10</span>
+                            <button class="voprosy-btn voprosy-next" aria-label="Следующий">
+                                <svg class="arr-svg" width="71" height="46" viewBox="0 0 71 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="arr-tri" d="M70 23.0391L34.75 42.5246L34.75 3.55349L70 23.0391Z"/>
+                                    <path class="arr-tri" d="M35.5 2.53906L70 21.5391H35.5V2.53906Z"/>
+                                    <path d="M0 21.5391H35.5M35.5 21.5391H70L35.5 2.53906V21.5391Z" stroke="#153A61" stroke-width="2"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Портреты -->
             <div class="illyust-block" id="illyust-portrety">
                 <h3 class="h3">Портреты</h3>
-
-                <div class="illyust-text-grid">
-                    <div class="illyust-text-col illyust-text-col--1">
-                        <p class="text">Каждый портрет выполнен в одном из цветов бренда: Ленин — терракотовый, Жуков — волжский синий, Гончаров — янтарный, Карамзин — зелёный, Сафронов — глубокий синий, Пластов — волжский синий. Единство цветовой системы подчёркивает принадлежность каждого образа к общему визуальному языку бренда.</p>
-                    </div>
-                    <div class="illyust-text-col illyust-text-col--2">
-                        <p class="text">Портреты выполнены на белом фоне с белым градиентным зернистым шумом — сами фигуры окрашены в соответствующий цвет бренда. Всех шестерых объединяет принадлежность к Ульяновску — это выдающиеся люди, чьи имена неразрывно связаны с историей и культурой города. Подробная информация о каждом из них представлена на сайте.</p>
-                    </div>
-                </div>
 
                 <div class="portrety-grid">
 
@@ -1599,6 +1602,15 @@
                         <img src="img/визуальная система/портреты/А. А. Пластов.png" alt="Пластов" class="portret-img">
                     </div>
 
+                </div>
+
+                <div class="illyust-text-grid">
+                    <div class="illyust-text-col illyust-text-col--1">
+                        <p class="text">Каждый портрет выполнен в одном из цветов бренда: Ленин — терракотовый, Жуков — волжский синий, Гончаров — янтарный, Карамзин — зелёный, Сафронов — глубокий синий, Пластов — волжский синий. Единство цветовой системы подчёркивает принадлежность каждого образа к общему визуальному языку бренда.</p>
+                    </div>
+                    <div class="illyust-text-col illyust-text-col--2">
+                        <p class="text">Портреты выполнены на белом фоне с белым градиентным зернистым шумом — сами фигуры окрашены в соответствующий цвет бренда. Всех шестерых объединяет принадлежность к Ульяновску — это выдающиеся люди, чьи имена неразрывно связаны с историей и культурой города. Подробная информация о каждом из них представлена на сайте.</p>
+                    </div>
                 </div>
 
             </div>

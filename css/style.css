@@ -3018,6 +3018,15 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .logo-tab:hover  { color: var(--amber); }
 .logo-tab.active { color: var(--deep-blue); }
 
+/* Мобилка: 18px Arsenal SC — объявлено после глобального 1.5rem, поэтому перебивает */
+@media (max-width: 900px) {
+    .logo-tab {
+        font-family: 'Arsenal SC', serif;
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+}
+
 /* Блок построения */
 .grafika-block { margin-top: var(--gap-h2-to-h3); }
 
@@ -3216,23 +3225,6 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     margin-top: var(--gap-h3-to-text);
 }
 
-/* Все блоки кроме Карты: flex-колонка + горизонтальная линия перед заголовком */
-.illyust-block:not(#illyust-karta) {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-h3-to-text);
-}
-.illyust-block:not(#illyust-karta)::before {
-    content: '';
-    display: block;
-    height: 1.5px;
-    background: var(--volzhsky-blue);
-    flex-shrink: 0;
-}
-
-/* Портреты: не нужен лишний margin-top, gap от родителя */
-#illyust-portrety .portrety-grid { margin-top: 0; }
-
 .illyust-img {
     width: 100%;
     display: block;
@@ -3269,8 +3261,12 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 .marshr-info-col {
+    border-left: 2px solid var(--volzhsky-blue);
+    padding-left: var(--col-gap);
+    align-self: stretch;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: var(--gap-h3-to-text);
 }
 
@@ -3287,12 +3283,40 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     border-left: 2px solid var(--volzhsky-blue);
 }
 
-/* Мобилка */
-@media (max-width: 768px) {
+/* Иллюстрации — только мобилка */
+@media (max-width: 900px) {
+    /* Горизонтальная линия перед заголовком (24px = gap), кроме Карты */
+    .illyust-block:not(#illyust-karta) {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-h3-to-text);
+    }
+    .illyust-block:not(#illyust-karta)::before {
+        content: '';
+        display: block;
+        height: 1.5px;
+        background: var(--volzhsky-blue);
+        flex-shrink: 0;
+    }
+
+    /* Маршруты / Игра / Вопросы — в одну колонку, текст сначала */
+    .marshr-grid {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+    .marshr-info-col {
+        order: -1;
+        border-left: none;
+        padding-left: 0;
+        justify-content: flex-start;
+    }
     .marshr-img {
         width: 100%;
         margin: 0;
     }
+
+    /* Портреты: gap от родителя, отдельный margin не нужен */
+    #illyust-portrety .portrety-grid { margin-top: 0; }
 }
 
 /* Блок Вопросы — слайдер */

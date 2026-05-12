@@ -2271,7 +2271,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
     /* --- Герой на мобилке --- */
     .hero-section {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(4, 1fr);
         row-gap: 0;
         padding-bottom: 3rem;
         margin-bottom: 3rem;
@@ -2293,7 +2293,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .hero-city { font-size: 5rem; }
     .hero-author { margin-bottom: 2rem; }
     .hero-stats { margin-bottom: 2rem; }
-    .btn-hero { width: 100%; margin-bottom: 0; }
+    .btn-hero { grid-column: 1 / 3; width: auto; margin-bottom: 0; }
 
     .hero-stat-num { font-size: 3.5rem; height: 3.5rem; }
     .stat-flip-wrap { height: 3.5rem; }

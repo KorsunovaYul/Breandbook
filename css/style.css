@@ -666,6 +666,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .logo-tab {
+        font-family: 'Arsenal SC', serif;
+        font-weight: 700;
         font-size: 1.125rem;
         padding: 0.25rem 0;
     }
@@ -2638,6 +2640,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .logo-tab {
+        font-family: 'Arsenal SC', serif;
+        font-weight: 700;
         font-size: 1.125rem;
     }
 
@@ -2859,6 +2863,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .logo-tab {
+        font-family: 'Arsenal SC', serif;
+        font-weight: 700;
         font-size: 1.125rem;
     }
 

@@ -666,7 +666,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .logo-tab {
-        font-size: 0.75rem; /* 12px — вкладки под заголовками разделов */
+        font-size: 1.125rem;
         padding: 0.25rem 0;
     }
 }
@@ -2859,7 +2859,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     .logo-tab {
-        font-size: 0.75rem; /* 12px — уменьшено для мобилки */
+        font-size: 1.125rem;
     }
 
     /* Доп. цвета — на мобилке тоже 2 колонки, но меньше высота */

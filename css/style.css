@@ -5183,12 +5183,12 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 
-/* Приписка «все значения в мм» на макетах */
+/* Приписка с единицами измерения на макетах (задаётся через --layout-unit в JS) */
 .nos-modal__img-wrap--layout {
     position: relative;
 }
 .nos-modal__img-wrap--layout::after {
-    content: 'все значения в мм';
+    content: var(--layout-unit, 'все значения в мм');
     position: absolute;
     bottom: 0.75rem;
     right: 0.75rem;

@@ -1245,6 +1245,16 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
         if (viewToggleEl) viewToggleEl.hidden = isSajt;
         if (cityBtnEl)    cityBtnEl.hidden    = !isSajt;
 
+        // Единицы измерения на макете: px — цифровые носители; м — крупные объекты; мм — остальные
+        const pxIds = ['sajt', 'vk', 'stikery-tg'];
+        const mIds  = ['larek', 'ostanovka', 'samolet', 'avtobus', 'sidenia'];
+        const nosId = card.dataset.nosId;
+        let unitLabel;
+        if (pxIds.includes(nosId))     unitLabel = "'все значения в px'";
+        else if (mIds.includes(nosId)) unitLabel = "'все значения в м'";
+        else                           unitLabel = "'все значения в мм'";
+        imgWrap.style.setProperty('--layout-unit', unitLabel);
+
         // Сбросить переключатель Мокап / Макет
         radios.forEach(r => { r.checked = r.value === 'mockup'; });
 

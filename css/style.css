@@ -2255,6 +2255,68 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 /* ============================================
+   МЕДИАЗАПРОС — ноутбук 901px – 1366px
+   ============================================ */
+
+@media (min-width: 901px) and (max-width: 1600px) {
+
+    /* --- Типографика laptop (BB-SG) --- */
+    body {
+        font-size: 1rem;             /* 16px — базовый размер для ноутбука */
+    }
+
+    .h0, .koncepciya-main-title {
+        font-size: 8rem;             /* 128px */
+        line-height: 1;
+    }
+
+    .h1 {
+        font-size: 6rem;             /* 96px */
+        line-height: 1;
+    }
+
+    .h2, .vvedenie-title, .missiya-main-title, .structure-heading {
+        font-size: 3rem;             /* 48px */
+        line-height: 3.25rem;        /* 52px */
+    }
+
+    .h3, .block-title {
+        font-size: 2rem;             /* 32px */
+        line-height: 2.125rem;       /* 34px */
+    }
+
+    .text, .o-gorode-content p, .cel-text, .zadacha-text,
+    .soobshenie-text, .ca-text p {
+        font-size: 1rem;             /* 16px */
+    }
+
+    .hl, .ca-label {
+        font-size: 1.25rem;          /* 20px */
+    }
+
+    .highlight-2 {
+        font-size: 1rem;             /* 16px */
+    }
+
+    .highlight-3 {
+        font-size: 1rem;             /* 16px */
+    }
+
+    /* --- Цветовые сочетания laptop --- */
+    .sochet-bar {
+        height: 2rem;
+    }
+
+    /* --- Отступы laptop --- */
+    :root {
+        --gap-block: 6.5rem;         /* 104px */
+        --gap-to-footer: 7.5rem;     /* 120px */
+        --side-padding: 5.8125rem;   /* 93px */
+        /* --gap-h2-to-h3: 3.5rem — как десктоп, не меняем */
+    }
+}
+
+/* ============================================
    МЕДИАЗАПРОС — мобильная версия до 900px
    ============================================ */
 
@@ -2308,7 +2370,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         margin-bottom: 1rem;
     }
 
-    .hero-city { font-size: 5rem; }
+    h1.hero-city { font-size: min(4rem, 15vw) !important; max-width: 100%; }
     .hero-quote { font-size: 1rem; }
     .hero-author { margin-bottom: 2rem; }
     .hero-stats { margin-bottom: 2rem; }
@@ -2629,7 +2691,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     }
 
     /* --- Визуальная система. Мобилка --- */
-    .vizualnaya-main-title {
+    .vizualnaya-main-title,
+    .nos-chapter-num {
         font-size: 3rem;
         line-height: 3rem;
     }
@@ -4842,10 +4905,10 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 .nos-chapter-num {
     font-family: 'Arsenal SC', serif;
     font-weight: 700;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: 8rem;                 /* 128px — как vizualnaya-main-title */
     color: var(--volzhsky-blue);
     line-height: 1;
-    margin: 0 0 var(--gap-h2-to-h3); /* 3.5rem / 56px — от h1 до h2 по UI-киту */
+    margin: 0 0 var(--gap-h2-to-h3);
 }
 
 .nos-subsection-title {
@@ -4991,28 +5054,32 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     background: none;
     border: none;
     cursor: pointer;
     z-index: 10;
     padding: 0;
+    text-decoration: none;
 }
 .nos-modal__close span {
     display: block;
     position: absolute;
     top: 50%;
-    left: 0;
-    width: 100%;
-    height: 0.125rem;
+    left: 50%;
+    width: 1.375rem;          /* 22px — длина линий крестика */
+    height: 0.125rem;         /* 2px */
+    margin-left: -0.6875rem;  /* -11px = -width/2 для точного центра */
     background-color: var(--deep-blue);
-    transition: background-color 0.15s;
+    border-radius: 1px;
+    transition: background-color 0.2s, opacity 0.2s;
 }
 .nos-modal__close span:nth-child(2) { display: none; }
 .nos-modal__close span:nth-child(1) { transform: translateY(-50%) rotate(45deg); }
 .nos-modal__close span:nth-child(3) { transform: translateY(-50%) rotate(-45deg); }
-.nos-modal__close:hover span { background-color: var(--volzhsky-blue); }
+.nos-modal__close:hover  span { background-color: var(--amber); }
+.nos-modal__close:active span { opacity: 0.5; }
 
 /* Левая часть — только изображение */
 .nos-modal__img-side {
@@ -5156,23 +5223,26 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     border: none;
     cursor: pointer;
     z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
     padding: 0;
+    text-decoration: none;
 }
 .nos-fullscreen__close span {
     display: block;
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.375rem;
     height: 0.125rem;
+    margin-left: -0.6875rem;
     background-color: #fff;
-    transition: opacity 0.15s;
+    border-radius: 1px;
+    transition: background-color 0.2s, opacity 0.2s;
 }
-.nos-fullscreen__close span:nth-child(1) { transform: rotate(45deg) translate(0.3125rem, 0.3125rem); }
-.nos-fullscreen__close span:nth-child(2) { opacity: 0; }
-.nos-fullscreen__close span:nth-child(3) { transform: rotate(-45deg) translate(0.3125rem, -0.3125rem); }
-.nos-fullscreen__close:hover span { opacity: 0.7; }
+.nos-fullscreen__close span:nth-child(2) { display: none; }
+.nos-fullscreen__close span:nth-child(1) { transform: translateY(-50%) rotate(45deg); }
+.nos-fullscreen__close span:nth-child(3) { transform: translateY(-50%) rotate(-45deg); }
+.nos-fullscreen__close:hover  span { background-color: var(--amber); }
+.nos-fullscreen__close:active span { opacity: 0.5; }
 
 /* Скрытая карточка (мобильная пагинация) */
 .nos-card--hidden { display: none !important; }

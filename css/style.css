@@ -487,22 +487,112 @@ body {
 .btn-hero:hover  { background-color: var(--amber); }
 .btn-hero:active { background-color: var(--deep-blue); }
 
+/* ═══ КОНВЕРТ — ГЕРОЙ ═══ */
 .hero-envelope {
     width: 100%;
     position: relative;
-}
-
-.envelope-img {
-    width: 100%;
-    height: auto;
-    display: block;
+    cursor: pointer;
     animation: envelope-float 4s ease-in-out infinite;
-    transition: translate 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-envelope.is-open {
+    animation-play-state: paused;
 }
 
 @keyframes envelope-float {
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(-1.5rem); }
+}
+
+/* ── Закрытый конверт ── */
+.env-closed {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+.hero-envelope.is-open .env-closed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Открытый конверт (оверлей поверх закрытого) ── */
+.env-open {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* opacity намеренно не ставим — иначе создаётся stacking context
+       и z-index дочерних элементов не конкурирует с letter-slide-wrap */
+}
+.hero-envelope.is-open .env-open {
+    pointer-events: auto;
+}
+
+/* Нижняя часть: opacity на ней самой, z-index работает в контексте hero-envelope */
+.env-body {
+    position: absolute;
+    top: 0;
+    left: 0; right: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+.hero-envelope.is-open .env-body {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.15s ease 0.1s;
+}
+
+/* Верхняя часть: z-index 3 — выше письма (z-index 2) */
+.env-flap-scene {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+.hero-envelope.is-open .env-flap-scene {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.15s ease 0.1s;
+}
+.env-flap {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Рассылочное письмо — скрыто пока конверт закрыт */
+.letter-slide-wrap {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    top: 44%;
+    z-index: 2;
+    transform: translateY(-55%);
+    clip-path: none;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;                    /* письмо невидимо до открытия */
+    transition: none;
+}
+.hero-envelope.is-open .letter-slide-wrap {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-70%);
+    /* opacity появляется с задержкой 0.2s — после того как конверт уже открылся (0.1s) */
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s,
+                opacity 0.3s ease 0.2s;
+    pointer-events: auto;
+}
+.letter-slide-img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Подсказка на конверте */
@@ -522,45 +612,13 @@ body {
     pointer-events: none;
     z-index: 1;
 }
-
 @keyframes hint-pulse {
     0%, 100% { opacity: 0.5; }
     50%       { opacity: 1; }
 }
-
-/* Подсказка исчезает когда письмо открыто */
-.letter-slide-wrap.open ~ .envelope-hint {
+.hero-envelope.is-open .envelope-hint {
     animation: none;
     opacity: 0;
-}
-
-/* Конверт съезжает вниз и застывает */
-.letter-slide-wrap.open ~ .envelope-img {
-    translate: 0 52%;
-    animation-play-state: paused;
-}
-
-/* ── Рассылочное письмо — раскрывается снизу вверх, без зазора ── */
-.letter-slide-wrap {
-    position: absolute;
-    /* bottom: 48% = нижний край письма у визуального верха съехавшего конверта (100%-52%) */
-    bottom: 48%;
-    left: 25%;
-    right: 25%;
-    clip-path: inset(100% 0 0 0);    /* скрыто — раскроется снизу вверх */
-    transition: clip-path 0.3s ease; /* закрытие — быстро */
-    pointer-events: none;
-    z-index: 2;
-}
-.letter-slide-wrap.open {
-    clip-path: inset(0 0 0 0);
-    transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s; /* с задержкой после конверта */
-    pointer-events: auto;
-}
-.letter-slide-img {
-    width: 100%;
-    height: auto;
-    display: block;
 }
 
 /* Бэкдроп за письмом — только мобилка */
@@ -2391,36 +2449,41 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         margin: 0 auto;
     }
 
-    /* Мобильный оверлей письма — всплывает снизу на весь экран */
+    /* На мобилке: открытый конверт не анимируем — скрываем */
+    .env-open   { display: none !important; }
+    .env-closed { opacity: 1 !important; }
+
+    /* Центрированный попап с письмом */
     .letter-slide-wrap {
         position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        /* высота — по содержимому; top не задан */
-        clip-path: none;
-        transform: translateY(100%);
-        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        top: 50%;
+        left: 50%;
+        width: 85vw;
+        max-height: 80vh;
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+        visibility: hidden;
         z-index: 1200;
         background: #fff;
-        pointer-events: none;
-        display: inline-flex;
+        border-radius: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+        display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.5rem;          /* одинаковый отступ со всех сторон */
-        box-sizing: border-box;
-        max-height: 88dvh;        /* на случай очень длинного письма */
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
     }
-    .letter-slide-wrap.open {
-        transform: translateY(0);
-        clip-path: none;
-        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    .hero-envelope.is-open .letter-slide-wrap {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
         pointer-events: auto;
     }
     .letter-slide-img {
         display: block;
         width: 100%;
-        max-height: calc(88dvh - 3rem); /* 88dvh минус padding сверху и снизу */
+        max-height: calc(80vh - 2rem);
         object-fit: contain;
     }
     .letter-backdrop { display: block; }

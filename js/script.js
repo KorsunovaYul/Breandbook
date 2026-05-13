@@ -1398,39 +1398,65 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
     });
 })();
 
-// ── Рассылочное письмо — десктоп: вылетает над конвертом; мобилка: снизу на весь экран со свайпом ──
+// ── Конверт: открывается по клику; мобилка — письмо снизу со свайпом ──
 (function () {
     const envelope  = document.getElementById('heroEnvelope');
     const slideWrap = document.getElementById('letterSlideWrap');
     const backdrop  = document.getElementById('letterBackdrop');
     if (!envelope || !slideWrap) return;
 
-    const SWIPE_THRESHOLD = 80; // px для закрытия
+    const SWIPE_THRESHOLD = 80;
     const isMobile = () => window.innerWidth <= 900;
 
+    // Ленивая загрузка письма: src проставляется только при первом открытии
+    const letterImg = slideWrap.querySelector('.letter-slide-img');
+    if (letterImg && letterImg.dataset.src && !letterImg.src) {
+        // src не ставим сразу — ждём первого клика
+    }
+
     function openLetter() {
-        slideWrap.classList.add('open');
-        if (backdrop && isMobile()) backdrop.classList.add('open');
+        // При первом открытии — подгружаем картинку письма
+        if (letterImg && letterImg.dataset.src && !letterImg.getAttribute('src')) {
+            letterImg.src = letterImg.dataset.src;
+        }
+        envelope.classList.add('is-open');
+        if (isMobile()) {
+            // position:fixed внутри трансформированного элемента привязывается к нему —
+            // убираем анимацию конверта чтобы попап был относительно экрана
+            envelope.style.animation = 'none';
+            envelope.style.transform = 'none';
+            if (backdrop) backdrop.classList.add('open');
+        }
     }
     function closeLetter() {
-        slideWrap.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-        slideWrap.style.transform  = '';
-        slideWrap.classList.remove('open');
-        if (backdrop) {
-            backdrop.style.opacity = '';
-            backdrop.classList.remove('open');
+        if (isMobile()) {
+            slideWrap.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            slideWrap.style.transform  = '';
+            slideWrap.style.opacity    = '';
+            envelope.style.animation   = '';
+            envelope.style.transform   = '';
+            if (backdrop) {
+                backdrop.style.opacity = '';
+                backdrop.classList.remove('open');
+            }
         }
+        envelope.classList.remove('is-open');
     }
 
     envelope.addEventListener('click', () => {
-        slideWrap.classList.contains('open') ? closeLetter() : openLetter();
+        envelope.classList.contains('is-open') ? closeLetter() : openLetter();
+    });
+
+    // Клик по затемнению закрывает попап
+    if (backdrop) backdrop.addEventListener('click', () => {
+        if (isMobile() && envelope.classList.contains('is-open')) closeLetter();
     });
 
     // ── Свайп вниз для закрытия (мобилка) ──
     let startY = 0, dragging = false;
 
     slideWrap.addEventListener('touchstart', (e) => {
-        if (!isMobile() || !slideWrap.classList.contains('open')) return;
+        if (!isMobile() || !envelope.classList.contains('is-open')) return;
         startY   = e.touches[0].clientY;
         dragging = true;
         slideWrap.style.transition = 'none';
@@ -1439,8 +1465,8 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
     slideWrap.addEventListener('touchmove', (e) => {
         if (!dragging) return;
         const delta = Math.max(0, e.touches[0].clientY - startY);
-        slideWrap.style.transform = `translateY(${delta}px)`;
-        if (backdrop) backdrop.style.opacity = String(Math.max(0, 1 - delta / 250));
+        slideWrap.style.transform = `translate(-50%, calc(-50% + ${delta}px))`;
+        if (backdrop) backdrop.style.opacity = String(Math.max(0, 1 - delta / 200));
     }, { passive: true });
 
     slideWrap.addEventListener('touchend', (e) => {
@@ -1451,7 +1477,7 @@ makeNosCarousel(document.getElementById('vneshTranspGrid'), document.getElementB
             closeLetter();
         } else {
             slideWrap.style.transition = 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)';
-            slideWrap.style.transform  = 'translateY(0)';
+            slideWrap.style.transform  = 'translate(-50%, -50%)';
             if (backdrop) backdrop.style.opacity = '1';
         }
     });

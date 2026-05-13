@@ -11,6 +11,8 @@
 
     <link rel="icon" href="img/icon_site.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Критический стиль: скрывает письмо до загрузки основного CSS, предотвращает мигание -->
+    <style>.letter-slide-wrap { visibility: hidden; }</style>
 </head>
 <body>
 
@@ -232,11 +234,23 @@
                 <a href="#koncepciya" class="btn-hero">Начать</a>
             </div>
             <div class="hero-right">
-                <div class="hero-envelope" id="heroEnvelope" style="cursor:pointer">
-                    <div class="letter-slide-wrap" id="letterSlideWrap">
-                        <img src="img/рассылочное писмо.png" alt="Рассылочное письмо" class="letter-slide-img">
+                <div class="hero-envelope" id="heroEnvelope">
+                    <!-- Закрытый конверт -->
+                    <img src="img/визуальная система/письмо.png" alt="Письмо в Ульяновск" class="env-closed">
+
+                    <!-- Открытый конверт (только десктоп) -->
+                    <div class="env-open">
+                        <div class="env-flap-scene">
+                            <img src="img/верхняя часть письма открытого.png" alt="" class="env-flap">
+                        </div>
+                        <img src="img/нижняя часть открытого письма.png" alt="" class="env-body">
                     </div>
-                    <img src="img/визуальная система/письмо.png" alt="Письмо в Ульяновск" class="envelope-img">
+
+                    <!-- Письмо: десктоп — вылетает из конверта; мобилка — шторка снизу -->
+                    <div class="letter-slide-wrap" id="letterSlideWrap">
+                        <img data-src="img/рассылочное писмо.png" alt="Рассылочное письмо" class="letter-slide-img">
+                    </div>
+
                     <span class="envelope-hint">Нажми на письмо</span>
                 </div>
             </div>

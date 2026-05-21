@@ -2432,22 +2432,25 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .hero-quote { font-size: 1rem; }
     .hero-author { margin-bottom: 2rem; }
     .hero-stats { margin-bottom: 2rem; }
-    .btn-hero { grid-column: 2 / 4; width: auto; margin-bottom: 0; justify-self: center; }
+    .btn-hero { grid-column: 1 / 4; width: auto; min-width: 12rem; margin-bottom: 0; justify-self: start; }
 
     .hero-stat-num { font-size: 3.5rem; height: 3.5rem; }
+    .hero-stat-label { font-size: 1rem; }
     .stat-flip-wrap { height: 3.5rem; }
 
-    /* Конверт: на мобилке идёт после кнопки «Начать» */
+    /* Конверт: на мобилке временно скрыт целиком */
+    /* Чтобы вернуть — убери display:none у .hero-right и раскомментируй стили ниже */
     .hero-right {
-        order: 10;
-        margin-top: 3rem;
-        align-self: auto;
+        display: none;
+        /* order: 10; */
+        /* margin-top: 3rem; */
+        /* align-self: auto; */
     }
 
-    .hero-envelope {
+    /* .hero-envelope {
         max-width: 70%;
         margin: 0 auto;
-    }
+    } */
 
     /* На мобилке: открытый конверт не анимируем — скрываем */
     .env-open   { display: none !important; }
@@ -5466,6 +5469,11 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         gap: 0.75rem;
     }
     .site-footer__info { text-align: right; }
+
+    /* Герой — увеличенный отступ снизу */
+    .hero-section {
+        padding-bottom: 5rem;
+    }
 }
 
 /* ── Поиск: выпадающие результаты ── */

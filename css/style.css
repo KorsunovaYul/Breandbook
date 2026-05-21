@@ -2602,18 +2602,19 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
     /* --- Мобильная типографика по UI-киту --- */
     .h0, .koncepciya-main-title {
-        font-size: 3rem;             /* 48px */
-        line-height: 3rem;
+        font-size: 2.5rem;           /* 40px */
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .h1 {
-        font-size: 3rem;             /* 48px */
-        line-height: 3rem;
+        font-size: 2.5rem;           /* 40px */
+        line-height: 2.5rem;
     }
 
     .h2, .vvedenie-title, .missiya-main-title, .structure-heading {
-        font-size: 2.25rem;          /* 36px */
-        line-height: 2.5rem;         /* 40px */
+        font-size: 1.875rem;         /* 30px */
+        line-height: 2.125rem;       /* 34px */
     }
 
     .h3, .block-title {
@@ -2636,7 +2637,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
     /* --- Мобильные отступы по UI-киту --- */
     :root {
-        --gap-h2-to-h3: 2.5rem;     /* 40px */
+        --gap-h2-to-h3: 1.5rem;     /* 24px */
         --gap-h3-to-text: 1.5rem;   /* 24px */
         --gap-block: 5rem;           /* 80px */
         --gap-to-footer: 6rem;       /* 96px */
@@ -2756,8 +2757,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     /* --- Визуальная система. Мобилка --- */
     .vizualnaya-main-title,
     .nos-chapter-num {
-        font-size: 3rem;
-        line-height: 3rem;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .logo-tabs {
@@ -2839,6 +2841,8 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
     .logotip-img {
         max-width: 100%;
+        width: auto;
+        max-height: 55vw;
     }
 
     /* --- Ошибки при использовании. Мобилка --- */
@@ -2927,18 +2931,25 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         line-height: 1.2;
     }
 
-    /* Все фото — не выходят за ширину сетки */
-    .vsversii-img,
+    /* Горизонтальные (--wide) — полная ширина, высота не ограничена */
     .vsversii-img--wide,
     .vsversii-compare,
-    .ohrannoe-img,
     .ohrannoe-img--wide,
-    .minrazmery-img,
     .minrazmery-img--wide,
-    .postroenie-img,
     .logotip-img--wide {
         max-width: 100%;
         width: 100%;
+        max-height: none;
+    }
+
+    /* Вертикальные логотипы — ограничиваем высоту чтобы не растягивались на весь экран */
+    .vsversii-img,
+    .ohrannoe-img,
+    .minrazmery-img,
+    .postroenie-img {
+        max-width: 100%;
+        width: auto;
+        max-height: 55vw;
     }
 
     /* Ошибки при использовании — карточка = 2 колонки мобильной сетки */
@@ -3428,6 +3439,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
     .marshr-grid {
         grid-template-columns: 1fr;
         align-items: start;
+        row-gap: var(--gap-h3-to-text);
     }
     .marshr-info-col {
         order: -1;
@@ -4975,8 +4987,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 @media (max-width: 900px) {
     .nos-chapter-num {
-        font-size: 3rem;
-        line-height: 3rem;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -5349,6 +5362,9 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         transition: none;
     }
     .nos-card { flex: unset; }
+
+    /* Подпись карточки — 16px на мобилке */
+    .nos-card__name { font-size: 1rem; }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -5449,7 +5465,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         flex-direction: column;
         gap: 0.75rem;
     }
-    .site-footer__info { text-align: left; }
+    .site-footer__info { text-align: right; }
 }
 
 /* ── Поиск: выпадающие результаты ── */

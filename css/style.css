@@ -2285,6 +2285,21 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 }
 
 /* ============================================
+   iPad (541–900px) — поля и текст по стайлгайду
+   ============================================ */
+@media (min-width: 541px) and (max-width: 1024px) {
+    .content {
+        padding-left: 3.3125rem;   /* 53px */
+        padding-right: 3.3125rem;
+    }
+
+    /* Базовый размер шрифта чуть больше — все rem пропорционально подрастают */
+    html {
+        font-size: 18px;
+    }
+}
+
+/* ============================================
    Цветовые сочетания — адаптация 900–1280px
    ============================================ */
 @media (max-width: 1280px) {
@@ -2406,6 +2421,7 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
         box-sizing: border-box;
         width: 100%;
     }
+
 
     /* --- Герой на мобилке --- */
     .hero-section {
@@ -3347,6 +3363,55 @@ input[type="radio"]:checked + .pattern-radio-lbl:hover {
 
 }
 
+
+/* iPad — графические элементы и паттерн как на мобилке */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grafika-grid {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+
+    .grafika-img-col,
+    .grafika-info-col {
+        grid-column: 1 / -1;
+    }
+
+    .grafika-info-col { order: -1; }
+
+    .grafika-img { width: 100%; }
+
+    .grafika-info-col {
+        border-left: none;
+        border-top: 2px solid var(--volzhsky-blue);
+        padding-left: 0;
+        padding-top: 2rem;
+    }
+
+    .pattern-grid {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+
+    .pattern-img-col,
+    .pattern-info-col {
+        grid-column: 1 / -1;
+    }
+
+    .pattern-img {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .pattern-info-col { order: -1; }
+
+    .pattern-info-col {
+        border-left: none;
+        border-top: 2px solid var(--volzhsky-blue);
+        padding-left: 0;
+        padding-top: 2rem;
+        justify-content: flex-start;
+    }
+}
 
 /* ===== ИЛЛЮСТРАЦИИ ===== */
 
